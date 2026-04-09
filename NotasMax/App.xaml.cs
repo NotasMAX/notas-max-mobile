@@ -1,4 +1,6 @@
-﻿namespace NotasMax
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace NotasMax
 {
     public partial class App : Application
     {
