@@ -4,11 +4,28 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:NotasMax"
+    xmlns:views="clr-namespace:NotasMax.Views"
     Title="NotasMax">
+    
+    <TabBar>
+        <ShellContent Title="Início"
+                      Icon="home.png"
+                      ContentTemplate="{DataTemplate views:HomePage}" />
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        <ShellContent Title="Turmas"
+                      Icon="turmas.png"
+                      ContentTemplate="{DataTemplate views:TurmasPage}" />
 
+        <ShellContent Title="Notas"
+                      Icon="notas.png"
+                      ContentTemplate="{DataTemplate views:NotasPage}" />
+
+        <ShellContent Title="Desempenho"
+                      Icon="desempenho.png"
+                      ContentTemplate="{DataTemplate views:DesempenhoPage}" />
+
+        <ShellContent Title="Perfil"
+                      Icon="perfil.png"
+                      ContentTemplate="{DataTemplate views:PerfilPage}" />
+    </TabBar>
 </Shell>
