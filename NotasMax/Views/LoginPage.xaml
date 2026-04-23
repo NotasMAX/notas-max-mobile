@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.Views.LoginPage"
+             Title="LoginPage">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="1,0">
+            <GradientStop Color="#053A6F"
+                          Offset="0.1" />
+            <GradientStop Color="#106BC6"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <Grid RowDefinitions="250, *" ColumnDefinitions="*">
+        <VerticalStackLayout  Grid.Row="0" Grid.Column="0" Spacing="4">
+            <Border
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 16"
+            Background="#2f6dab"
+            HeightRequest="100"
+            WidthRequest="100"
+            Margin="0,44,0,0"
+            Padding="4,4">
+                <Image Source="logo.png"
+                       Aspect="AspectFit" />
+            </Border>
+            <Label FontFamily="SpaceGrotesk"
+                   TextColor="White"
+                   TextTransform="Uppercase"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   FontSize="24">NOTASMAX</Label>
+            <Label FontFamily="Inter"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   FontSize="14">
+                Acompanhe seu desempenho escolar
+            </Label>
+        </VerticalStackLayout>
+        <Border
+            Grid.Row="1" Grid.Column="0"
+            Stroke="White"
+            StrokeThickness="4"
+            StrokeShape="RoundRectangle 20,20,0,0"
+            Background="White"
+            Padding="16,8">
+            <VerticalStackLayout Spacing="16" Padding="8,16">
+                <VerticalStackLayout Spacing="4">
+                    <Label TextColor="Black"
+                       FontFamily="SpaceGrotesk"
+                       FontAttributes="Bold"
+                       Text="Bem vindo de volta!"
+                       FontSize="20"/>
+                    <Label TextColor="#6C8093"
+                           FontFamily="Inter"
+                           Text="Entre para ver suas notas e simulados"
+                           FontSize="14"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="8">
+                    <Label TextColor="#6C8093"
+                           FontFamily="Inter"
+                           FontSize="14"
+                           Text="E-mail:"/>
+                    <Border
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12,12,0,0">
+                        <Entry x:Name="entry_email"
+                               Placeholder="seu@email.com"
+                               TextColor="Black"
+                               BackgroundColor="#E0E6EB"
+                               PlaceholderColor="#6C8093"/>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="8">
+                    <Label TextColor="#6C8093"
+                           FontFamily="Inter"
+                           FontSize="14"
+                           Text="Senha:"/>
+                    <Border
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12,12,0,0">
+                        <Entry x:Name="entry_senha"
+                               IsPassword="True"
+                               Placeholder="******"
+                               TextColor="Black"
+                               BackgroundColor="#E0E6EB"
+                               PlaceholderColor="#6C8093"/>
+                    </Border>
+                </VerticalStackLayout>
+                <Label Text="Esqueceu a senha?"
+                       TextDecorations="Underline" 
+                       FontFamily="Inter"
+                       FontSize="12"
+                       TextColor="#1A8CFF">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLabelEsqueceuSenhaTapped" 
+                              Command="{Binding YourCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Button x:Name="button_entrar"
+                        TextColor="White"
+                        FontFamily="Inter"
+                        Text="Entrar"
+                        FontAttributes="Bold"
+                        Clicked="ButtonEntrarClicked">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,0">
+                                <GradientStop Color="#053A6F"
+                          Offset="0.1" />
+                                <GradientStop Color="#106BC6"
+                          Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>
