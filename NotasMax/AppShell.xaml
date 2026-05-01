@@ -7,7 +7,6 @@
     Title="NotasMax">
 
     <ShellContent
-        Title="Home"
         ContentTemplate="{DataTemplate local:LoginPage}"
         Route="MainPage" />
 
