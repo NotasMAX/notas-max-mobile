@@ -13,10 +13,13 @@ namespace NotasMax
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Inter.ttf", "Inter");
+                    fonts.AddFont("Roboto.ttf", "Roboto");
+                    fonts.AddFont("SpaceGrotesk.ttf", "SpaceGrotesk");
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
