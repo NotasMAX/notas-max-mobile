@@ -24,7 +24,7 @@
                 <Setter Property="Background" Value="White" />
                 <Setter Property="Padding" Value="16,8" />
             </Style>
-            
+
             <Style x:Key="LabelFieldDefault" TargetType="Label">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
@@ -50,8 +50,8 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    
+
+
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="1,0">
             <GradientStop Color="{StaticResource Blue900}"
@@ -60,103 +60,114 @@
                           Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
-    
-    <Grid RowDefinitions="250, *" ColumnDefinitions="*">
-        
-        <VerticalStackLayout  Grid.Row="0" Grid.Column="0" Spacing="4">
-            
-            <Border Style="{StaticResource BorderLoginTop}">
-                
-                <Image Source="logo.png"
+    <ScrollView>
+        <Grid RowDefinitions="250, *" ColumnDefinitions="*">
+
+            <VerticalStackLayout  Grid.Row="0" Grid.Column="0" Spacing="4">
+
+                <Border Style="{StaticResource BorderLoginTop}">
+
+                    <Image Source="logo.png"
                        Aspect="AspectFit" />
-                
-            </Border>
-            
-            <Label Style="{StaticResource LabelDefaultBold}"
+
+                </Border>
+
+                <Label Style="{StaticResource LabelDefaultBold}"
                    FontFamily="SpaceGrotesk"
                    TextColor="White"
                    TextTransform="Uppercase"
                    HorizontalTextAlignment="Center"
                    FontSize="24">NOTASMAX</Label>
-            
-            <Label Style="{StaticResource LabelDefault}"
+
+                <Label Style="{StaticResource LabelDefault}"
                    TextColor="White"
                    HorizontalTextAlignment="Center">
-                Acompanhe seu desempenho escolar
-            </Label>
-        </VerticalStackLayout>
-        
-        <Border Style="{StaticResource BorderLoginBotton}">
-            
-            <VerticalStackLayout Spacing="16" Padding="8,16">
-                
-                <VerticalStackLayout Spacing="4">
+                    Acompanhe seu desempenho escolar
+                </Label>
+            </VerticalStackLayout>
 
-                    <Label Style="{StaticResource LabelDefaultBold}"
+            <Border Style="{StaticResource BorderLoginBotton}">
+
+                <VerticalStackLayout Spacing="16" Padding="8,16">
+
+                    <VerticalStackLayout Spacing="4">
+
+                        <Label Style="{StaticResource LabelDefaultBold}"
                        FontFamily="SpaceGrotesk"                     
                        Text="Bem-Vindo de volta!"
                        FontSize="20"/>
 
-                    <Label Style="{StaticResource LabelDefault}"
+                        <Label Style="{StaticResource LabelDefault}"
                         TextColor="{StaticResource SecondaryDarkText}"
                         Text="Entre para ver suas notas e simulados"/>
-                    
-                </VerticalStackLayout>
-                
-                <VerticalStackLayout Spacing="8">
 
-                    <Label Style="{StaticResource LabelFieldDefault}"
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="8">
+
+                        <Label Style="{StaticResource LabelFieldDefault}"
                            Text="E-mail:"/>
-                    <Border Style="{StaticResource BorderFieldDefault}">
-                        <Entry Style="{StaticResource EntryFieldDefault}"
+                        <Border Style="{StaticResource BorderFieldDefault}">
+                            <Entry Style="{StaticResource EntryFieldDefault}"
                                x:Name="entry_email"
                                Placeholder="seu@email.com"/>
-                    </Border>
-                    
-                </VerticalStackLayout>
+                        </Border>
 
-                <VerticalStackLayout Spacing="8">
+                    </VerticalStackLayout>
 
-                    <Label Style="{StaticResource LabelFieldDefault}"
+
+
+                    <VerticalStackLayout Spacing="8" Grid.Column="0">
+                        <Label Style="{StaticResource LabelFieldDefault}"
                            Text="Senha:"/>
-                    <Border Style="{StaticResource BorderFieldDefault}">
-                        <Entry Style="{StaticResource EntryFieldDefault}"
+                        <Border Style="{StaticResource BorderFieldDefault}">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Entry Style="{StaticResource EntryFieldDefault}"
                                x:Name="entry_senha"
                                IsPassword="True"
                                Placeholder="******"/>
-                    </Border>
+                                <ImageButton x:Name="ToggleEye"
+                                             Source="eye_open.png"
+                                             Clicked="ToggleEye_Clicked"
+                                             Grid.Column="1"
+                                             Aspect="AspectFill"
+                                             VerticalOptions="Center"
+                                             BackgroundColor="Transparent"/>
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
 
-                </VerticalStackLayout>
 
-                <Label Style="{StaticResource LabelDefaultLink}"
+                    <Label Style="{StaticResource LabelDefaultLink}"
                     Text="Esqueceu a senha?">
 
-                    <Label.GestureRecognizers>
-                        
-                        <TapGestureRecognizer Tapped="OnLabelEsqueceuSenhaTapped" 
+                        <Label.GestureRecognizers>
+
+                            <TapGestureRecognizer Tapped="OnLabelEsqueceuSenhaTapped" 
                               Command="{Binding YourCommand}" />
-                    </Label.GestureRecognizers>
-                    
-                </Label>
-                
-                <Button x:Name="button_entrar"
+                        </Label.GestureRecognizers>
+
+                    </Label>
+
+                    <Button x:Name="button_entrar"
                         Text="Entrar"
                         Clicked="ButtonEntrarClicked">
-                        
-                    <Button.Background>
-                            
-                        <LinearGradientBrush EndPoint="1,0">
-                            <GradientStop Color="{StaticResource Blue900}"
-                                            Offset="0.1" />
-                            <GradientStop Color="{StaticResource Blue600}"
-                                            Offset="1.0" />
-                        </LinearGradientBrush>
-                            
-                    </Button.Background>
-                    
-                 </Button>
 
-            </VerticalStackLayout>
-        </Border>
-    </Grid>
+                        <Button.Background>
+
+                            <LinearGradientBrush EndPoint="1,0">
+                                <GradientStop Color="{StaticResource Blue900}"
+                                            Offset="0.1" />
+                                <GradientStop Color="{StaticResource Blue600}"
+                                            Offset="1.0" />
+                            </LinearGradientBrush>
+
+                        </Button.Background>
+
+                    </Button>
+
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
 </ContentPage>
