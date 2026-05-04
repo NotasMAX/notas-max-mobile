@@ -138,23 +138,11 @@
                     </Label.GestureRecognizers>
                     
                 </Label>
-                
-                <Button x:Name="button_entrar"
+
+                <Button Style="{StaticResource BtnGradientPrimary}"
+                        x:Name="button_entrar"
                         Text="Entrar"
-                        Clicked="ButtonEntrarClicked">
-                        
-                    <Button.Background>
-                            
-                        <LinearGradientBrush EndPoint="1,0">
-                            <GradientStop Color="{StaticResource Blue900}"
-                                            Offset="0.1" />
-                            <GradientStop Color="{StaticResource Blue600}"
-                                            Offset="1.0" />
-                        </LinearGradientBrush>
-                            
-                    </Button.Background>
-                    
-                 </Button>
+                        Clicked="ButtonEntrarClicked"/>
 
             </VerticalStackLayout>
         </Border>

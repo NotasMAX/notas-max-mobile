@@ -1,4 +1,6 @@
-﻿namespace NotasMax.Models
+﻿using NotasMax.Models.Usuarios;
+
+namespace NotasMax.Models
 {
     public class TurmaDisciplina
     {
