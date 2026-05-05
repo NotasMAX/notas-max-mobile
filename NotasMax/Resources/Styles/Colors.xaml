@@ -45,6 +45,7 @@
     <Color x:Key="BlueGray900">#2A333A</Color>
 
     <Color x:Key="SurfaceInput">#F1F3F6</Color>
+    <Color x:Key="BackgroundColor">#F6F7F9</Color>
 
     <!-- Paleta de cores predefinidas automaticamente pelo VS -->
     <Color x:Key="White">White</Color>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
+             x:Class="NotasMax.Views.Aluno.MeuDesempenhoView">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Border" x:Key="BorderShadow">
+                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+                <Setter Property="Background" Value="{StaticResource White}" />
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow Brush="Black"
+                            Offset="0,2"
+                            Radius="12"
+                            Opacity="0.08" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="VerticalStackLayout" x:Key="VerStackInsight">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Spacing" Value="4" />
+            </Style>
+            <Style TargetType="Label" x:Key="LabelInsightValue">
+                <Setter Property="FontFamily" Value="SpaceGrotesk" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Label" x:Key="LabelInsightText">
+                <Setter Property="FontFamily" Value="Inter" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <Style TargetType="Image" x:Key="ImageIcon">
+                <Setter Property="HeightRequest" Value="25" />
+                <Setter Property="WidthRequest" Value="25" />
+            </Style>
+            <Style TargetType="Label" x:Key="LabelSubtitle">
+                <Setter Property="FontFamily" Value="SpaceGrotesk" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+            <VerticalStackLayout Spacing="4" >
+                <Label FontFamily="SpaceGrotesk"              
+                   Text="Meu Desempenho"
+                   FontSize="24"/>
+                <Label TextColor="{StaticResource SecondaryDarkText}"
+                   FontFamily="Inter"
+                   Text="Análise detalhada das suas notas"/>
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                <VerticalStackLayout Grid.Column="0">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Image Style="{StaticResource ImageIcon}"
+                                   Source="grade_avg.png"/>
+                            <Label Style="{StaticResource LabelInsightValue}" 
+                               x:Name="label_media"
+                               Text="0,0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                           Text="Média"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Image Style="{StaticResource ImageIcon}"
+                                   Source="grade_up.png"/>
+                            <Label Style="{StaticResource LabelInsightValue}"  
+                                   x:Name="label_melhora_nota"
+                                   Text="0,0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                   x:Name="label_melhora_materia" 
+                                   Text="Matéria"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="2">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Image Style="{StaticResource ImageIcon}"
+                                   Source="grade_down.png"/>
+                            <Label Style="{StaticResource LabelInsightValue}" 
+                                   x:Name="label_piora_nota"
+                                   Text="0,0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                   x:Name="label_piora_materia"
+                                   Text="Matéria"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Evolução das Notas"/>
+                        <chart:SfCartesianChart HeightRequest="160">
+                            <chart:SfCartesianChart.XAxes>
+                                <chart:CategoryAxis/>
+                            </chart:SfCartesianChart.XAxes>
+                            <chart:SfCartesianChart.YAxes>
+                                <chart:NumericalAxis/>
+                            </chart:SfCartesianChart.YAxes>
+                            <chart:SplineSeries
+                                x:Name="line_chart"                                                
+                                XBindingPath="Numero"                                                
+                                YBindingPath="Nota"                                                
+                                Type="Cardinal"
+                                Fill="#1685F3"
+                                StrokeWidth="3"/>
+                        </chart:SfCartesianChart>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <Grid>
+                <Border Style="{StaticResource BorderShadow}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MinhasMaterias_Tapped" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="25,*,25" 
+                          ColumnSpacing="12">
+                        <Image Style="{StaticResource ImageIcon}"
+                               Source="subject.png"
+                               Grid.Column="0"/>
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Minhas Matérias"
+                               FontFamily="Inter"
+                               Grid.Column="1"
+                               FontSize="18"
+                               Padding="0,0,0,3"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+                        <Image Style="{StaticResource ImageIcon}"
+                               Source="arrow_right.png"
+                               Grid.Column="2"/>
+                    </Grid>
+                </Border>
+            </Grid>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Comparativo por Matérias"/>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Notas por Disciplina"/>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
