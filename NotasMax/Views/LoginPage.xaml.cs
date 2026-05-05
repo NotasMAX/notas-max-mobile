@@ -58,6 +58,6 @@ public partial class LoginPage : ContentPage
 
     void OnLabelEsqueceuSenhaTapped(object sender, EventArgs e)
     {
-        DisplayAlertAsync("teste", "Clicou em Esqueceu a senha", "Continuar");
+        Shell.Current.GoToAsync("HomeAluno");
     }
 }

@@ -1,12 +1,282 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotasMax.Views.Aluno.HomeAlunoView"
-             Title="HomeAlunoView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+             x:Class="NotasMax.Views.Aluno.HomeAlunoView">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="16">
+
+            <!-- Header -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,4">
+                <VerticalStackLayout Grid.Column="0" Spacing="2">
+                    <Label Text="Olá,"
+                           Style="{StaticResource LabelDefault}" 
+                           TextColor="{StaticResource Gray400}"/>
+                    <HorizontalStackLayout Spacing="6">
+                        <Label Text="Lucas"
+                               Style="{StaticResource LabelDefaultTitle}"
+                               FontSize="26"
+                               TextColor="#1A1F36" />
+                        <Label Text="👋"
+                               FontSize="24"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <!-- Avatar -->
+                <Border Grid.Column="1"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        StrokeThickness="0"
+                        Background="{StaticResource GradientBluePrimary}"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="22" />
+                    </Border.StrokeShape>
+                    <Label Text="L"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+            </Grid>
+
+            <!-- Card: Nota Geral -->
+            <Border StrokeThickness="0"
+                    Padding="20,18"
+                    Background="{StaticResource GradientBluePrimary}"
+                    StrokeShape="RoundRectangle 20">
+
+
+                <Grid ColumnDefinitions="*, Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label Text="NOTA GERAL"
+                               Style="{StaticResource LabelDefault}" 
+                               TextColor="{StaticResource Blue200}"/>
+                        <Label Text="7.8"
+                               Style="{StaticResource LabelDefaultTitle}"
+                               FontSize="48"
+                               TextColor="White"
+                               LineHeight="1" />
+                        <Label Text="Média: 7.4"
+                               Style="{StaticResource LabelDefault}" 
+                               TextColor="{StaticResource Blue200}" />
+                    </VerticalStackLayout>
+
+                    <!-- Ícone de tendência -->
+                    <Border Grid.Column="1"
+                            WidthRequest="52"
+                            HeightRequest="52"
+                            StrokeThickness="1"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="26" />
+                        </Border.StrokeShape>
+                        <Label Text="📈"
+                               FontSize="22"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Cards: Últimos e Próximos Simulado -->
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                <!-- Último Simulado -->
+                <Border Grid.Column="0"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="14,12" >
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="14" />
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="#000000"
+                                Offset="0,3"
+                                Radius="12"
+                                Opacity="0.15" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Spacing="6">
+                        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                            <Border WidthRequest="32"
+                                    HeightRequest="32"
+                                    StrokeThickness="0"
+                                    BackgroundColor="{StaticResource Blue200}"
+                                    StrokeShape="RoundRectangle 8">
+                                <Label Text="📖"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="Último"
+                                   Style="{StaticResource LabelDefault}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource Gray300}"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label Text="Sim 2 – Março"
+                               Style="{StaticResource LabelDefaultBold}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <!-- Card: Evolução da Nota -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="White"
+                    Padding="18,16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#000000"
+                                Offset="0,3"
+                                Radius="12"
+                                Opacity="0.15" />
+                </Border.Shadow>
+                
+                <VerticalStackLayout Spacing="12" HeightRequest="200">
+                    <Label Text="Evolução da Nota"
+                           Style="{StaticResource LabelDefaultTitle}" />
+
+                    <!-- Gráfico simulado com Grid -->
+                    
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Seção: Notas por Matéria -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,4,0,0">
+                <Label Grid.Column="0"
+                       Text="Notas por Matéria"
+                       Style="{StaticResource LabelDefaultTitle}"
+                       VerticalOptions="Center" />
+                <Label Grid.Column="1"
+                       Text="Ver tudo"
+                       Style="{StaticResource LabelDefaultLink}"
+                       TextDecorations="None"
+                       VerticalOptions="Center" />
+            </Grid>
+
+            <!-- Card: Lista de Matérias -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="White"
+                    Padding="4,8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Matemática -->
+                    <Border Background="White"
+                            StrokeShape="RoundRectangle 10"
+                            StrokeThickness="0">
+                        
+                        <Border.Shadow>
+                            <Shadow Brush="#000000"
+                                Offset="0,2"
+                                Radius="8"
+                                Opacity="0.20" />
+                        </Border.Shadow>
+                        <Grid Padding="14,14" ColumnDefinitions="Auto,*,Auto,Auto" Background="White">
+
+                            <Border Grid.Column="0"
+                                WidthRequest="36" HeightRequest="36"
+                                StrokeThickness="0" BackgroundColor="{StaticResource Blue300}"
+                                Margin="0,0,12,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+
+                                <Label Text="📐" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="5" VerticalOptions="Center">
+                                <Label Text="Matemática" FontSize="14" FontAttributes="Bold" TextColor="#1A1F36"/>
+                                <ProgressBar Progress="0.85" ProgressColor="#2563EB" HeightRequest="5" BackgroundColor="#E2E8F0"/>
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="8.5" FontSize="14" FontAttributes="Bold" TextColor="#1A1F36" VerticalOptions="Center" Margin="12,0,4,0"/>
+                            <Label Grid.Column="3" Text="›" FontSize="20" TextColor="#CBD5E1" VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+                    
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+    <!--<ContentPage.Content>
+
+        <ContentView Padding="20, 40">
+
+            <Grid RowDefinitions="Auto, Auto, Auto, *, *">
+
+                <Grid ColumnDefinitions="*, Auto" Grid.Row="0">
+                    <VerticalStackLayout Grid.Column="0">
+                        <Label Style="{StaticResource LabelDefault}" TextColor="{StaticResource Gray400}" Text="Olá,"/>
+                        <Label Style="{StaticResource LabelDefaultTitle}" x:Name="txt_nameUsuario" Text="Aluno 👋"/>
+                    </VerticalStackLayout>
+
+                    <Label Background="Red" Text="V" Grid.Column="1"/>
+
+                </Grid>
+
+                <Border Grid.Row="1" Padding="20" Background="{StaticResource GradientBluePrimary}">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Grid RowDefinitions="Auto, Auto, Auto" Grid.Column="0">
+                            <Label Style="{StaticResource LabelDefault}" TextColor="White" Text="Nota Geral" Grid.Row="0"/>
+                            <Label Style="{StaticResource LabelDefaultTitle}" TextColor="White" FontSize="50" Text="7.5" x:Name="txt_notaGeral" Grid.Row="1"/>
+                            <Label Style="{StaticResource LabelDefault}" TextColor="White" Text="Média Geral: 7.4" x:Name="txt_mediaGeral" Grid.Row="2"/>
+                        </Grid>
+                        <Border Grid.Column="1">
+                            <Label Text="S"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <VerticalStackLayout Grid.Row="2">
+                    <Border>
+                        <Grid ColumnDefinitions="*, *">
+                            <Image Grid.Column="0"/>
+                            <HorizontalStackLayout Grid.Column="1">
+                                <Label FontSize="10" TextColor="{StaticResource Gray400}" x:Name="txt_cardCalendario" Text="Ultimo"/>
+                                <Label FontSize="14" x:Name="txt_cardAtividade" Text="Sim 2 - Março"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="3">
+                    <Label Style="{StaticResource LabelDefaultTitle}" Text="Evolução de Notas"/>
+                    <Border>
+
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="4">
+                    <HorizontalStackLayout>
+                        <Label Style="{StaticResource LabelDefaultBold}" FontFamily="SpaceGrotesk" Text="Notas por Materia"/>
+                        <Label Style="{StaticResource LabelDefaultLink}" Text="Ver tudo"/>
+                    </HorizontalStackLayout>
+
+                    <Grid ColumnDefinitions="Auto, 2*, Auto, Auto">
+                        <Label x:Name="txt_iconMateria" Text="📐" Grid.Column="0"/>
+                        <HorizontalStackLayout Grid.Column="1">
+                            <Label x:Name="txt_materia" Text="Matematica"/>
+                            <ProgressBar />
+                        </HorizontalStackLayout>
+                        <Label x:Name="txt_numAcertos" Text="8.5" Grid.Column="2"/>
+                        <Label Text=">" Grid.Column="3"/>
+                    </Grid>
+
+                </VerticalStackLayout>
+
+            </Grid>
+
+        </ContentView>
+
+    </ContentPage.Content>-->
+
+</ContentPage> 
