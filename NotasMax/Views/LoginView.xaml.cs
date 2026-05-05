@@ -12,7 +12,7 @@ public partial class LoginView : ContentPage
 
     void OnLabelEsqueceuSenhaTapped(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new EmailRequestPage());
+        Navigation.PushAsync(new EmailRequestView());
     }
 
     private void ToggleEye_Clicked(object sender, EventArgs e)

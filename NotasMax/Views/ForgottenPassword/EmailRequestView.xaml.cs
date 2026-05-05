@@ -2,10 +2,10 @@ using System.Text.RegularExpressions;
 
 namespace NotasMax.Views.ForgottenPassword;
 
-public partial class EmailRequestPage : ContentPage
+public partial class EmailRequestView : ContentPage
 {
 
-    public EmailRequestPage()
+    public EmailRequestView()
     {
         InitializeComponent();
     }
@@ -31,6 +31,6 @@ public partial class EmailRequestPage : ContentPage
     {
         if (!await ValidateEmail())
             return;
-        await Navigation.PushAsync(new PasswordCodeRequestPage { Email = entry_email.Text.Trim() });
+        await Navigation.PushAsync(new PasswordCodeRequestView { Email = entry_email.Text.Trim() });
     }
 }

@@ -1,13 +1,13 @@
 namespace NotasMax.Views.ForgottenPassword;
 
-public partial class NewPasswordPage : ContentPage
+public partial class NewPasswordView : ContentPage
 {
-	private bool isPasswordEyeOpen = false;
+    private bool isPasswordEyeOpen = false;
     private bool isConfirmPasswordEyeOpen = false;
-    public NewPasswordPage()
-	{
-		InitializeComponent();
-	}
+    public NewPasswordView()
+    {
+        InitializeComponent();
+    }
 
     private async Task<bool> ValidatePassword()
     {
@@ -15,7 +15,7 @@ public partial class NewPasswordPage : ContentPage
         string confirmPassword = entry_confirm_password.Text;
         if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
         {
-           await  DisplayAlertAsync("Erro", "Por favor, preencha ambos os campos de senha.", "OK");
+            await DisplayAlertAsync("Erro", "Por favor, preencha ambos os campos de senha.", "OK");
             return false;
         }
         if (password != confirmPassword)
@@ -37,9 +37,8 @@ public partial class NewPasswordPage : ContentPage
         if (!await ValidatePassword())
             return;
 
-            await DisplayAlertAsync("Sucesso", "Senha alterada com sucesso! Redirecionando para o login...", "OK");
-            await Navigation.PopToRootAsync(); 
-        
+        await Navigation.PopToRootAsync();
+
     }
     private void ToggleEyePassword_Clicked(object sender, EventArgs e)
     {

@@ -1,6 +1,6 @@
 namespace NotasMax.Views.ForgottenPassword;
 
-public partial class PasswordCodeRequestPage : ContentPage
+public partial class PasswordCodeRequestView : ContentPage
 {
 	private string _email = "exemplo@email.com"; 
     public string Email
@@ -10,7 +10,7 @@ public partial class PasswordCodeRequestPage : ContentPage
     }
 
 	private bool isEyeOpen = false;
-    public PasswordCodeRequestPage()
+    public PasswordCodeRequestView()
 	{
 		InitializeComponent();
 	}
@@ -44,6 +44,6 @@ public partial class PasswordCodeRequestPage : ContentPage
             return;
         // Aqui você pode adicionar a lógica para verificar o código inserido pelo usuário
         // Se o código for válido, navegue para a página de criação de nova senha
-        await Navigation.PushAsync(new NewPasswordPage());
+        await Navigation.PushAsync(new NewPasswordView());
     }
 }

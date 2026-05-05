@@ -84,8 +84,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\ForgottenPassword\EmailRequestPage.xaml.cs">
+	  <Compile Update="Views\ForgottenPassword\EmailRequestView.xaml.cs">
 	    <DependentUpon>EmailRequestPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ForgottenPassword\NewPasswordView.xaml.cs">
+	    <DependentUpon>NewPasswordView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ForgottenPassword\PasswordCodeRequestView.xaml.cs">
+	    <DependentUpon>PasswordCodeRequestView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -96,13 +102,13 @@
 	  <MauiXaml Update="Resources\Styles\TextSyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgottenPassword\EmailRequestPage.xaml">
+	  <MauiXaml Update="Views\ForgottenPassword\EmailRequestView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgottenPassword\NewPasswordPage.xaml">
+	  <MauiXaml Update="Views\ForgottenPassword\NewPasswordView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgottenPassword\PasswordCodeRequestPage.xaml">
+	  <MauiXaml Update="Views\ForgottenPassword\PasswordCodeRequestView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginView.xaml">
