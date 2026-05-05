@@ -30,7 +30,7 @@
             </Style>
             <Style TargetType="Label" x:Key="LabelInsightText">
                 <Setter Property="FontFamily" Value="Inter" />
-                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontSize" Value="12" />
             </Style>
             <Style TargetType="Image" x:Key="ImageIcon">
                 <Setter Property="HeightRequest" Value="25" />
@@ -74,10 +74,10 @@
                             <Image Style="{StaticResource ImageIcon}"
                                    Source="grade_up.png"/>
                             <Label Style="{StaticResource LabelInsightValue}"  
-                                   x:Name="label_melhora_nota"
+                                   x:Name="label_maior_nota"
                                    Text="0,0"/>
                             <Label Style="{StaticResource LabelInsightText}"
-                                   x:Name="label_melhora_materia" 
+                                   x:Name="label_maior_materia" 
                                    Text="Matéria"/>
                         </VerticalStackLayout>
                     </Border>
@@ -88,10 +88,10 @@
                             <Image Style="{StaticResource ImageIcon}"
                                    Source="grade_down.png"/>
                             <Label Style="{StaticResource LabelInsightValue}" 
-                                   x:Name="label_piora_nota"
+                                   x:Name="label_menor_nota"
                                    Text="0,0"/>
                             <Label Style="{StaticResource LabelInsightText}"
-                                   x:Name="label_piora_materia"
+                                   x:Name="label_menor_materia"
                                    Text="Matéria"/>
                         </VerticalStackLayout>
                     </Border>
@@ -101,13 +101,16 @@
                 <Border Style="{StaticResource BorderShadow}">
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
-                               Text="Evolução das Notas"/>
+                               Text="Evolução das Médias"/>
                         <chart:SfCartesianChart HeightRequest="160">
                             <chart:SfCartesianChart.XAxes>
                                 <chart:CategoryAxis/>
                             </chart:SfCartesianChart.XAxes>
                             <chart:SfCartesianChart.YAxes>
-                                <chart:NumericalAxis/>
+                                <chart:NumericalAxis
+                                    Minimum="0"
+                                    Maximum="10"
+                                    Interval="1"/>
                             </chart:SfCartesianChart.YAxes>
                             <chart:SplineSeries
                                 x:Name="line_chart"                                                
@@ -149,7 +152,9 @@
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Comparativo por Matérias"/>
-                        <chart:SfPolarChart StartAngle="Rotate0" GridLineType="Polygon">
+                        <chart:SfPolarChart StartAngle="Rotate0" 
+                                            GridLineType="Polygon" 
+                                            HeightRequest="250">
                             <chart:SfPolarChart.PrimaryAxis>
                                 <chart:CategoryAxis/>
                             </chart:SfPolarChart.PrimaryAxis>
@@ -178,6 +183,32 @@
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Notas por Disciplina"/>
+                        <chart:SfCartesianChart HeightRequest="180">
+                            <chart:SfCartesianChart.XAxes>
+                                <chart:CategoryAxis
+                                    LabelCreated="ColumnChart_LabelCreated">
+                                    <chart:CategoryAxis.LabelStyle>
+                                        <chart:ChartAxisLabelStyle 
+                                            FontSize="10"  
+                                            FontFamily="Inter"/>
+                                    </chart:CategoryAxis.LabelStyle>
+                                </chart:CategoryAxis>
+                            </chart:SfCartesianChart.XAxes>
+
+                            <chart:SfCartesianChart.YAxes>
+                                <chart:NumericalAxis
+                                    Minimum="0"
+                                    Maximum="10"
+                                    Interval="1"/>
+                            </chart:SfCartesianChart.YAxes>
+
+                            <chart:ColumnSeries 
+                                x:Name="column_chart"
+                                XBindingPath="Materia"
+                                YBindingPath="Nota"
+                                Fill="#044D95"                 
+                                StrokeWidth="3"/>
+                        </chart:SfCartesianChart>
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
