@@ -12,7 +12,7 @@ public partial class EmailRequestPage : ContentPage
 
     private async Task<bool> ValidateEmail()
     {
-        string email = entry_email.Text.Trim();
+        string email = entry_email.Text;
         if (string.IsNullOrEmpty(email))
         {
             await DisplayAlertAsync("Erro", "Por favor, insira um email válido.", "OK");
