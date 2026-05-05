@@ -1,10 +1,10 @@
-namespace NotasMax.Views.ForgottenPassword;
+namespace NotasMax.Views.EsqueceuSenha;
 
-public partial class NewPasswordView : ContentPage
+public partial class NovaSenhaView : ContentPage
 {
     private bool isPasswordEyeOpen = false;
     private bool isConfirmPasswordEyeOpen = false;
-    public NewPasswordView()
+    public NovaSenhaView()
     {
         InitializeComponent();
     }

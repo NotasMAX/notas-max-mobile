@@ -1,11 +1,11 @@
 using System.Text.RegularExpressions;
 
-namespace NotasMax.Views.ForgottenPassword;
+namespace NotasMax.Views.EsqueceuSenha;
 
-public partial class EmailRequestView : ContentPage
+public partial class InformarEmailView : ContentPage
 {
 
-    public EmailRequestView()
+    public InformarEmailView()
     {
         InitializeComponent();
     }
@@ -31,6 +31,6 @@ public partial class EmailRequestView : ContentPage
     {
         if (!await ValidateEmail())
             return;
-        await Navigation.PushAsync(new PasswordCodeRequestView { Email = entry_email.Text.Trim() });
+        await Navigation.PushAsync(new InformarCodigoRecuperacaoView { Email = entry_email.Text.Trim() });
     }
 }

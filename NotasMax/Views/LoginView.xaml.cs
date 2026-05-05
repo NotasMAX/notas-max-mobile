@@ -1,4 +1,4 @@
-using NotasMax.Views.ForgottenPassword;
+using NotasMax.Views.EsqueceuSenha;
 
 namespace NotasMax.Views;
 
@@ -12,7 +12,7 @@ public partial class LoginView : ContentPage
 
     void OnLabelEsqueceuSenhaTapped(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new EmailRequestView());
+        Navigation.PushAsync(new InformarEmailView());
     }
 
     private void ToggleEye_Clicked(object sender, EventArgs e)

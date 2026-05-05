@@ -79,19 +79,18 @@
 
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
-	  <Folder Include="Views\Aluno\" />
 	  <Folder Include="Views\Professor\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\ForgottenPassword\EmailRequestView.xaml.cs">
-	    <DependentUpon>EmailRequestPage.xaml</DependentUpon>
+	  <Compile Update="Views\EsqueceuSenha\InformarEmailView.xaml.cs">
+	    <DependentUpon>InformarEmailView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ForgottenPassword\NewPasswordView.xaml.cs">
-	    <DependentUpon>NewPasswordView.xaml</DependentUpon>
+	  <Compile Update="Views\EsqueceuSenha\NovaSenhaView.xaml.cs">
+	    <DependentUpon>NovaSenhaView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ForgottenPassword\PasswordCodeRequestView.xaml.cs">
-	    <DependentUpon>PasswordCodeRequestView.xaml</DependentUpon>
+	  <Compile Update="Views\EsqueceuSenha\InformarCodigoRecuperacaoView.xaml.cs">
+	    <DependentUpon>InformarCodigoRecuperacaoView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -102,13 +101,13 @@
 	  <MauiXaml Update="Resources\Styles\TextSyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgottenPassword\EmailRequestView.xaml">
+	  <MauiXaml Update="Views\EsqueceuSenha\InformarEmailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgottenPassword\NewPasswordView.xaml">
+	  <MauiXaml Update="Views\EsqueceuSenha\NovaSenhaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ForgottenPassword\PasswordCodeRequestView.xaml">
+	  <MauiXaml Update="Views\EsqueceuSenha\InformarCodigoRecuperacaoView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginView.xaml">

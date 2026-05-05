@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotasMax.Views.ForgottenPassword.PasswordCodeRequestView">
-
-
+             x:Class="NotasMax.Views.EsqueceuSenha.NovaSenhaView">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Border" x:Key="BorderLoginTop">
@@ -98,26 +96,24 @@
                        Text="Esqueceu sua senha?"
                        FontSize="20"/>
 
-                        <Label x:Name="label_info" 
-                               Style="{StaticResource LabelDefault}"
-                               TextColor="{StaticResource SecondaryDarkText}"
-                               Text=""/>
+                        <Label Style="{StaticResource LabelDefault}"
+                        TextColor="{StaticResource SecondaryDarkText}"
+                        Text="Digite sua nova senha abaixo."/>
 
                     </VerticalStackLayout>
 
-
                     <VerticalStackLayout Spacing="8" Grid.Column="0">
                         <Label Style="{StaticResource LabelFieldDefault}"
-                           Text="Código:"/>
+                           Text="Senha:"/>
                         <Border Style="{StaticResource BorderFieldDefault}">
                             <Grid ColumnDefinitions="*, Auto">
                                 <Entry Style="{StaticResource EntryFieldDefault}"
-                               x:Name="entry_codigo"
+                               x:Name="entry_password"
                                IsPassword="True"
                                Placeholder="******"/>
                                 <ImageButton x:Name="ToggleEye"
                                              Source="eye_open.png"
-                                             Clicked="ToggleEye_Clicked"
+                                             Clicked="ToggleEyePassword_Clicked"
                                              Grid.Column="1"
                                              Aspect="AspectFill"
                                              VerticalOptions="Center"
@@ -127,9 +123,29 @@
                     </VerticalStackLayout>
 
 
-                    <Button x:Name="button_code_received"
-                        Text="Continuar"
-                        Clicked="CodeReceived_Clicked">
+                    <VerticalStackLayout Spacing="8" Grid.Column="0">
+                        <Label Style="{StaticResource LabelFieldDefault}"
+                           Text="Senha:"/>
+                        <Border Style="{StaticResource BorderFieldDefault}">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Entry Style="{StaticResource EntryFieldDefault}"
+                               x:Name="entry_confirm_password"
+                               IsPassword="True"
+                               Placeholder="******"/>
+                                <ImageButton x:Name="ToggleEyeConfirmPassword"
+                                             Source="eye_open.png"
+                                             Clicked="ToggleEyeConfirmPassword_Clicked"
+                                             Grid.Column="1"
+                                             Aspect="AspectFill"
+                                             VerticalOptions="Center"
+                                             BackgroundColor="Transparent"/>
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Button x:Name="button_save_password"
+                        Text="Salvar Nova Senha"
+                        Clicked="SavePassword_Clicked">
 
                         <Button.Background>
 
