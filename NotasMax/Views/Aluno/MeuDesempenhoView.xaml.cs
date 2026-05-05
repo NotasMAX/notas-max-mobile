@@ -14,7 +14,8 @@ public partial class MeuDesempenhoView : ContentPage
     {
         base.OnAppearing();
 
-        line_chart.ItemsSource = new ViewModelExemplo().DadosSimulados;
+        line_chart.ItemsSource = new ViewModelExemplo().NotaSimulados;
+        polar_line_chart.ItemsSource = new ViewModelExemplo().NotaMaterias;
 
     }
 
@@ -22,4 +23,5 @@ public partial class MeuDesempenhoView : ContentPage
     {
         DisplayAlertAsync("Ops!","Essa funcionalidade ainda não está disponível.", "OK");
     }
+
 }

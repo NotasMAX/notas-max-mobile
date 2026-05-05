@@ -149,6 +149,27 @@
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Comparativo por Matérias"/>
+                        <chart:SfPolarChart StartAngle="Rotate0" GridLineType="Polygon">
+                            <chart:SfPolarChart.PrimaryAxis>
+                                <chart:CategoryAxis/>
+                            </chart:SfPolarChart.PrimaryAxis>
+
+                            <chart:SfPolarChart.SecondaryAxis>
+                                <chart:NumericalAxis Minimum="0"
+                                                     Maximum="10"
+                                                     Interval="4"
+                                                     />
+                            </chart:SfPolarChart.SecondaryAxis>
+
+                            <chart:PolarAreaSeries 
+                                x:Name="polar_line_chart"
+                                XBindingPath="Materia" 
+                                YBindingPath="Nota"
+                                Fill="#f7d588"
+                                Stroke="#FFBB0F"
+                                Opacity="0.5"
+                                StrokeWidth="3"/>
+                        </chart:SfPolarChart>
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
