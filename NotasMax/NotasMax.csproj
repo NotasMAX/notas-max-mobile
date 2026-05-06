@@ -78,10 +78,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\Professor\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Resources\Styles\CustomStyles.xaml.cs">
 	    <DependentUpon>CustomStyles.xaml</DependentUpon>
 	  </Compile>
@@ -119,6 +115,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Professor\DesempenhoTurmaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

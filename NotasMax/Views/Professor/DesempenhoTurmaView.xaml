@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
-             x:Class="NotasMax.Views.Aluno.MeuDesempenhoView">
+             x:Class="NotasMax.Views.Professor.DesempenhoTurmaView">
 
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
         <VerticalStackLayout Spacing="20" Margin="25,40">
             <VerticalStackLayout Spacing="4" >
-                <Label Style="{StaticResource LabelTitle}"                          
-                       Text="Meu Desempenho"/>
-                <Label Style="{StaticResource LabelDetails}"
-                       Text="Análise detalhada das suas notas"/>
+                <Label Style="{StaticResource LabelTitle}"           
+                   Text="Desempenho"/>
+                <Label  Style="{StaticResource LabelDetails}"                        
+                        Text="Análise detalhada das turmas"/>
             </VerticalStackLayout>
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
                 <VerticalStackLayout Grid.Column="0">
@@ -36,7 +36,7 @@
                                    Text="0,0"/>
                             <Label Style="{StaticResource LabelInsightText}"
                                    x:Name="label_maior_materia" 
-                                   Text="Matéria"/>
+                                   Text="Aluno"/>
                         </VerticalStackLayout>
                     </Border>
                 </VerticalStackLayout>
@@ -50,7 +50,7 @@
                                    Text="0,0"/>
                             <Label Style="{StaticResource LabelInsightText}"
                                    x:Name="label_menor_materia"
-                                   Text="Matéria"/>
+                                   Text="Aluno"/>
                         </VerticalStackLayout>
                     </Border>
                 </VerticalStackLayout>
@@ -59,7 +59,7 @@
                 <Border Style="{StaticResource BorderShadow}">
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
-                               Text="Evolução das Médias"/>
+                               Text="Evolução da Turma"/>
                         <chart:SfCartesianChart HeightRequest="160">
                             <chart:SfCartesianChart.XAxes>
                                 <chart:CategoryAxis/>
@@ -81,61 +81,11 @@
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
-            <Grid>
-                <Border Style="{StaticResource BorderShadow}">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="MinhasMaterias_Tapped" />
-                    </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="25,*,25" 
-                          ColumnSpacing="12">
-                        <Image Style="{StaticResource ImageIcon}"
-                               Source="subject.png"
-                               Grid.Column="0"/>
-                        <Label Style="{StaticResource LabelButton}"
-                               Text="Minhas Matérias"
-                               Grid.Column="1"/>
-                        <Image Style="{StaticResource ImageIcon}"
-                               Source="arrow_right.png"
-                               Grid.Column="2"/>
-                    </Grid>
-                </Border>
-            </Grid>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
-                               Text="Comparativo por Matérias"/>
-                        <chart:SfPolarChart StartAngle="Rotate0" 
-                                            GridLineType="Polygon" 
-                                            HeightRequest="250">
-                            <chart:SfPolarChart.PrimaryAxis>
-                                <chart:CategoryAxis/>
-                            </chart:SfPolarChart.PrimaryAxis>
-
-                            <chart:SfPolarChart.SecondaryAxis>
-                                <chart:NumericalAxis Minimum="0"
-                                                     Maximum="10"
-                                                     Interval="4"
-                                                     />
-                            </chart:SfPolarChart.SecondaryAxis>
-
-                            <chart:PolarAreaSeries 
-                                x:Name="polar_line_chart"
-                                XBindingPath="Materia" 
-                                YBindingPath="Nota"
-                                Fill="#f7d588"
-                                Stroke="#FFBB0F"
-                                Opacity="0.5"
-                                StrokeWidth="3"/>
-                        </chart:SfPolarChart>
-                    </VerticalStackLayout>
-                </Border>
-            </VerticalStackLayout>
-            <VerticalStackLayout Spacing="16">
-                <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
-                        <Label Style="{StaticResource LabelSubtitle}"
-                               Text="Notas por Disciplina"/>
+                               Text="Comparação entre Alunos"/>
                         <chart:SfCartesianChart HeightRequest="180">
                             <chart:SfCartesianChart.XAxes>
                                 <chart:CategoryAxis
@@ -157,11 +107,30 @@
 
                             <chart:ColumnSeries 
                                 x:Name="column_chart"
-                                XBindingPath="Materia"
+                                XBindingPath="Nome"
                                 YBindingPath="Nota"
                                 Fill="#044D95"                 
                                 StrokeWidth="3"/>
                         </chart:SfCartesianChart>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Comparativo por Matérias"/>
+                        <chart:SfCircularChart>
+                            <chart:DoughnutSeries 
+                                x:Name="doughnut_chart"
+                                InnerRadius="0.7"	
+                                XBindingPath="Faixa"
+                                YBindingPath="Quantidade"
+                                ExplodeRadius="10"
+                                ShowDataLabels="True"
+                                LabelContext="Percentage">           
+                            </chart:DoughnutSeries>
+                        </chart:SfCircularChart>
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>

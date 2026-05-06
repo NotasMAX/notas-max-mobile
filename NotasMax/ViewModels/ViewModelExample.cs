@@ -14,10 +14,26 @@ public class NotaMateria
     public double Nota { get; set; }
 }
 
+public class NotaAluno
+{
+    public string? Nome { get; set; }
+    public double Nota { get; set; }
+}
+
+public class DistribuicaoNotas
+{
+    public string? Faixa { get; set; }
+    public int Quantidade { get; set; }
+}
+
 public class ViewModelExemplo
 {
     public List<NotaSimulado> NotaSimulados { get; set; }
     public List<NotaMateria> NotaMaterias { get; set; }
+    public List<NotaAluno> NotaAlunos { get; set; }
+
+    public List<DistribuicaoNotas> DistribuicaoNotas { get; set; }
+
     public ViewModelExemplo()
     {
         // Gerando alguns dados de exemplo (Mock / Simulação) para o gráfico de desempenho
@@ -42,6 +58,23 @@ public class ViewModelExemplo
             new NotaMateria { Materia = "Biologia", Nota = 6.5 }
         };
 
+        NotaAlunos = new List<NotaAluno>
+        {
+            new NotaAluno { Nome = "João", Nota = 7.5 },
+            new NotaAluno { Nome = "Maria", Nota = 8.0 },
+            new NotaAluno { Nome = "Pedro", Nota = 6.5 },
+            new NotaAluno { Nome = "Ana", Nota = 7.0 },
+            new NotaAluno { Nome = "Lucas", Nota = 8.5 },
+            new NotaAluno { Nome = "Sofia", Nota = 3.5 },
+            new NotaAluno { Nome = "Rafael", Nota = 8.0 },
+            new NotaAluno { Nome = "Isabela", Nota = 6.5 }
+        };
 
+        DistribuicaoNotas = new List<DistribuicaoNotas>
+        {
+            new DistribuicaoNotas { Faixa = "<5", Quantidade = 1 },
+            new DistribuicaoNotas { Faixa = "5-7", Quantidade = 2 },
+            new DistribuicaoNotas { Faixa = ">7", Quantidade = 5 },
+        };
     }
 }

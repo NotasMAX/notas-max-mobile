@@ -28,6 +28,7 @@
     </Style>
     <Style TargetType="Label" x:Key="LabelDetails">
         <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="TextColor" Value="{StaticResource SecondaryDarkText}"/>
     </Style>
     <Style TargetType="Label" x:Key="LabelInsightValue">
         <Setter Property="FontFamily" Value="SpaceGrotesk" />
@@ -37,6 +38,7 @@
     <Style TargetType="Label" x:Key="LabelInsightText">
         <Setter Property="FontFamily" Value="Inter" />
         <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
     </Style>
     <Style TargetType="Image" x:Key="ImageIcon">
         <Setter Property="HeightRequest" Value="25" />
