@@ -49,6 +49,7 @@
             <VerticalStackLayout Spacing="4" >
                 <Label FontFamily="SpaceGrotesk"              
                    Text="Meu Desempenho"
+                       FontAttributes="Bold"
                    FontSize="24"/>
                 <Label TextColor="{StaticResource SecondaryDarkText}"
                    FontFamily="Inter"
@@ -138,7 +139,7 @@
                                FontFamily="Inter"
                                Grid.Column="1"
                                FontSize="18"
-                               Padding="0,0,0,3"
+                               Padding="0,0,0,0"
                                HorizontalOptions="Start"
                                VerticalOptions="Center"/>
                         <Image Style="{StaticResource ImageIcon}"

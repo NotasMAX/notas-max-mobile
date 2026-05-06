@@ -40,7 +40,6 @@ public class ViewModelExemplo
             new NotaMateria { Materia = "Inglês", Nota = 3.5 },
             new NotaMateria { Materia = "Física", Nota = 8.0 },
             new NotaMateria { Materia = "Biologia", Nota = 6.5 }
-
         };
 
 

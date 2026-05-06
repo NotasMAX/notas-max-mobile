@@ -40,8 +40,8 @@ public partial class MeuDesempenhoView : ContentPage
     {
         base.OnAppearing();
 
-        var notasMaterias = new ViewModelExemplo().NotaMaterias;
-        var notasSimulados = new ViewModelExemplo().NotaSimulados;
+        var notasMaterias = (new ViewModelExemplo().NotaMaterias).OrderBy(n => n.Materia).ToList();
+        var notasSimulados = (new ViewModelExemplo().NotaSimulados).OrderBy(n => n.Numero).ToList();
 
         line_chart.ItemsSource = notasSimulados;
         polar_line_chart.ItemsSource = notasMaterias;
@@ -59,7 +59,10 @@ public partial class MeuDesempenhoView : ContentPage
 
     private void ColumnChart_LabelCreated(object sender, ChartAxisLabelEventArgs e)
     {
-        string labelText = e.Label;
+        string? labelText = e.Label;
+
+        if(labelText == null) 
+            return;
 
         if (labelText.Length > 3)
         {
