@@ -1,6 +1,6 @@
 using NotasMax.ViewModels;
 using Syncfusion.Maui.Toolkit.Charts;
-
+using NotasMax.Resources.Styles;
 namespace NotasMax.Views.Aluno;
 
 public partial class MeuDesempenhoView : ContentPage

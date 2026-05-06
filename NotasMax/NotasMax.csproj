@@ -82,6 +82,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\Styles\CustomStyles.xaml.cs">
+	    <DependentUpon>CustomStyles.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\EsqueceuSenha\InformarEmailView.xaml.cs">
 	    <DependentUpon>InformarEmailView.xaml</DependentUpon>
 	  </Compile>
@@ -95,6 +98,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Resources\Styles\ButtonSyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\CustomStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\TextSyles.xaml">
