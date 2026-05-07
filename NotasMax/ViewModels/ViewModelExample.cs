@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using NotasMax.Models;
 
 namespace NotasMax.ViewModels;
 
@@ -31,8 +31,9 @@ public class ViewModelExemplo
     public List<NotaSimulado> NotaSimulados { get; set; }
     public List<NotaMateria> NotaMaterias { get; set; }
     public List<NotaAluno> NotaAlunos { get; set; }
-
     public List<DistribuicaoNotas> DistribuicaoNotas { get; set; }
+
+    public List<Turma> Turmas { get; set; }
 
     public ViewModelExemplo()
     {
@@ -60,21 +61,28 @@ public class ViewModelExemplo
 
         NotaAlunos = new List<NotaAluno>
         {
-            new NotaAluno { Nome = "João", Nota = 7.5 },
-            new NotaAluno { Nome = "Maria", Nota = 8.0 },
-            new NotaAluno { Nome = "Pedro", Nota = 6.5 },
-            new NotaAluno { Nome = "Ana", Nota = 7.0 },
-            new NotaAluno { Nome = "Lucas", Nota = 8.5 },
-            new NotaAluno { Nome = "Sofia", Nota = 3.5 },
-            new NotaAluno { Nome = "Rafael", Nota = 8.0 },
-            new NotaAluno { Nome = "Isabela", Nota = 6.5 }
+            new NotaAluno { Nome = "João Cardoso", Nota = 7.5 },
+            new NotaAluno { Nome = "Maria Alencar", Nota = 8.0 },
+            new NotaAluno { Nome = "Pedro Oliveira", Nota = 6.5 },
+            new NotaAluno { Nome = "Ana Carolina", Nota = 7.0 },
+            new NotaAluno { Nome = "Lucas Silveira", Nota = 8.5 },
+            new NotaAluno { Nome = "Sofia Veronez", Nota = 3.5 },
+            new NotaAluno { Nome = "Rafael Souza", Nota = 8.0 },
+            new NotaAluno { Nome = "Isabela Lombardi", Nota = 6.5 }
         };
 
         DistribuicaoNotas = new List<DistribuicaoNotas>
         {
-            new DistribuicaoNotas { Faixa = "<5", Quantidade = 1 },
             new DistribuicaoNotas { Faixa = "5-7", Quantidade = 2 },
+            new DistribuicaoNotas { Faixa = "<5", Quantidade = 1 },
             new DistribuicaoNotas { Faixa = ">7", Quantidade = 5 },
+        };
+
+        Turmas = new List<Turma>
+        {
+            new Turma {Serie = 1, Id=new Guid()},
+            new Turma {Serie = 2, Id= new Guid()},
+            new Turma {Serie = 3, Id= new Guid()}
         };
     }
 }

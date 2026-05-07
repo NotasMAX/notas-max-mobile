@@ -136,10 +136,9 @@
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Notas por Disciplina"/>
-                        <chart:SfCartesianChart HeightRequest="180">
+                        <chart:SfCartesianChart IsTransposed="True">
                             <chart:SfCartesianChart.XAxes>
-                                <chart:CategoryAxis
-                                    LabelCreated="ColumnChart_LabelCreated">
+                                <chart:CategoryAxis>
                                     <chart:CategoryAxis.LabelStyle>
                                         <chart:ChartAxisLabelStyle 
                                             FontSize="10"  

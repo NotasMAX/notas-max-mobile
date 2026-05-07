@@ -1,6 +1,4 @@
 using NotasMax.ViewModels;
-using Syncfusion.Maui.Toolkit.Charts;
-using NotasMax.Resources.Styles;
 namespace NotasMax.Views.Aluno;
 
 public partial class MeuDesempenhoView : ContentPage
@@ -55,18 +53,5 @@ public partial class MeuDesempenhoView : ContentPage
     private void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
     {
         DisplayAlertAsync("Ops!", "Essa funcionalidade ainda não está disponível.", "OK");
-    }
-
-    private void ColumnChart_LabelCreated(object sender, ChartAxisLabelEventArgs e)
-    {
-        string? labelText = e.Label;
-
-        if(labelText == null) 
-            return;
-
-        if (labelText.Length > 3)
-        {
-            e.Label = labelText.Substring(0, 3);
-        }
     }
 }

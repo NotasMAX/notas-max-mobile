@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
+             xmlns:ChipControl="clr-namespace:Syncfusion.Maui.Toolkit.Chips;assembly=Syncfusion.Maui.Toolkit"
              x:Class="NotasMax.Views.Professor.DesempenhoTurmaView">
 
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
@@ -12,6 +13,29 @@
                 <Label  Style="{StaticResource LabelDetails}"                        
                         Text="Análise detalhada das turmas"/>
             </VerticalStackLayout>
+            <HorizontalStackLayout>
+                <ChipControl:SfChipGroup 
+                    x:Name="chirp_serie"                        
+                    DisplayMemberPath="SerieComposta"                          
+                    ChipType="Choice"                                         
+                    ChoiceMode="Single"
+                    ChipStroke="Transparent"
+                    ChipFontFamily="Inter"
+                    SelectionChanged="chirp_serie_SelectionChanged"
+                    SelectedChipTextColor="White"
+                    SelectedChipBackground="{StaticResource Blue600}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ChipTextColor" Value="Black" />
+                                    <Setter Property="ChipBackground" Value="white" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ChipControl:SfChipGroup>
+            </HorizontalStackLayout>
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
                 <VerticalStackLayout Grid.Column="0">
                     <Border Style="{StaticResource BorderShadow}">
@@ -35,7 +59,7 @@
                                    x:Name="label_maior_nota"
                                    Text="0,0"/>
                             <Label Style="{StaticResource LabelInsightText}"
-                                   x:Name="label_maior_materia" 
+                                   x:Name="label_maior_aluno" 
                                    Text="Aluno"/>
                         </VerticalStackLayout>
                     </Border>
@@ -49,7 +73,7 @@
                                    x:Name="label_menor_nota"
                                    Text="0,0"/>
                             <Label Style="{StaticResource LabelInsightText}"
-                                   x:Name="label_menor_materia"
+                                   x:Name="label_menor_aluno"
                                    Text="Aluno"/>
                         </VerticalStackLayout>
                     </Border>
@@ -86,7 +110,7 @@
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Comparação entre Alunos"/>
-                        <chart:SfCartesianChart HeightRequest="180">
+                        <chart:SfCartesianChart IsTransposed="True">
                             <chart:SfCartesianChart.XAxes>
                                 <chart:CategoryAxis
                                     LabelCreated="ColumnChart_LabelCreated">
@@ -119,8 +143,18 @@
                 <Border Style="{StaticResource BorderShadow}">
                     <VerticalStackLayout Spacing="8">
                         <Label Style="{StaticResource LabelSubtitle}"
-                               Text="Comparativo por Matérias"/>
+                               Text="Distribuição de Desempenho"/>
                         <chart:SfCircularChart>
+                            <chart:SfCircularChart.Legend >
+                                <chart:ChartLegend Placement="Bottom">
+                                    <chart:ChartLegend.LabelStyle>
+                                        <chart:ChartLegendLabelStyle 
+                                            TextColor="{StaticResource SecondaryDarkText}"
+                                            FontSize="16"
+                                            FontFamily="Inter"/>
+                                    </chart:ChartLegend.LabelStyle>
+                                </chart:ChartLegend>
+                            </chart:SfCircularChart.Legend>
                             <chart:DoughnutSeries 
                                 x:Name="doughnut_chart"
                                 InnerRadius="0.7"	
