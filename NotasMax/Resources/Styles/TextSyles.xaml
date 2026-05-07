@@ -9,6 +9,10 @@
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
+    <Style TargetType="Label" x:Key="LabelDefaultSecudary" BasedOn="{StaticResource LabelDefault}">
+        <Setter Property="TextColor" Value="{StaticResource Gray400}"/>
+    </Style>
+
     <Style TargetType="Label" x:Key="LabelDefaultBold" BasedOn="{StaticResource LabelDefault}">
         <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
