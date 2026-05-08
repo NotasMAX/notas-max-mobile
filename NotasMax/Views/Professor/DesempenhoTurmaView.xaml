@@ -17,7 +17,8 @@
                 <ChipControl:SfChipGroup 
                     x:Name="chirp_serie"                        
                     DisplayMemberPath="SerieComposta"                          
-                    ChipType="Choice"                                         
+                    ChipType="Choice"
+                    ChipPadding="0,0,8,0"                    
                     ChoiceMode="Single"
                     ChipStroke="Transparent"
                     ChipFontFamily="Inter"
@@ -29,7 +30,7 @@
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="ChipTextColor" Value="Black" />
-                                    <Setter Property="ChipBackground" Value="white" />
+                                    <Setter Property="ChipBackground" Value="White" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
