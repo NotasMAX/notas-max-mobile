@@ -7,7 +7,7 @@
     Title="NotasMax">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:TurmasView}" 
+        ContentTemplate="{DataTemplate local:DesempenhoTurmaView}" 
         Route="MainPage" />
 
 </Shell>

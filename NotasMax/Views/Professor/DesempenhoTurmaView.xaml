@@ -129,7 +129,6 @@
                                     Maximum="10"
                                     Interval="1"/>
                             </chart:SfCartesianChart.YAxes>
-
                             <chart:ColumnSeries 
                                 x:Name="column_chart"
                                 XBindingPath="Nome"
@@ -146,24 +145,35 @@
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Distribuição de Desempenho"/>
                         <chart:SfCircularChart>
-                            <chart:SfCircularChart.Legend >
+                            <chart:SfCircularChart.Legend>
                                 <chart:ChartLegend Placement="Bottom">
                                     <chart:ChartLegend.LabelStyle>
                                         <chart:ChartLegendLabelStyle 
-                                            TextColor="{StaticResource SecondaryDarkText}"
-                                            FontSize="16"
-                                            FontFamily="Inter"/>
+                                        TextColor="{StaticResource SecondaryDarkText}"
+                                        FontSize="16"
+                                        FontFamily="Inter"/>
                                     </chart:ChartLegend.LabelStyle>
                                 </chart:ChartLegend>
                             </chart:SfCircularChart.Legend>
                             <chart:DoughnutSeries 
-                                x:Name="doughnut_chart"
-                                InnerRadius="0.7"	
-                                XBindingPath="Faixa"
-                                YBindingPath="Quantidade"
-                                ExplodeRadius="10"
-                                ShowDataLabels="True"
-                                LabelContext="Percentage">           
+                                    x:Name="doughnut_chart"
+                                    ItemsSource="{Binding Dados}"
+                                    XBindingPath="Faixa"
+                                    YBindingPath="Quantidade"
+                                    InnerRadius="0.7"	
+                                    ExplodeRadius="10"
+                                    ShowDataLabels="True"
+                                LabelContext="Percentage">
+                                <chart:DoughnutSeries.DataLabelSettings>
+                                    <chart:CircularDataLabelSettings >
+                                        <chart:CircularDataLabelSettings.LabelStyle>
+                                            <chart:ChartDataLabelStyle 
+                                                    TextColor="White" 
+                                                    FontSize="14" />
+                                        </chart:CircularDataLabelSettings.LabelStyle>
+                                    </chart:CircularDataLabelSettings>
+                                </chart:DoughnutSeries.DataLabelSettings>
+
                             </chart:DoughnutSeries>
                         </chart:SfCircularChart>
                     </VerticalStackLayout>

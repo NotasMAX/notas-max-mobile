@@ -90,15 +90,21 @@ public partial class DesempenhoTurmaView : ContentPage
                     terceiraFaixa = item;
                     break;
             }
-        }
-        ;
+        };
+
+        // Definir as cores para cada faixa usando o ColorHelper
+        // Faixa <5: Vermelho, Faixa 5-7: Amarelo, Faixa >7: Verde
+        Color vermelho = ColorHelper.DefinirCor(0);
+        Color amarelo = ColorHelper.DefinirCor(6);
+        Color verde = ColorHelper.DefinirCor(10);
 
         notasDistribuidas.Add(primeiraFaixa);
-        PaleteBrushes.Add(new SolidColorBrush(Colors.Firebrick));
+
+        PaleteBrushes.Add(new SolidColorBrush(vermelho));
         notasDistribuidas.Add(segundaFaixa);
-        PaleteBrushes.Add(new SolidColorBrush(Colors.Gold));
+        PaleteBrushes.Add(new SolidColorBrush(amarelo));
         notasDistribuidas.Add(terceiraFaixa);
-        PaleteBrushes.Add(new SolidColorBrush(Colors.ForestGreen));
+        PaleteBrushes.Add(new SolidColorBrush(verde));
 
         doughnut_chart.ItemsSource = notasDistribuidas;
         doughnut_chart.PaletteBrushes = PaleteBrushes;
