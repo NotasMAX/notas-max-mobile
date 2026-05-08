@@ -1,3 +1,4 @@
+using NotasMax.Helpers;
 using NotasMax.ViewModels;
 
 namespace NotasMax.ContentsViews;
@@ -15,8 +16,8 @@ public partial class TurmaItemContentView : ContentView
 		if (!(this.BindingContext is MediaTurmaAlunos mediaTurmaAlunos))
 			return;
 
-        DefinirCorMedia(mediaTurmaAlunos.Media);
-		label_quantidade_alunos.Text = mediaTurmaAlunos.QuantidadeAlunos + " alunos";
+        label_valor_media.TextColor = ColorHelper.DefinirCor(mediaTurmaAlunos.Media);
+        label_quantidade_alunos.Text = mediaTurmaAlunos.QuantidadeAlunos + " alunos";
     }
 
 	private void TurmaItem_Tapped(object sender, TappedEventArgs e)
@@ -24,25 +25,8 @@ public partial class TurmaItemContentView : ContentView
         if (!(this.BindingContext is MediaTurmaAlunos mediaTurmaAlunos))
             return;
 
-		var id = mediaTurmaAlunos.Id;
+		var turmaId = mediaTurmaAlunos.TurmaId;
 
         //Lógica para navegar para a página de detalhes da turma usando o id
     }
-
-    private void DefinirCorMedia(double media)
-	{
-			if (media < 5)
-			{
-				label_valor_media.TextColor = Colors.Firebrick;
-			}
-			else if (media >= 5 && media < 7)
-			{
-				label_valor_media.TextColor = Colors.Gold;
-			}
-			else
-			{
-				label_valor_media.TextColor = Colors.ForestGreen;
-			}
-		
-	}
 }

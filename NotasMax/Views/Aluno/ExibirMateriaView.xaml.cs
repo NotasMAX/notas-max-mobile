@@ -20,7 +20,7 @@ public partial class ExibirMateriaView : ContentPage
 
         var notaSimulados = (new ViewModelExemplo().NotaSimulados).OrderBy(s => s.Numero).ToList();
         line_chart.ItemsSource = notaSimulados;
-
+        collectionView_simulados.ItemsSource = notaSimulados;
         CalcularMedia(notaSimulados);
     }
 

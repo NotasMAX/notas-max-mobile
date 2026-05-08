@@ -43,7 +43,6 @@
                     </Border>
                 </VerticalStackLayout>
             </Grid>
-
             <CollectionView x:Name="collectionView_turmas">
                 <CollectionView.ItemTemplate>
                     <DataTemplate >
@@ -51,7 +50,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

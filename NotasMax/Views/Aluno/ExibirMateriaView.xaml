@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
+             xmlns:cv="clr-namespace:NotasMax.ContentsViews"
              x:Class="NotasMax.Views.Aluno.ExibirMateriaView">
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
         <VerticalStackLayout Spacing="20" Margin="25,40">
@@ -60,26 +61,13 @@
                 <Label Style="{StaticResource LabelSubtitle}" 
                        FontAttributes="Bold"
                        Text="Histórico de Notas"/>
-                <Grid>
-                    <Border Style="{StaticResource BorderShadow}">
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                        </Border.GestureRecognizers>
-                        <Grid ColumnDefinitions="*,*" 
-                          ColumnSpacing="12">
-                            <Label FontFamily="Inter"
-                                   FontSize="18"
-                                   Text="Simulado 1"                 
-                                   Grid.Column="0"/>
-                            <Label FontFamily="Inter"
-                                   FontSize="18"
-                                   FontAttributes="Bold"
-                                   Text="0,00"
-                                   HorizontalOptions="End"
-                                   Grid.Column="1"/>
-                        </Grid>
-                    </Border>
-                </Grid>
+                <CollectionView x:Name="collectionView_simulados">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate >
+                            <cv:MateriaItemContentView Padding="0,0,0,10"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

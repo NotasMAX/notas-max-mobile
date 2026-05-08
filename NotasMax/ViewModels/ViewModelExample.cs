@@ -4,7 +4,7 @@ namespace NotasMax.ViewModels;
 
 public class MediaTurmaAlunos
 {
-    public int Id { get; set; }
+    public int TurmaId { get; set; }
     public int Serie { get; set; }
     public double Media { get; set; }
     public int QuantidadeAlunos { get; set; } 
