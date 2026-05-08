@@ -123,15 +123,9 @@ public partial class DesempenhoTurmaView : ContentPage
 
     private void chirp_serie_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
     {
-        try
-        {
-            Turma t = (Turma)e.AddedItem;
-            //Lógica de Mudança de Turma
-        }
-        catch
-        {
+
+        if (!(e.AddedItem is Turma turma))
             return;
-        }
 
     }
 }

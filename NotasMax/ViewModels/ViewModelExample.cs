@@ -2,6 +2,20 @@ using NotasMax.Models;
 
 namespace NotasMax.ViewModels;
 
+public class MediaTurmaAlunos
+{
+    public int Id { get; set; }
+    public int Serie { get; set; }
+    public double Media { get; set; }
+    public int QuantidadeAlunos { get; set; } 
+
+    public string SerieComposta { get
+        {
+            return Serie + "º EM";
+        }
+    }
+}
+
 public class NotaSimulado
 {
     public string? Numero { get; set; }
@@ -32,7 +46,7 @@ public class ViewModelExemplo
     public List<NotaMateria> NotaMaterias { get; set; }
     public List<NotaAluno> NotaAlunos { get; set; }
     public List<DistribuicaoNotas> DistribuicaoNotas { get; set; }
-
+    public List<MediaTurmaAlunos> MediaTurmaAlunos { get; set; }
     public List<Turma> Turmas { get; set; }
 
     public ViewModelExemplo()
@@ -80,9 +94,17 @@ public class ViewModelExemplo
 
         Turmas = new List<Turma>
         {
-            new Turma {Serie = 1, Id=new Guid()},
-            new Turma {Serie = 2, Id= new Guid()},
-            new Turma {Serie = 3, Id= new Guid()}
+            new Turma {Serie = 1, Id= Guid.NewGuid()},
+            new Turma {Serie = 2, Id= Guid.NewGuid()},
+            new Turma {Serie = 3, Id= Guid.NewGuid()}
         };
+
+        MediaTurmaAlunos = new List<MediaTurmaAlunos>
+        {
+            new MediaTurmaAlunos { Serie = 1, Media = 6.5, QuantidadeAlunos = 30 },
+            new MediaTurmaAlunos { Serie = 2, Media = 3.5, QuantidadeAlunos = 28 },
+            new MediaTurmaAlunos { Serie = 3, Media = 8.2, QuantidadeAlunos = 32 }
+        };
+
     }
 }

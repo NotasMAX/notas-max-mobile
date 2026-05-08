@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:NotasMax.ContentsViews"
              x:Class="NotasMax.Views.Professor.TurmasView">
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
         <VerticalStackLayout Spacing="20" Margin="25,40">
@@ -42,49 +43,15 @@
                     </Border>
                 </VerticalStackLayout>
             </Grid>
-            <Grid>
-                <Border Style="{StaticResource BorderShadow}">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
-                    </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="45,*,45,25" 
-                          ColumnSpacing="12">
-                        <HorizontalStackLayout Grid.Column="0">
-                            <Border Padding="10"
-                                    BackgroundColor="#e7ecf4"
-                                    Stroke="Transparent">
-                                <Image Style="{StaticResource ImageIcon}"
-                                    Source="people.png"/>
-                            </Border>
-                        </HorizontalStackLayout>
-                        <VerticalStackLayout Grid.Column="1" Spacing="2">
-                            <Label FontFamily="Inter"
-                                   FontAttributes="Bold"
-                                   FontSize="18"
-                                   Text="1º EM"/>
-                            <Label FontFamily="Inter"
-                                   TextColor="{StaticResource SecondaryDarkText}"
-                                   FontSize="15"
-                                   Text="32 alunos"/>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout Grid.Column="2" Spacing="2">
-                            <Label FontFamily="Inter"
-                                   FontAttributes="Bold"
-                                   FontSize="20"
-                                   HorizontalTextAlignment="Center"
-                                   Text="0.0"/>
-                            <Label FontFamily="Inter"
-                                   TextColor="{StaticResource SecondaryDarkText}"
-                                   FontSize="13"
-                                   HorizontalTextAlignment="Center"
-                                   Text="média"/>
-                        </VerticalStackLayout>
-                        <Image Style="{StaticResource ImageIcon}"
-                                Source="arrow_right.png"
-                                Grid.Column="3"/>
-                    </Grid>
-                </Border>
-            </Grid>
+
+            <CollectionView x:Name="collectionView_turmas">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate >
+                        <cv:TurmaItemContentView Padding="0,0,0,10"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
