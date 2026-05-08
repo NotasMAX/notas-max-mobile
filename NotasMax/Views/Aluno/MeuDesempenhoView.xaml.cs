@@ -39,13 +39,13 @@ public partial class MeuDesempenhoView : ContentPage
         base.OnAppearing();
 
         var notasMaterias = (new ViewModelExemplo().NotaMaterias).OrderBy(n => n.Materia).ToList();
-        var notasSimulados = (new ViewModelExemplo().NotaSimulados).OrderBy(n => n.Numero).ToList();
+        var notaSimulados = (new ViewModelExemplo().NotaSimulados).OrderBy(n => n.Numero).ToList();
 
-        line_chart.ItemsSource = notasSimulados;
+        line_chart.ItemsSource = notaSimulados;
         polar_line_chart.ItemsSource = notasMaterias;
         column_chart.ItemsSource = notasMaterias;
 
-        CalcularMedia(notasSimulados);
+        CalcularMedia(notaSimulados);
         CalcularMenorNota(notasMaterias);
         CalcularMaiorNota(notasMaterias);
     }
