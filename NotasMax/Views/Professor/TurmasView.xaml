@@ -21,7 +21,8 @@
                                    x:Name="label_numero_turmas_ativas"
                                    Text="0"/>
                             <Label Style="{StaticResource LabelInsightText}"
-                                   Text="Turmas Ativas"/>
+                                   Text="Turmas Ativas"
+                                   FontSize="16"/>
                         </VerticalStackLayout>
                     </Border>
                 </VerticalStackLayout>
@@ -35,10 +36,54 @@
                                    FontSize="24"
                                    Text="0"/>
                             <Label Style="{StaticResource LabelInsightText}"
-                                   Text="Turmas Ativas"/>
+                                   FontSize="16"
+                                   Text="Total de Alunos"/>
                         </VerticalStackLayout>
                     </Border>
                 </VerticalStackLayout>
+            </Grid>
+            <Grid>
+                <Border Style="{StaticResource BorderShadow}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="45,*,45,25" 
+                          ColumnSpacing="12">
+                        <HorizontalStackLayout Grid.Column="0">
+                            <Border Padding="10"
+                                    BackgroundColor="#e7ecf4"
+                                    Stroke="Transparent">
+                                <Image Style="{StaticResource ImageIcon}"
+                                    Source="people.png"/>
+                            </Border>
+                        </HorizontalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label FontFamily="Inter"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   Text="1º EM"/>
+                            <Label FontFamily="Inter"
+                                   TextColor="{StaticResource SecondaryDarkText}"
+                                   FontSize="15"
+                                   Text="32 alunos"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2" Spacing="2">
+                            <Label FontFamily="Inter"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   HorizontalTextAlignment="Center"
+                                   Text="0.0"/>
+                            <Label FontFamily="Inter"
+                                   TextColor="{StaticResource SecondaryDarkText}"
+                                   FontSize="13"
+                                   HorizontalTextAlignment="Center"
+                                   Text="média"/>
+                        </VerticalStackLayout>
+                        <Image Style="{StaticResource ImageIcon}"
+                                Source="arrow_right.png"
+                                Grid.Column="3"/>
+                    </Grid>
+                </Border>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
