@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.Views.Professor.TurmasView">
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+            <VerticalStackLayout Spacing="4" >
+                <Label Style="{StaticResource LabelTitle}"           
+                   Text="Turmas"/>
+                <Label  Style="{StaticResource LabelDetails}"                        
+                        Text="Gerencie suas turmas e acompanhe o desempenho"/>
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <VerticalStackLayout Grid.Column="0">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Label Style="{StaticResource LabelInsightValue}" 
+                                   TextColor="{StaticResource Blue600}"
+                                   FontAttributes="Bold"
+                                   FontSize="24"
+                                   x:Name="label_numero_turmas_ativas"
+                                   Text="0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                   Text="Turmas Ativas"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Label Style="{StaticResource LabelInsightValue}"  
+                                   x:Name="label_numero_total_alunos"
+                                   TextColor="{StaticResource YellowPrimary}"
+                                   FontAttributes="Bold"
+                                   FontSize="24"
+                                   Text="0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                   Text="Turmas Ativas"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
