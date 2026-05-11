@@ -6,14 +6,14 @@
         public const string DefaultEndpoint = "http://localhost:5000/NotasMax";
 
         // Define o endpoint específico para autenticação de usuários, que é construído a partir do endpoint padrão
-        public string UsuarioEndpoint { get; set; }
+        public string UsuarioLoginAuthEndpoint { get; set; }
 
         public static GlobalSettings Instance { get; } = new GlobalSettings();
 
         // Constutor da classe, onde o endpoint de autenticação é inicializado usando o endpoint padrão
         public GlobalSettings()
         {
-            UsuarioEndpoint = $"{DefaultEndpoint}/Auth/login";
+            UsuarioLoginAuthEndpoint = $"{DefaultEndpoint}/Auth/login";
         }
     }
 }

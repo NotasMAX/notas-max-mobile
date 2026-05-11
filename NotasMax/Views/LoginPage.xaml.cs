@@ -27,6 +27,9 @@ public partial class LoginPage : ContentPage
             Senha = entry_senha.Text,
         };
 
+        if(string.IsNullOrWhiteSpace(auth.Email) || string.IsNullOrWhiteSpace(auth.Senha))
+            throw new Exception("Preencha os campos email e senha.");
+
         try
         {
             var response = await _userService.Authenticate(auth);

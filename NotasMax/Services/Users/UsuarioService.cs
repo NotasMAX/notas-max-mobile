@@ -14,12 +14,12 @@ namespace NotasMax.Services.Usuarios
         // Metodo de login 
         public async Task<Usuario> Login(Usuario usuario) 
         {
-            var uri = GlobalSettings.Instance.UsuarioEndpoint;
+            var uri = GlobalSettings.Instance.UsuarioLoginAuthEndpoint;
             return await _requestProvider.PostAsync<Usuario, Usuario>(uri, usuario);
         }
         public async Task<UserToken> Authenticate(UsuarioAuth auth)
         {
-            var uri = GlobalSettings.Instance.UsuarioEndpoint;
+            var uri = GlobalSettings.Instance.UsuarioLoginAuthEndpoint;
             return await _requestProvider.PostAsync<UserToken, UsuarioAuth>(uri, auth);
         }
     }
