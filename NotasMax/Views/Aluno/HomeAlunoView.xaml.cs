@@ -6,4 +6,14 @@ public partial class HomeAlunoView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void OnLabelVerTudoMateria(object sender, TappedEventArgs e)
+    {
+
+    }
+
+    private void TapGestureRecognizer_VerMateria(object sender, TappedEventArgs e)
+    {
+
+    }
 }

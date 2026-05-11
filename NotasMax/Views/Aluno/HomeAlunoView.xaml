@@ -1,12 +1,293 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotasMax.Views.Aluno.HomeAlunoView"
-             Title="HomeAlunoView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+             x:Class="NotasMax.Views.Aluno.HomeAlunoView">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,40" Spacing="16">
+
+            <!-- Header -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,4">
+
+                <VerticalStackLayout Grid.Column="0" Spacing="2">
+
+                    <Label Text="Olá,"
+                           Style="{StaticResource LabelDefaultSecudary}"/>
+
+                    <HorizontalStackLayout Spacing="6">
+
+                        <Label x:Name="txt_nomeUsuario" 
+                               Text="Lucas"
+                               Style="{StaticResource LabelDefaultTitle}"
+                               FontSize="26"
+                               TextColor="#1A1F36" />
+                        <Label Text="👋"
+                               FontSize="26"
+                               VerticalOptions="Center" />
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+                <!-- Avatar -->
+                <Border Grid.Column="1"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        StrokeThickness="0"
+                        Background="{StaticResource GradientBluePrimary}"
+                        VerticalOptions="Center">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="22" />
+                    </Border.StrokeShape>
+
+                    <Label Text="L"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+            </Grid>
+
+            <!-- Card: Nota Geral -->
+            <Border StrokeThickness="0"
+                    Padding="20,18"
+                    Background="{StaticResource GradientBluePrimary}"
+                    StrokeShape="RoundRectangle 20">
+
+
+                <Grid ColumnDefinitions="*, Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label Text="NOTA GERAL"
+                               Style="{StaticResource LabelDefault}" 
+                               TextColor="{StaticResource Blue200}"/>
+                        <Label x:Name="txt_notaGeral" 
+                               Text="7.8"
+                               Style="{StaticResource LabelDefaultTitle}"
+                               FontSize="48"
+                               TextColor="White"
+                               LineHeight="1" />
+                        <Label x:Name="txt_mediaGeral" 
+                               Text="Média: 7.4"
+                               Style="{StaticResource LabelDefault}" 
+                               TextColor="{StaticResource Blue200}" />
+                    </VerticalStackLayout>
+
+                    <!-- Ícone de tendência -->
+                    <Border Grid.Column="1"
+                            WidthRequest="52"
+                            HeightRequest="52"
+                            StrokeThickness="1"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="26" />
+                        </Border.StrokeShape>
+                        <Image Source="seta_subindo_desempenho.png" 
+                               Aspect="Center"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Cards: Últimos e Próximos Simulado -->
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                <!-- Último Simulado -->
+                <Border Grid.Column="0"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="14,12" >
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="14" />
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="#000000"
+                                Offset="0,3"
+                                Radius="12"
+                                Opacity="0.15" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Spacing="6">
+                        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                            <Border WidthRequest="32"
+                                    HeightRequest="32"
+                                    StrokeThickness="0"
+                                    BackgroundColor="{StaticResource Blue200}"
+                                    StrokeShape="RoundRectangle 8">
+                                <Label Text="📖"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="Último"
+                                   Style="{StaticResource LabelDefault}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource Gray300}"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label x:Name="txt_ultimoSimulado" 
+                               Text="Sim. 1 – 10 de Fev"
+                               Style="{StaticResource LabelDefaultBold}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Proximo Simulado -->
+                <Border Grid.Column="1"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="14,12" >
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="14" />
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="#000000"
+                                Offset="0,3"
+                                Radius="12"
+                                Opacity="0.15" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Spacing="6">
+                        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                            <Border WidthRequest="32"
+                                    HeightRequest="32"
+                                    StrokeThickness="0"
+                                    BackgroundColor="{StaticResource YellowSecudary}"
+                                    StrokeShape="RoundRectangle 8">
+                                <Label Text="📘"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="Último"
+                                   Style="{StaticResource LabelDefault}"
+                                   FontSize="12"
+                                   TextColor="{StaticResource Gray300}"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label x:Name="txt_proximoSimulado" 
+                               Text="Sim. 2 – 30 de Mar"
+                               Style="{StaticResource LabelDefaultBold}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <!-- Card: Evolução da Nota -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="White"
+                    Padding="18,16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#000000"
+                                Offset="0,3"
+                                Radius="12"
+                                Opacity="0.15" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="12" HeightRequest="200">
+                    <Label Text="Evolução da Nota"
+                           Style="{StaticResource LabelDefaultTitle}" />
+
+                    <!-- Gráfico simulado com Grid -->
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Seção: Notas por Matéria -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,4,0,0">
+                <Label Grid.Column="0"
+                       Text="Notas por Matéria"
+                       Style="{StaticResource LabelDefaultTitle}"
+                       VerticalOptions="Center" />
+
+                <Label Grid.Column="1" Style="{StaticResource LabelDefaultLink}"
+                       TextDecorations="None"
+                       Text="Ver Tudo"
+                       VerticalOptions="Center">
+
+                    <Label.GestureRecognizers>
+
+                        <TapGestureRecognizer Tapped="OnLabelVerTudoMateria" 
+                              Command="{Binding YourCommand}" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+            </Grid>
+
+            <!-- Card: Lista de Matérias -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="White"
+                    Padding="4,8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Matemática -->
+                    <Border Background="White"
+                            StrokeShape="RoundRectangle 10"
+                            StrokeThickness="0">
+
+                        <Border.Shadow>
+                            <Shadow Brush="#000000"
+                                Offset="0,3"
+                                Radius="5"  
+                                Opacity="0.15" />
+                        </Border.Shadow>
+
+                        <Grid Padding="14,14" ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10" Background="White" VerticalOptions="Center">
+
+                            <Border Grid.Column="0"
+                                WidthRequest="36" 
+                                HeightRequest="36"
+                                StrokeThickness="0" BackgroundColor="{StaticResource Blue300}"
+                                Padding="5">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+
+                                <Label Text="📐" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="5" VerticalOptions="Center">
+                                <Label x:Name="txt_materia" 
+                                       Text="Matemática" 
+                                       Style="{StaticResource LabelDefault}"/>
+                                
+                                    <ProgressBar x:Name="progress_notaMateria"
+                                                 Progress="0.85" 
+                                                 ProgressColor="#2563EB"
+                                                 ScaleY="3"
+                                                 BackgroundColor="#E2E8F0"/>
+
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="2" 
+                                   x:Name="txt_notaMateria" 
+                                   Text="8.5" 
+                                   Style="{StaticResource LabelDefault}" 
+                                   VerticalOptions="Center"/>
+
+                            <Border Grid.Column="3" StrokeThickness="0">
+                                <Image Source="arrow_right.png" Aspect="Center" VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_VerMateria" 
+                                                              Command="{Binding YourCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Border>
+
+                        </Grid>
+
+                    </Border>
+
+                </VerticalStackLayout>
+                
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage> 
