@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
+             xmlns:cv="clr-namespace:NotasMax.ContentsViews"
+             x:Class="NotasMax.Views.Aluno.ExibirMateriaView">
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+            <VerticalStackLayout Spacing="4" >
+                <Label Style="{StaticResource LabelTitle}"           
+                   Text="Matéria"/>
+                <Label  Style="{StaticResource LabelDetails}"                        
+                        Text="Detalhes de desempenho"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Border Style="{StaticResource BorderShadow}"  Background="{StaticResource GradientBluePrimary}">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                        <Label Text="Média"
+                               Opacity="0.8"
+                               FontFamily="Inter"
+                               HorizontalOptions="Center"
+                               TextColor="White"
+                               FontSize="16"/>
+                        <Label Style="{StaticResource LabelInsightValue}" 
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"
+                               FontSize="30"
+                               x:Name="label_valor_media"
+                               Text="0.00"/>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                     Text="Evolução"/>
+                        <chart:SfCartesianChart HeightRequest="160">
+                            <chart:SfCartesianChart.XAxes>
+                                <chart:CategoryAxis/>
+                            </chart:SfCartesianChart.XAxes>
+                            <chart:SfCartesianChart.YAxes>
+                                <chart:NumericalAxis
+                          Minimum="0"
+                          Maximum="10"
+                          Interval="1"/>
+                            </chart:SfCartesianChart.YAxes>
+                            <chart:SplineSeries
+                      x:Name="line_chart"                                                
+                      XBindingPath="Numero"                                                
+                      YBindingPath="Nota"                                                
+                      Type="Cardinal"
+                      Fill="#1685F3"
+                      StrokeWidth="3"/>
+                        </chart:SfCartesianChart>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="12">
+                <Label Style="{StaticResource LabelSubtitle}" 
+                       FontAttributes="Bold"
+                       Text="Histórico de Notas"/>
+                <VerticalStackLayout x:Name="layout_materias" Spacing="8">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate >
+                            <cv:MateriaItemContentView/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

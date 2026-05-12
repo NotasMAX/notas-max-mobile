@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.ContentsViews.AlunoItemContentView">
+    <Grid>
+        <Border Style="{StaticResource BorderShadow}">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer />
+            </Border.GestureRecognizers>
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto" 
+               ColumnSpacing="12">
+                <HorizontalStackLayout Grid.Column="0">
+                    <Border 
+                        WidthRequest="45"
+                        HeightRequest="45"
+                        StrokeShape="Ellipse 40, 40"
+                         Padding="10"
+                         BackgroundColor="#e7ecf4"
+                         Stroke="Transparent">
+                        <Label x:Name="label_iniciais_aluno"
+                               Text="Al"
+                               TextTransform="Uppercase"
+                               FontFamily="RobotoMono"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource Blue700}"/>
+                    </Border>
+                </HorizontalStackLayout>
+                <Label Grid.Column="1"
+                       x:Name="label_nome_aluno"
+                       FontFamily="Inter"
+                       FontSize="16"
+                       Text="Nome do Aluno"
+                       VerticalTextAlignment="Center"/>
+                <Label Grid.Column="2"
+                       x:Name="label_nota_aluno"
+                      FontFamily="Inter"
+                       FontAttributes="Bold"
+                      FontSize="16"
+                      HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"/>
+                <Image Style="{StaticResource ImageIcon}"
+                    Source="arrow_right.png"
+                    Grid.Column="3"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentView>

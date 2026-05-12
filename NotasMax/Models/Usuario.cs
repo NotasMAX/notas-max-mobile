@@ -7,7 +7,7 @@
         public string Email { get; set;}
         public string TelefoneContato { get; set; }
         public string Senha { get; set;}
-        public enum Tipo_Usuara
+        public enum Tipo_Usuario
             { 
                 aluno = 0, 
                 professor,

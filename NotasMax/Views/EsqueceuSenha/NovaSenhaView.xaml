@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotasMax.Views.LoginPage">
-
+             x:Class="NotasMax.Views.EsqueceuSenha.NovaSenhaView">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Border" x:Key="BorderLoginTop">
@@ -94,28 +93,14 @@
 
                         <Label Style="{StaticResource LabelDefaultBold}"
                        FontFamily="SpaceGrotesk"                     
-                       Text="Bem-Vindo de volta!"
+                       Text="Esqueceu sua senha?"
                        FontSize="20"/>
 
                         <Label Style="{StaticResource LabelDefault}"
                         TextColor="{StaticResource SecondaryDarkText}"
-                        Text="Entre para ver suas notas e simulados"/>
+                        Text="Digite sua nova senha abaixo."/>
 
                     </VerticalStackLayout>
-
-                    <VerticalStackLayout Spacing="8">
-
-                        <Label Style="{StaticResource LabelFieldDefault}"
-                           Text="E-mail:"/>
-                        <Border Style="{StaticResource BorderFieldDefault}">
-                            <Entry Style="{StaticResource EntryFieldDefault}"
-                               x:Name="entry_email"
-                               Placeholder="seu@email.com"/>
-                        </Border>
-
-                    </VerticalStackLayout>
-
-
 
                     <VerticalStackLayout Spacing="8" Grid.Column="0">
                         <Label Style="{StaticResource LabelFieldDefault}"
@@ -123,12 +108,12 @@
                         <Border Style="{StaticResource BorderFieldDefault}">
                             <Grid ColumnDefinitions="*, Auto">
                                 <Entry Style="{StaticResource EntryFieldDefault}"
-                               x:Name="entry_senha"
+                               x:Name="entry_password"
                                IsPassword="True"
                                Placeholder="******"/>
                                 <ImageButton x:Name="ToggleEye"
                                              Source="eye_open.png"
-                                             Clicked="ToggleEye_Clicked"
+                                             Clicked="ToggleEyePassword_Clicked"
                                              Grid.Column="1"
                                              Aspect="AspectFill"
                                              VerticalOptions="Center"
@@ -138,20 +123,29 @@
                     </VerticalStackLayout>
 
 
-                    <Label Style="{StaticResource LabelDefaultLink}"
-                    Text="Esqueceu a senha?">
+                    <VerticalStackLayout Spacing="8" Grid.Column="0">
+                        <Label Style="{StaticResource LabelFieldDefault}"
+                           Text="Senha:"/>
+                        <Border Style="{StaticResource BorderFieldDefault}">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Entry Style="{StaticResource EntryFieldDefault}"
+                               x:Name="entry_confirm_password"
+                               IsPassword="True"
+                               Placeholder="******"/>
+                                <ImageButton x:Name="ToggleEyeConfirmPassword"
+                                             Source="eye_open.png"
+                                             Clicked="ToggleEyeConfirmPassword_Clicked"
+                                             Grid.Column="1"
+                                             Aspect="AspectFill"
+                                             VerticalOptions="Center"
+                                             BackgroundColor="Transparent"/>
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
 
-                        <Label.GestureRecognizers>
-
-                            <TapGestureRecognizer Tapped="OnLabelEsqueceuSenhaTapped" 
-                              Command="{Binding YourCommand}" />
-                        </Label.GestureRecognizers>
-
-                    </Label>
-
-                    <Button x:Name="button_entrar"
-                        Text="Entrar"
-                        Clicked="ButtonEntrarClicked">
+                    <Button x:Name="button_save_password"
+                        Text="Salvar Nova Senha"
+                        Clicked="SavePassword_Clicked">
 
                         <Button.Background>
 

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.Resources.Styles.TextSyles">
+
+    <Style TargetType="Label" x:Key="LabelDefault">
+        <Setter Property="TextColor" Value="{StaticResource Gray950}"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelDefaultBold" BasedOn="{StaticResource LabelDefault}">
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelDefaultLink" BasedOn="{StaticResource LabelDefault}">
+        <Setter Property="TextColor" Value="#1A8CFF"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+    </Style>
+
+</ResourceDictionary>

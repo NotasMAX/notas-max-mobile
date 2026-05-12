@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
+             x:Class="NotasMax.Views.Aluno.MeuDesempenhoView">
+
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+            <VerticalStackLayout Spacing="4" >
+                <Label Style="{StaticResource LabelTitle}"                          
+                       Text="Meu Desempenho"/>
+                <Label Style="{StaticResource LabelDetails}"
+                       Text="Análise detalhada das suas notas"/>
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                <VerticalStackLayout Grid.Column="0">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Image Style="{StaticResource ImageIcon}"
+                                   Source="grade_avg.png"/>
+                            <Label Style="{StaticResource LabelInsightValue}" 
+                               x:Name="label_media"
+                               Text="0,0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                           Text="Média"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Image Style="{StaticResource ImageIcon}"
+                                   Source="grade_up.png"/>
+                            <Label Style="{StaticResource LabelInsightValue}"  
+                                   x:Name="label_maior_nota"
+                                   Text="0,0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                   x:Name="label_maior_materia" 
+                                   Text="Matéria"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="2">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Image Style="{StaticResource ImageIcon}"
+                                   Source="grade_down.png"/>
+                            <Label Style="{StaticResource LabelInsightValue}" 
+                                   x:Name="label_menor_nota"
+                                   Text="0,0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                   x:Name="label_menor_materia"
+                                   Text="Matéria"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Evolução das Médias"/>
+                        <chart:SfCartesianChart HeightRequest="160">
+                            <chart:SfCartesianChart.XAxes>
+                                <chart:CategoryAxis/>
+                            </chart:SfCartesianChart.XAxes>
+                            <chart:SfCartesianChart.YAxes>
+                                <chart:NumericalAxis
+                                    Minimum="0"
+                                    Maximum="10"
+                                    Interval="1"/>
+                            </chart:SfCartesianChart.YAxes>
+                            <chart:SplineSeries
+                                x:Name="line_chart"                                                
+                                XBindingPath="Numero"                                                
+                                YBindingPath="Nota"                                                
+                                Type="Cardinal"
+                                Fill="#1685F3"
+                                StrokeWidth="3"/>
+                        </chart:SfCartesianChart>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <Grid>
+                <Border Style="{StaticResource BorderShadow}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MinhasMaterias_Tapped" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="25,*,25"
+                          Padding="4"
+                          ColumnSpacing="12">
+                        <Image Style="{StaticResource ImageIcon}"
+                               Source="subject.png"
+                               Grid.Column="0"/>
+                        <Label Style="{StaticResource LabelButton}"
+                               Text="Minhas Matérias"
+                               Grid.Column="1"/>
+                        <Image Style="{StaticResource ImageIcon}"
+                               Source="arrow_right.png"
+                               Grid.Column="2"/>
+                    </Grid>
+                </Border>
+            </Grid>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Comparativo por Matérias"/>
+                        <chart:SfPolarChart StartAngle="Rotate0" 
+                                            GridLineType="Polygon" 
+                                            HeightRequest="250">
+                            <chart:SfPolarChart.PrimaryAxis>
+                                <chart:CategoryAxis/>
+                            </chart:SfPolarChart.PrimaryAxis>
+
+                            <chart:SfPolarChart.SecondaryAxis>
+                                <chart:NumericalAxis Minimum="0"
+                                                     Maximum="10"
+                                                     Interval="4"
+                                                     />
+                            </chart:SfPolarChart.SecondaryAxis>
+
+                            <chart:PolarAreaSeries 
+                                x:Name="polar_line_chart"
+                                XBindingPath="Materia" 
+                                YBindingPath="Nota"
+                                Fill="#f7d588"
+                                Stroke="#FFBB0F"
+                                Opacity="0.5"
+                                StrokeWidth="3"/>
+                        </chart:SfPolarChart>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Style="{StaticResource LabelSubtitle}"
+                               Text="Notas por Disciplina"/>
+                        <chart:SfCartesianChart IsTransposed="True">
+                            <chart:SfCartesianChart.XAxes>
+                                <chart:CategoryAxis>
+                                    <chart:CategoryAxis.LabelStyle>
+                                        <chart:ChartAxisLabelStyle 
+                                            FontSize="10"  
+                                            FontFamily="Inter"/>
+                                    </chart:CategoryAxis.LabelStyle>
+                                </chart:CategoryAxis>
+                            </chart:SfCartesianChart.XAxes>
+
+                            <chart:SfCartesianChart.YAxes>
+                                <chart:NumericalAxis
+                                    Minimum="0"
+                                    Maximum="10"
+                                    Interval="1"/>
+                            </chart:SfCartesianChart.YAxes>
+
+                            <chart:ColumnSeries 
+                                x:Name="column_chart"
+                                XBindingPath="Materia"
+                                YBindingPath="Nota"
+                                Fill="#044D95"                 
+                                StrokeWidth="3"/>
+                        </chart:SfCartesianChart>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
