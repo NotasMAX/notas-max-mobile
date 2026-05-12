@@ -5,7 +5,8 @@
     <Grid>
         <Border Style="{StaticResource BorderShadow}">
             <Grid ColumnDefinitions="*,Auto" 
-                  ColumnSpacing="8">
+                  ColumnSpacing="8"
+                  Padding="4">
                 <Label x:Name="label_nome_simulado"
                        FontFamily="Inter"
                        FontSize="16"                                   

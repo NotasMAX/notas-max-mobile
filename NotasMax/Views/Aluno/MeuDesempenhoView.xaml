@@ -86,7 +86,8 @@
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="MinhasMaterias_Tapped" />
                     </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="25,*,25" 
+                    <Grid ColumnDefinitions="25,*,25"
+                          Padding="4"
                           ColumnSpacing="12">
                         <Image Style="{StaticResource ImageIcon}"
                                Source="subject.png"
