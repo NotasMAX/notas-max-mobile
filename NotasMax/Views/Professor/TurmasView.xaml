@@ -43,13 +43,13 @@
                     </Border>
                 </VerticalStackLayout>
             </Grid>
-            <CollectionView x:Name="collectionView_turmas">
-                <CollectionView.ItemTemplate>
+            <VerticalStackLayout x:Name="layout_turmas">
+                <BindableLayout.ItemTemplate>
                     <DataTemplate >
                         <cv:TurmaItemContentView Padding="0,0,0,10"/>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

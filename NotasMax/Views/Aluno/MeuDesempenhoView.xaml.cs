@@ -38,8 +38,9 @@ public partial class MeuDesempenhoView : ContentPage
     {
         base.OnAppearing();
 
-        var notasMaterias = (new ViewModelExemplo().NotaMaterias).OrderBy(n => n.Materia).ToList();
-        var notaSimulados = (new ViewModelExemplo().NotaSimulados).OrderBy(n => n.Numero).ToList();
+        var viewModel = new ViewModelExemplo();
+        var notasMaterias = (viewModel.NotaMaterias).OrderBy(n => n.Materia).ToList();
+        var notaSimulados = (viewModel.NotaSimulados).OrderBy(n => n.Numero).ToList();
 
         line_chart.ItemsSource = notaSimulados;
         polar_line_chart.ItemsSource = notasMaterias;

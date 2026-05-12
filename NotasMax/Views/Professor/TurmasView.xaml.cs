@@ -1,3 +1,4 @@
+
 using NotasMax.ViewModels;
 
 namespace NotasMax.Views.Professor;
@@ -14,7 +15,8 @@ public partial class TurmasView : ContentPage
         base.OnAppearing();
 
         var mediaTurmaAlunos = new ViewModelExemplo().MediaTurmaAlunos;
-        collectionView_turmas.ItemsSource = mediaTurmaAlunos;
+
+        BindableLayout.SetItemsSource(layout_turmas, mediaTurmaAlunos);
 
         CalcularAlunos(mediaTurmaAlunos);
         CalcularTurmas(mediaTurmaAlunos);

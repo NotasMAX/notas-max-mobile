@@ -21,7 +21,7 @@
                 <VerticalStackLayout Grid.Column="1" Spacing="2">
                     <Label FontFamily="Inter"
                           FontAttributes="Bold"
-                          FontSize="18"
+                          FontSize="20"
                           Text="{Binding SerieComposta}"/>
                     <Label
                           x:Name="label_quantidade_alunos"

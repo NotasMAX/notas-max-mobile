@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
              xmlns:ChipControl="clr-namespace:Syncfusion.Maui.Toolkit.Chips;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:cv="clr-namespace:NotasMax.ContentsViews"
              x:Class="NotasMax.Views.Professor.DesempenhoTurmaView">
 
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
@@ -178,6 +179,19 @@
                         </chart:SfCircularChart>
                     </VerticalStackLayout>
                 </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="12">
+                <Label Style="{StaticResource LabelSubtitle}" 
+                       x:Name="label_subtitulo_alunos"
+                       FontAttributes="Bold"
+                       Text="Alunos (0)"/>
+                <VerticalStackLayout x:Name="layout_alunos">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate >
+                            <cv:AlunoItemContentView Padding="0,0,0,10"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

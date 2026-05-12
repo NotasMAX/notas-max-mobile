@@ -93,6 +93,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="ContentsViews\AlunoItemContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ContentsViews\MateriaItemContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

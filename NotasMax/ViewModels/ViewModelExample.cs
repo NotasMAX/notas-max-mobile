@@ -30,6 +30,7 @@ public class NotaMateria
 
 public class NotaAluno
 {
+    public Guid AlunoId { get; set; }
     public string? Nome { get; set; }
     public double Nota { get; set; }
 }
@@ -75,14 +76,14 @@ public class ViewModelExemplo
 
         NotaAlunos = new List<NotaAluno>
         {
-            new NotaAluno { Nome = "João Cardoso", Nota = 7.5 },
-            new NotaAluno { Nome = "Maria Alencar", Nota = 8.0 },
-            new NotaAluno { Nome = "Pedro Oliveira", Nota = 6.5 },
-            new NotaAluno { Nome = "Ana Carolina", Nota = 7.0 },
-            new NotaAluno { Nome = "Lucas Silveira", Nota = 8.5 },
-            new NotaAluno { Nome = "Sofia Veronez", Nota = 3.5 },
-            new NotaAluno { Nome = "Rafael Souza", Nota = 8.0 },
-            new NotaAluno { Nome = "Isabela Lombardi", Nota = 6.5 }
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "João Cardoso", Nota = 7.5 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Maria Alencar", Nota = 8.0 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Pedro Oliveira", Nota = 6.5 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Ana Carolina", Nota = 7.0 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Lucas Silveira", Nota = 8.5 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Sofia Veronez", Nota = 3.5 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Rafael Souza", Nota = 8.0 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Isabela Lombardi", Nota = 6.5 }
         };
 
         DistribuicaoNotas = new List<DistribuicaoNotas>

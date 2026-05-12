@@ -57,17 +57,17 @@
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
-            <VerticalStackLayout Spacing="8">
+            <VerticalStackLayout Spacing="12">
                 <Label Style="{StaticResource LabelSubtitle}" 
                        FontAttributes="Bold"
                        Text="Histórico de Notas"/>
-                <CollectionView x:Name="collectionView_simulados">
-                    <CollectionView.ItemTemplate>
+                <VerticalStackLayout x:Name="layout_materias">
+                    <BindableLayout.ItemTemplate>
                         <DataTemplate >
                             <cv:MateriaItemContentView Padding="0,0,0,10"/>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

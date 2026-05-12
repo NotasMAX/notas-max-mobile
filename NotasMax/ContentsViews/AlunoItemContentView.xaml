@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.ContentsViews.AlunoItemContentView">
+    <Grid>
+        <Border Style="{StaticResource BorderShadow}">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer />
+            </Border.GestureRecognizers>
+            <Grid ColumnDefinitions="45,*,45,25" 
+               ColumnSpacing="12">
+                <HorizontalStackLayout Grid.Column="0">
+                    <Border StrokeShape="Ellipse 40, 40"
+                         Padding="10"
+                         BackgroundColor="#e7ecf4"
+                         Stroke="Transparent">
+                        <Label Text="AC"
+                            FontFamily="Inter"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource Blue700}"/>
+                    </Border>
+                </HorizontalStackLayout>
+                <Label Grid.Column="1"
+                    FontFamily="Inter"
+                    FontSize="18"
+                    Text="Ana Maria Cardozo"
+                    VerticalTextAlignment="Center"/>
+                <Label Grid.Column="2"
+                    FontFamily="Inter"
+                      FontAttributes="Bold"
+                      FontSize="18"
+                      HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                      Text="0.0"/>
+                <Image Style="{StaticResource ImageIcon}"
+                    Source="arrow_right.png"
+                    Grid.Column="3"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentView>

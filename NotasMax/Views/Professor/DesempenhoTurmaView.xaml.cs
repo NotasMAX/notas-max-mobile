@@ -2,6 +2,7 @@ using NotasMax.Helpers;
 using NotasMax.Models;
 using NotasMax.ViewModels;
 using Syncfusion.Maui.Toolkit.Charts;
+using System.Diagnostics;
 
 namespace NotasMax.Views.Professor;
 
@@ -48,12 +49,11 @@ public partial class DesempenhoTurmaView : ContentPage
     {
         base.OnAppearing();
 
-        var notasSimulados = (new ViewModelExemplo().NotaSimulados).OrderBy(n => n.Numero).ToList();
-        var notasAlunos = (new ViewModelExemplo().NotaAlunos).OrderBy(n => n.Nome).ToList();
-        var distribuicaoNotas = new ViewModelExemplo().DistribuicaoNotas;
-        var turmas = (new ViewModelExemplo().Turmas).OrderBy(t => t.Serie).ToList();
-
-
+        var viewModel = new ViewModelExemplo();
+        var notasSimulados = viewModel.NotaSimulados.OrderBy(n => n.Numero).ToList();
+        var notasAlunos = viewModel.NotaAlunos.OrderBy(n => n.Nome).ToList();
+        var distribuicaoNotas = viewModel.DistribuicaoNotas;
+        var turmas = viewModel.Turmas.OrderBy(t => t.Serie).ToList();
 
         DefinirCoresDistribuicao(distribuicaoNotas);
 
@@ -65,7 +65,12 @@ public partial class DesempenhoTurmaView : ContentPage
         CalcularMedia(notasSimulados);
         CalcularMenorNota(notasAlunos);
         CalcularMaiorNota(notasAlunos);
+
+        label_subtitulo_alunos.Text = $"Alunos ({notasAlunos.Count})";
+
+        BindableLayout.SetItemsSource(layout_alunos, notasAlunos);
     }
+
 
     private void DefinirCoresDistribuicao(List<DistribuicaoNotas> distribuicaoNotas)
     {

@@ -5,15 +5,15 @@
     <Grid>
         <Border Style="{StaticResource BorderShadow}">
             <Grid ColumnDefinitions="*,45" 
-                  ColumnSpacing="12">
+                  ColumnSpacing="8">
                 <Label x:Name="label_nome_simulado"
                        FontFamily="Inter"
-                       FontSize="18"                                   
+                       FontSize="16"                                   
                        Text="Simulado 1"      
                        Grid.Column="0"/>
                 <Label x:Name="label_valor_nota"
                        FontFamily="Inter"
-                       FontSize="18"
+                       FontSize="16"
                        FontAttributes="Bold"
                        Text="0,00"                       
                        Grid.Column="1"/>
