@@ -19,6 +19,7 @@ namespace NotasMax
                     fonts.AddFont("Inter.ttf", "Inter");
                     fonts.AddFont("Roboto.ttf", "Roboto");
                     fonts.AddFont("SpaceGrotesk.ttf", "SpaceGrotesk");
+                    fonts.AddFont("RobotoMono.ttf", "RobotoMono");
                 });
 
 #if DEBUG

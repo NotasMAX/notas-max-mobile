@@ -43,10 +43,10 @@
                     </Border>
                 </VerticalStackLayout>
             </Grid>
-            <VerticalStackLayout x:Name="layout_turmas">
+            <VerticalStackLayout x:Name="layout_turmas" Spacing="8">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate >
-                        <cv:TurmaItemContentView Padding="0,0,0,10"/>
+                        <cv:TurmaItemContentView/>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </VerticalStackLayout>

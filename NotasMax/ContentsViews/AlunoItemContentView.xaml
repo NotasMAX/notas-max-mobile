@@ -7,34 +7,40 @@
             <Border.GestureRecognizers>
                 <TapGestureRecognizer />
             </Border.GestureRecognizers>
-            <Grid ColumnDefinitions="45,*,45,25" 
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto" 
                ColumnSpacing="12">
                 <HorizontalStackLayout Grid.Column="0">
-                    <Border StrokeShape="Ellipse 40, 40"
+                    <Border 
+                        WidthRequest="45"
+                        HeightRequest="45"
+                        StrokeShape="Ellipse 40, 40"
                          Padding="10"
                          BackgroundColor="#e7ecf4"
                          Stroke="Transparent">
-                        <Label Text="AC"
-                            FontFamily="Inter"
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            VerticalTextAlignment="Center"
-                            HorizontalTextAlignment="Center"
-                            TextColor="{StaticResource Blue700}"/>
+                        <Label x:Name="label_iniciais_aluno"
+                               Text="Al"
+                               TextTransform="Uppercase"
+                               FontFamily="RobotoMono"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource Blue700}"/>
                     </Border>
                 </HorizontalStackLayout>
                 <Label Grid.Column="1"
-                    FontFamily="Inter"
-                    FontSize="18"
-                    Text="Ana Maria Cardozo"
-                    VerticalTextAlignment="Center"/>
+                       x:Name="label_nome_aluno"
+                       FontFamily="Inter"
+                       FontSize="16"
+                       Text="Nome do Aluno"
+                       VerticalTextAlignment="Center"/>
                 <Label Grid.Column="2"
-                    FontFamily="Inter"
-                      FontAttributes="Bold"
-                      FontSize="18"
+                       x:Name="label_nota_aluno"
+                      FontFamily="Inter"
+                       FontAttributes="Bold"
+                      FontSize="16"
                       HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"
-                      Text="0.0"/>
+                    VerticalTextAlignment="Center"/>
                 <Image Style="{StaticResource ImageIcon}"
                     Source="arrow_right.png"
                     Grid.Column="3"/>

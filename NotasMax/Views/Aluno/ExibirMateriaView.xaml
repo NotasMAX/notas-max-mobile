@@ -33,7 +33,7 @@
             </VerticalStackLayout>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="12">
                         <Label Style="{StaticResource LabelSubtitle}"
                      Text="Evolução"/>
                         <chart:SfCartesianChart HeightRequest="160">
@@ -61,10 +61,10 @@
                 <Label Style="{StaticResource LabelSubtitle}" 
                        FontAttributes="Bold"
                        Text="Histórico de Notas"/>
-                <VerticalStackLayout x:Name="layout_materias">
+                <VerticalStackLayout x:Name="layout_materias" Spacing="8">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate >
-                            <cv:MateriaItemContentView Padding="0,0,0,10"/>
+                            <cv:MateriaItemContentView/>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>

@@ -83,7 +83,7 @@
             </Grid>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="12">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Evolução da Turma"/>
                         <chart:SfCartesianChart HeightRequest="160">
@@ -109,7 +109,7 @@
             </VerticalStackLayout>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="12">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Comparação entre Alunos"/>
                         <chart:SfCartesianChart IsTransposed="True">
@@ -142,7 +142,7 @@
             </VerticalStackLayout>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="12">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Distribuição de Desempenho"/>
                         <chart:SfCircularChart>
@@ -184,11 +184,12 @@
                 <Label Style="{StaticResource LabelSubtitle}" 
                        x:Name="label_subtitulo_alunos"
                        FontAttributes="Bold"
-                       Text="Alunos (0)"/>
-                <VerticalStackLayout x:Name="layout_alunos">
+                       Text="Alunos (0)"
+                       VerticalOptions="Center"/>
+                <VerticalStackLayout x:Name="layout_alunos" Spacing="8">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate >
-                            <cv:AlunoItemContentView Padding="0,0,0,10"/>
+                            <cv:AlunoItemContentView/>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>

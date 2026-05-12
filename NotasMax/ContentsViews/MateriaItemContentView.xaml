@@ -4,7 +4,7 @@
              x:Class="NotasMax.ContentsViews.MateriaItemContentView">
     <Grid>
         <Border Style="{StaticResource BorderShadow}">
-            <Grid ColumnDefinitions="*,45" 
+            <Grid ColumnDefinitions="*,Auto" 
                   ColumnSpacing="8">
                 <Label x:Name="label_nome_simulado"
                        FontFamily="Inter"

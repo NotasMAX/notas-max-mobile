@@ -26,7 +26,7 @@ public partial class DesempenhoTurmaView : ContentPage
         if (menorNota != null)
         {
             label_menor_nota.Text = menorNota.Nota.ToString("N2");
-            label_menor_aluno.Text = TextoHelper.ReduzirTexto(menorNota.Nome);
+            label_menor_aluno.Text = TextoHelper.ReduzirNome(menorNota.Nome);
         }
     }
 
@@ -37,7 +37,7 @@ public partial class DesempenhoTurmaView : ContentPage
             return;
 
         label_maior_nota.Text = maiorNota.Nota.ToString("N2");
-        label_maior_aluno.Text = TextoHelper.ReduzirTexto(maiorNota.Nome);
+        label_maior_aluno.Text = TextoHelper.ReduzirNome(maiorNota.Nome);
 
     }
     private void DefinirDestaqueDistribuicao(List<DistribuicaoNotas> distribuicaoNotas)
@@ -129,7 +129,7 @@ public partial class DesempenhoTurmaView : ContentPage
         if (labelText == null)
             return;
 
-        e.Label = TextoHelper.ReduzirTexto(labelText);
+        e.Label = TextoHelper.ReduzirNome(labelText);
     }
 
     private void chirp_serie_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)

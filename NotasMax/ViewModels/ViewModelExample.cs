@@ -76,7 +76,7 @@ public class ViewModelExemplo
 
         NotaAlunos = new List<NotaAluno>
         {
-            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "João Cardoso", Nota = 7.5 },
+            new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "João Cardoso Silveira Alencar", Nota = 7.5 },
             new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Maria Alencar", Nota = 8.0 },
             new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Pedro Oliveira", Nota = 6.5 },
             new NotaAluno {AlunoId= Guid.NewGuid(), Nome = "Ana Carolina", Nota = 7.0 },

@@ -8,7 +8,7 @@
             <Border.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TurmaItem_Tapped" />
             </Border.GestureRecognizers>
-            <Grid ColumnDefinitions="45,*,45,25" 
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto" 
                  ColumnSpacing="12">
                 <HorizontalStackLayout Grid.Column="0">
                     <Border Padding="10"
@@ -32,10 +32,9 @@
                 <VerticalStackLayout Grid.Column="2" Spacing="2">
                     <Label x:Name="label_valor_media" 
                           FontFamily="Inter"
-                          FontAttributes="Bold"
+                           FontAttributes="Bold"
                           FontSize="20"
-                          HorizontalTextAlignment="Center"
-                          Text="{Binding Media}"/>
+                          HorizontalTextAlignment="Center"/>
                     <Label FontFamily="Inter"
                           TextColor="{StaticResource SecondaryDarkText}"
                           FontSize="13"

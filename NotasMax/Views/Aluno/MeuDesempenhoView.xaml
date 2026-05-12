@@ -57,7 +57,7 @@
             </Grid>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="12">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Evolução das Médias"/>
                         <chart:SfCartesianChart HeightRequest="160">
@@ -102,7 +102,7 @@
             </Grid>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="12">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Comparativo por Matérias"/>
                         <chart:SfPolarChart StartAngle="Rotate0" 
@@ -133,7 +133,7 @@
             </VerticalStackLayout>
             <VerticalStackLayout Spacing="16">
                 <Border Style="{StaticResource BorderShadow}">
-                    <VerticalStackLayout Spacing="8">
+                    <VerticalStackLayout Spacing="12">
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Notas por Disciplina"/>
                         <chart:SfCartesianChart IsTransposed="True">

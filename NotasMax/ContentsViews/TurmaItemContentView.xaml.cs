@@ -17,6 +17,7 @@ public partial class TurmaItemContentView : ContentView
 			return;
 
         label_valor_media.TextColor = ColorHelper.DefinirCor(mediaTurmaAlunos.Media);
+		label_valor_media.Text = mediaTurmaAlunos.Media.ToString("N2");
         label_quantidade_alunos.Text = mediaTurmaAlunos.QuantidadeAlunos + " alunos";
     }
 
