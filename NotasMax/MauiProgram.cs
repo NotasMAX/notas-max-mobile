@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
+using NotasMax.Services.NavigationService;
 using NotasMax.Services.RequestProvider;
 using NotasMax.Services.Settings;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
+using NotasMax.Views.Aluno;
 
 namespace NotasMax
 {
@@ -58,6 +60,7 @@ namespace NotasMax
             app.Services.AddSingleton<IRequestProvider, RequestProvider>();
             app.Services.AddSingleton<IUsuarioService, UsuarioService>();
             app.Services.AddSingleton<ISettingsService, SettingsService>();
+            app.Services.AddSingleton<INavigationService, NavigationService>();
             return app;
         }
 
@@ -65,6 +68,7 @@ namespace NotasMax
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder app)
         {
             app.Services.AddSingleton<LoginPage>();
+            app.Services.AddSingleton<HomeAlunoView>();
             return app;
         }
 

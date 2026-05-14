@@ -52,6 +52,20 @@ namespace NotasMax.Services.RequestProvider
             // Lê o conteúdo da resposta e desserializa para o tipo TSend, retornando o resultado
             var result = await response.Content.ReadFromJsonAsync<TResult>();
             return result;
-        }        
+        }    
+        
+        public async Task<TResult> GetAsync<TResult>(string uri, string token = "")
+        {
+            var httpClient = GetOrCreateHttpClient(token);
+            
+            var response = await httpClient.GetAsync(uri).ConfigureAwait(false);
+            
+            if (!response.IsSuccessStatusCode)
+                throw new ApiException(response.StatusCode, "Erro ao realizar a requisição com a API");
+
+
+            var result = await response.Content.ReadFromJsonAsync<TResult>();
+            return result;
+        }
     }
 }

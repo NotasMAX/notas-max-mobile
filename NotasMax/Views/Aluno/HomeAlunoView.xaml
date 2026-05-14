@@ -6,6 +6,8 @@
     <ScrollView>
         <VerticalStackLayout Padding="20,40" Spacing="16">
 
+            <Button Text="Deslogar" x:Name="Logout" Clicked="Button_Clicked"/>
+
             <!-- Header -->
             <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,4">
 
@@ -16,8 +18,7 @@
 
                     <HorizontalStackLayout Spacing="6">
 
-                        <Label x:Name="txt_nomeUsuario" 
-                               Text="Lucas"
+                        <Label x:Name="txt_nomeUsuario"
                                Style="{StaticResource LabelDefaultTitle}"
                                FontSize="26"
                                TextColor="#1A1F36" />
