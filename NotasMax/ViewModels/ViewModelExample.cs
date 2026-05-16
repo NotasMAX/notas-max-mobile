@@ -20,6 +20,7 @@ public class NotaSimulado
 {
     public string? Numero { get; set; }
     public double Nota { get; set; }
+    public DateTime Data { get; set; }
 }
 
 public class NotaMateria
@@ -55,11 +56,11 @@ public class ViewModelExemplo
         // Gerando alguns dados de exemplo (Mock / Simulação) para o gráfico de desempenho
         NotaSimulados = new List<NotaSimulado>
         {
-            new NotaSimulado { Numero = "1", Nota = 6.54 },
-            new NotaSimulado { Numero = "2", Nota = 7.45 },
-            new NotaSimulado { Numero = "3", Nota = 6.30 },
-            new NotaSimulado { Numero = "4", Nota = 8.56 },
-            new NotaSimulado { Numero = "5", Nota = 9.14 }
+            new NotaSimulado { Numero = "1", Nota = 6.54, Data = new DateTime(2025, 2, 10) },
+            new NotaSimulado { Numero = "2", Nota = 7.45, Data = new DateTime(2025, 3, 1)  },
+            new NotaSimulado { Numero = "3", Nota = 6.30, Data = new DateTime(2025, 4, 5)  },
+            new NotaSimulado { Numero = "4", Nota = 8.56, Data = new DateTime(2025, 5, 12) },
+            new NotaSimulado { Numero = "5", Nota = 9.14, Data = new DateTime(2025, 6, 20) }
         };
 
         NotaMaterias = new List<NotaMateria>
