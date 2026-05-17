@@ -145,6 +145,7 @@
 
                             <TapGestureRecognizer Tapped="OnLabelEsqueceuSenhaTapped" 
                               Command="{Binding YourCommand}" />
+<<<<<<< HEAD
                         </Label.GestureRecognizers>
 
                     </Label>
@@ -152,6 +153,16 @@
                     <Button x:Name="button_entrar"
                         Text="Entrar"
                         Clicked="ButtonEntrarClicked">
+=======
+                    </Label.GestureRecognizers>
+                    
+                </Label>
+
+                <Button Style="{StaticResource BtnGradientPrimary}"
+                        x:Name="button_entrar"
+                        Text="Entrar"
+                        Clicked="ButtonEntrarClicked"/>
+>>>>>>> 1ef7f4b8fda291f3daf815924731bd0a765f7c26
 
                         <Button.Background>
 
