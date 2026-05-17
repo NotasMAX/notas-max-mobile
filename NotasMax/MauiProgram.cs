@@ -70,7 +70,7 @@ namespace NotasMax
         // Registrar as Views que usarão os serviços da aplicação
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder app)
         {
-            app.Services.AddSingleton<LoginPage>();
+            app.Services.AddSingleton<LoginView>();
             app.Services.AddSingleton<HomeAlunoView>();
             return app;
         }
