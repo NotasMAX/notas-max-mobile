@@ -1,5 +1,10 @@
 using NotasMax.Helpers;
 using NotasMax.Models;
+using NotasMax.Models.Usuarios;
+using NotasMax.Services.NavigationService;
+using NotasMax.Services.Settings;
+using NotasMax.Services.Turmas;
+using NotasMax.Services.Usuarios;
 using NotasMax.ViewModels;
 using Syncfusion.Maui.Toolkit.Charts;
 using System.Diagnostics;
@@ -9,10 +14,16 @@ namespace NotasMax.Views.Professor;
 public partial class DesempenhoTurmaView : ContentPage
 {
     private List<Brush> PaleteBrushes = new();
-    public DesempenhoTurmaView()
+    private readonly ITurmaService _turmaService;
+    private readonly ISettingsService _settingsService;
+    private readonly INavigationService _navigationService;
+
+    public DesempenhoTurmaView(ITurmaService turmaService, ISettingsService settingsService, INavigationService navigationService)
     {
         InitializeComponent();
-
+        _turmaService = turmaService;
+        _settingsService = settingsService;
+        _navigationService = navigationService;
     }
     private void CalcularMedia(List<NotaSimulado> notas)
     {
@@ -45,23 +56,34 @@ public partial class DesempenhoTurmaView : ContentPage
         int indexNotasBaixas = distribuicaoNotas.FindIndex(item => item.Faixa == "<5");
         doughnut_chart.ExplodeIndex = indexNotasBaixas;
     }
-    protected override void OnAppearing()
+
+    private async Task<TurmasByAnoAndProfessor> fetchDadosTurmas()
+    {
+        Usuario professor = new();
+        professor.Id = "6a09eb216c3ea9db8a06a57c"; // Para facilitar os testes
+        int ano = DateTime.Now.Year;
+        return await _turmaService.GetByAnoAndProfessor(ano, professor);
+    }
+
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
+
+        TurmasByAnoAndProfessor dadosTurmas = await fetchDadosTurmas() ;
+        dadosTurmas.Turmas = dadosTurmas.Turmas.OrderBy(t => t.Serie).ToList();
 
         var viewModel = new ViewModelExemplo();
         var notasSimulados = viewModel.NotaSimulados.OrderBy(n => n.Numero).ToList();
         var notasAlunos = viewModel.NotaAlunos.OrderBy(n => n.Nome).ToList();
         var distribuicaoNotas = viewModel.DistribuicaoNotas;
-        var turmas = viewModel.Turmas.OrderBy(t => t.Serie).ToList();
+
 
         DefinirCoresDistribuicao(distribuicaoNotas);
 
         line_chart.ItemsSource = notasSimulados;
         column_chart.ItemsSource = notasAlunos;
-        chirp_serie.ItemsSource = turmas;
-        chirp_serie.SelectedItem = turmas.MinBy(t => t.Serie);
-
+        chirp_serie.ItemsSource = dadosTurmas.Turmas;
+        chirp_serie.SelectedItem = dadosTurmas.Turmas.MinBy(t => t.Serie);
         CalcularMedia(notasSimulados);
         CalcularMenorNota(notasAlunos);
         CalcularMaiorNota(notasAlunos);
@@ -135,8 +157,20 @@ public partial class DesempenhoTurmaView : ContentPage
     private void chirp_serie_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
     {
 
-        if (!(e.AddedItem is Turma turma))
+        if (!(e.AddedItem is TurmasByAnoAndProfessor.Turma turma))
             return;
+
+        List<TurmasByAnoAndProfessor.Disciplina> disciplinas = turma.Disciplinas.OrderBy(d => d.MateriaNome).ToList();
+
+        chirp_disciplinas.ItemsSource = disciplinas;
+        chirp_disciplinas.SelectedItem = disciplinas.FirstOrDefault();
+    }
+
+    private void chirp_disciplinas_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
+    {
+        if (!(e.AddedItem is TurmasByAnoAndProfessor.Disciplina disciplina))
+            return;
+
 
     }
 }

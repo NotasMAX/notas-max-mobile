@@ -20,7 +20,7 @@ public partial class HomeAlunoView : ContentPage
         base.OnAppearing();
 
 
-        txt_nomeUsuario.Text = Aluno.Usuario.Nome;
+        //txt_nomeUsuario.Text = Aluno.Usuario.Nome;
 
     }
     private void OnLabelVerTudoMateria(object sender, TappedEventArgs e)

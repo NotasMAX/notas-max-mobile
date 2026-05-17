@@ -14,10 +14,10 @@
                 <Label  Style="{StaticResource LabelDetails}"                        
                         Text="Análise detalhada das turmas"/>
             </VerticalStackLayout>
-            <HorizontalStackLayout>
-                <ChipControl:SfChipGroup 
+            <VerticalStackLayout Spacing="8">
+            <ChipControl:SfChipGroup 
                     x:Name="chirp_serie"                        
-                    DisplayMemberPath="SerieComposta"                          
+                    DisplayMemberPath="SerieFormatada"                          
                     ChipType="Choice"
                     ChipPadding="0,0,8,0"                    
                     ChoiceMode="Single"
@@ -26,18 +26,40 @@
                     SelectionChanged="chirp_serie_SelectionChanged"
                     SelectedChipTextColor="White"
                     SelectedChipBackground="{StaticResource Blue600}">
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="ChipTextColor" Value="Black" />
-                                    <Setter Property="ChipBackground" Value="White" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
-                </ChipControl:SfChipGroup>
-            </HorizontalStackLayout>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="ChipTextColor" Value="Black" />
+                                <Setter Property="ChipBackground" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ChipControl:SfChipGroup>
+            <ChipControl:SfChipGroup 
+                    x:Name="chirp_disciplinas"                        
+                    DisplayMemberPath="MateriaNome"                          
+                    ChipType="Choice"
+                    ChipPadding="0,0,8,0"                    
+                    ChoiceMode="Single"
+                    ChipStroke="Transparent"
+                    ChipFontFamily="Inter"
+                    SelectionChanged="chirp_disciplinas_SelectionChanged"
+                    SelectedChipTextColor="White"
+                    SelectedChipBackground="{StaticResource Blue600}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="ChipTextColor" Value="Black" />
+                                <Setter Property="ChipBackground" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ChipControl:SfChipGroup>
+            </VerticalStackLayout>
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
                 <VerticalStackLayout Grid.Column="0">
                     <Border Style="{StaticResource BorderShadow}">

@@ -7,6 +7,7 @@ using NotasMax.Services.Settings;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
+using NotasMax.Services.Turmas;
 
 namespace NotasMax
 {
@@ -64,6 +65,7 @@ namespace NotasMax
             app.Services.AddSingleton<IUsuarioService, UsuarioService>();
             app.Services.AddSingleton<ISettingsService, SettingsService>();
             app.Services.AddSingleton<INavigationService, NavigationService>();
+            app.Services.AddSingleton<ITurmaService, TurmaService>();
             return app;
         }
 
