@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotasMax.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+             x:Class="NotasMax.Views.LoginView">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -146,14 +145,26 @@
 
                             <TapGestureRecognizer Tapped="OnLabelEsqueceuSenhaTapped" 
                               Command="{Binding YourCommand}" />
-                    </Label.GestureRecognizers>
-                    
-                </Label>
+                        </Label.GestureRecognizers>
 
-                <Button Style="{StaticResource BtnGradientPrimary}"
-                        x:Name="button_entrar"
+                    </Label>
+
+                    <Button x:Name="button_entrar"
                         Text="Entrar"
-                        Clicked="ButtonEntrarClicked"/>
+                        Clicked="ButtonEntrar_Clicked">
+
+                        <Button.Background>
+
+                            <LinearGradientBrush EndPoint="1,0">
+                                <GradientStop Color="{StaticResource Blue900}"
+                                            Offset="0.1" />
+                                <GradientStop Color="{StaticResource Blue600}"
+                                            Offset="1.0" />
+                            </LinearGradientBrush>
+
+                        </Button.Background>
+
+                    </Button>
 
                 </VerticalStackLayout>
             </Border>

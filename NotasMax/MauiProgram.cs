@@ -7,6 +7,7 @@ using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
 using NotasMax.Views.Professor;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace NotasMax
 {
@@ -17,6 +18,7 @@ namespace NotasMax
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureSyncfusionToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -24,6 +26,8 @@ namespace NotasMax
                     fonts.AddFont("Inter.ttf", "Inter");
                     fonts.AddFont("Roboto.ttf", "Roboto");
                     fonts.AddFont("SpaceGrotesk.ttf", "SpaceGrotesk");
+                    fonts.AddFont("RobotoMono.ttf", "RobotoMono");
+                });
                 })
                 .RegisterAppServices()
                 .RegisterViews();
