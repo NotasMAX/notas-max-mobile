@@ -114,6 +114,9 @@
 	  <MauiXaml Update="Resources\Styles\TextSyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\DadosPessoaisView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Aluno\ExibirMateriaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
