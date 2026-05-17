@@ -120,8 +120,8 @@
                             </chart:SfCartesianChart.YAxes>
                             <chart:SplineSeries
                                 x:Name="line_chart"                                                
-                                XBindingPath="Numero"                                                
-                                YBindingPath="Nota"                                                
+                                XBindingPath="NumeroSimulado"                                                
+                                YBindingPath="Media"                                                
                                 Type="Cardinal"
                                 Fill="#1685F3"
                                 StrokeWidth="3"/>
@@ -155,7 +155,7 @@
                             <chart:ColumnSeries 
                                 x:Name="column_chart"
                                 XBindingPath="Nome"
-                                YBindingPath="Nota"
+                                YBindingPath="Media"
                                 Fill="#044D95"                 
                                 StrokeWidth="3"/>
                         </chart:SfCartesianChart>
