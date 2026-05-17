@@ -1,6 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Syncfusion.Maui.Toolkit.Hosting;
+using NotasMax.Services.NavigationService;
+using NotasMax.Services.RequestProvider;
+using NotasMax.Services.Settings;
+using NotasMax.Services.Usuarios;
+using NotasMax.Views;
+using NotasMax.Views.Aluno;
 
 namespace NotasMax
 {
@@ -19,12 +25,16 @@ namespace NotasMax
                     fonts.AddFont("Inter.ttf", "Inter");
                     fonts.AddFont("Roboto.ttf", "Roboto");
                     fonts.AddFont("SpaceGrotesk.ttf", "SpaceGrotesk");
-                    fonts.AddFont("RobotoMono.ttf", "RobotoMono");
-                });
+                     fonts.AddFont("RobotoMono.ttf", "RobotoMono");
+                })
+                .RegisterAppServices()
+                .RegisterViews();
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            // Configuração personalizada para remover bordas de Entry no Windows
             builder.ConfigureMauiHandlers(handlers =>
             {
                 EntryHandler.Mapper.AppendToMapping("BorderlessEntry", (handler, view) =>
@@ -44,5 +54,26 @@ namespace NotasMax
             });
             return builder.Build();
         }
+
+
+
+        // Registrar os serviços da aplicação
+        public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder app)
+        {
+            app.Services.AddSingleton<IRequestProvider, RequestProvider>();
+            app.Services.AddSingleton<IUsuarioService, UsuarioService>();
+            app.Services.AddSingleton<ISettingsService, SettingsService>();
+            app.Services.AddSingleton<INavigationService, NavigationService>();
+            return app;
+        }
+
+        // Registrar as Views que usarão os serviços da aplicação
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder app)
+        {
+            app.Services.AddSingleton<LoginView>();
+            app.Services.AddSingleton<HomeAlunoView>();
+            return app;
+        }
+
     }
 }
