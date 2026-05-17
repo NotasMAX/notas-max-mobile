@@ -28,9 +28,7 @@ namespace NotasMax
         // Método para registrar rotas de Navegação.
         public static void InitializeRouting()
         {
-            Routing.RegisterRoute("Login", typeof(LoginPage));
-            Routing.RegisterRoute("HomeAluno", typeof(HomeAlunoView));
-            Routing.RegisterRoute("HomeProfessor", typeof(HomeProfessorView));
+
         }
     }
 }

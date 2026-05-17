@@ -22,5 +22,11 @@ namespace NotasMax.Services.Usuarios
             var uri = GlobalSettings.Instance.UsuarioLoginAuthEndpoint;
             return await _requestProvider.PostAsync<UserToken, UsuarioAuth>(uri, auth);
         }
+
+        public async Task<Usuario> GetUsuarioById(string id, string token)
+        {
+            var uri = $"{GlobalSettings.Instance.UsuarioEndPonint}/Detalhes/{id}";
+            return await _requestProvider.GetAsync<Usuario>(uri, token);
+        }
     }
 }

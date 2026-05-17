@@ -4,10 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:NotasMax.Views"
-    Title="NotasMax">
+    xmlns:aluno="clr-namespace:NotasMax.Views.Aluno"
+    xmlns:professor="clr-namespace:NotasMax.Views.Professor"
+    Title="NotasMax"
+    FlyoutBehavior="Disabled">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="MainPage" />
+    <ShellContent Route="Login" 
+                    ContentTemplate="{DataTemplate local:LoginPage}"/>
+
+    <ShellContent Route="HomeAluno"
+                  ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
+
+    <ShellContent Route="HomeProfessor"
+                  ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
 
 </Shell>

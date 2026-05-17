@@ -6,6 +6,7 @@ using NotasMax.Services.Settings;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
+using NotasMax.Views.Professor;
 
 namespace NotasMax
 {
@@ -69,6 +70,7 @@ namespace NotasMax
         {
             app.Services.AddSingleton<LoginPage>();
             app.Services.AddSingleton<HomeAlunoView>();
+            app.Services.AddSingleton<HomeProfessorView>();
             return app;
         }
 

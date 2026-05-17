@@ -1,9 +1,19 @@
+using NotasMax.Services.NavigationService;
+
 namespace NotasMax.Views.Professor;
 
 public partial class HomeProfessorView : ContentPage
 {
-	public HomeProfessorView()
+    private readonly INavigationService _navigationService;
+
+    public HomeProfessorView(INavigationService navigationService)
 	{
-		InitializeComponent();
+        _navigationService = navigationService;
+        InitializeComponent();
 	}
+
+    private void Logout_Clicked(object sender, EventArgs e)
+    {
+        _navigationService.NavigationAsync("Login?Logout=true", true);
+    }
 }
