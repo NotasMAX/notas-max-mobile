@@ -33,6 +33,7 @@ namespace NotasMax
             Routing.RegisterRoute("HomeProfessor", typeof(HomeProfessorView));
             Routing.RegisterRoute("DesempenhoTurma", typeof(DesempenhoTurmaView));
             Routing.RegisterRoute("Turmas", typeof(TurmasView));
+            Routing.RegisterRoute("MeuDesempenho", typeof(MeuDesempenhoView));
         }
     }
 }

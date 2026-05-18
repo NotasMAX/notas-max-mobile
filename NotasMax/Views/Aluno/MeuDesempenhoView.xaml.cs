@@ -1,54 +1,83 @@
+using NotasMax.Services.Disciplinas;
+using NotasMax.Services.NavigationService;
+using NotasMax.Services.Settings;
+using NotasMax.Services.Turmas;
 using NotasMax.ViewModels;
+using System.Diagnostics;
 namespace NotasMax.Views.Aluno;
 
 public partial class MeuDesempenhoView : ContentPage
 {
-    public MeuDesempenhoView()
+    private readonly ITurmaService _turmaService;
+    private readonly ISettingsService _settingsService;
+    private readonly INavigationService _navigationService;
+    private readonly IDisciplinaService _disciplinaService;
+    public MeuDesempenhoView(ITurmaService turmaService, ISettingsService settingsService, INavigationService navigationService, IDisciplinaService disciplinaService)
     {
         InitializeComponent();
+        _turmaService = turmaService;
+        _settingsService = settingsService;
+        _navigationService = navigationService;
+        _disciplinaService = disciplinaService;
     }
 
-    private void CalcularMedia(List<NotaSimulado> notas)
+    private void CalcularMedia(List<DesempenhoAluno.Simulado> simulados)
     {
-        double media = notas.Average(u => u.Nota);
+        double media = simulados.Average(u => u.Media);
         label_media.Text = media.ToString("N2");
     }
 
-    private void CalcularMenorNota(List<NotaMateria> notas)
+    private void CalcularMenorNota(List<DesempenhoAluno.Materia> materias)
     {
-        NotaMateria? menorNota = notas.MinBy(n => n.Nota);
+        var menorNota = materias.MinBy(n => n.Media);
         if (menorNota != null)
         {
-            label_menor_nota.Text = menorNota.Nota.ToString("N2");
-            label_menor_materia.Text = menorNota.Materia;
+            label_menor_nota.Text = menorNota.Media.ToString("N2");
+            label_menor_materia.Text = menorNota.Nome;
         }
     }
 
-    private void CalcularMaiorNota(List<NotaMateria> notas)
+    private void CalcularMaiorNota(List<DesempenhoAluno.Materia> materias)
     {
-        NotaMateria? maiorNota = notas.MaxBy(n => n.Nota);
+        var maiorNota = materias.MaxBy(n => n.Media);
         if (maiorNota != null)
         {
-            label_maior_nota.Text = maiorNota.Nota.ToString("N2");
-            label_maior_materia.Text = maiorNota.Materia;
+            label_maior_nota.Text = maiorNota.Media.ToString("N2");
+            label_maior_materia.Text = maiorNota.Nome;
         }
     }
 
-    protected override void OnAppearing()
+    private async Task<DesempenhoAluno?> FetchDesempenhoAluno()
+    {
+        try
+        {
+            return await _disciplinaService.GetDesempenhoAluno();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Erro: {ex.Message}");
+            return null;
+        }
+    }
+
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
 
-        var viewModel = new ViewModelExemplo();
-        var notasMaterias = (viewModel.NotaMaterias).OrderBy(n => n.Materia).ToList();
-        var notaSimulados = (viewModel.NotaSimulados).OrderBy(n => n.Numero).ToList();
+        DesempenhoAluno? desempenhoAluno = await FetchDesempenhoAluno();
+        if (desempenhoAluno == null)
+            return;
 
-        line_chart.ItemsSource = notaSimulados;
-        polar_line_chart.ItemsSource = notasMaterias;
-        column_chart.ItemsSource = notasMaterias;
+        var simulados = desempenhoAluno.Simulados;
+        var materias = desempenhoAluno.Materias;
 
-        CalcularMedia(notaSimulados);
-        CalcularMenorNota(notasMaterias);
-        CalcularMaiorNota(notasMaterias);
+        line_chart.ItemsSource = simulados;
+        polar_line_chart.ItemsSource = materias;
+        column_chart.ItemsSource = materias;
+
+        CalcularMedia(simulados);
+        CalcularMenorNota(materias);
+        CalcularMaiorNota(materias);
     }
 
     private void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
