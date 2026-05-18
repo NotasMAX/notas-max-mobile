@@ -27,7 +27,6 @@ namespace NotasMax
                     fonts.AddFont("Roboto.ttf", "Roboto");
                     fonts.AddFont("SpaceGrotesk.ttf", "SpaceGrotesk");
                     fonts.AddFont("RobotoMono.ttf", "RobotoMono");
-                });
                 })
                 .RegisterAppServices()
                 .RegisterViews();
@@ -72,7 +71,7 @@ namespace NotasMax
         // Registrar as Views que usarão os serviços da aplicação
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder app)
         {
-            app.Services.AddSingleton<LoginPage>();
+            app.Services.AddSingleton<LoginView>();
             app.Services.AddSingleton<HomeAlunoView>();
             app.Services.AddSingleton<HomeProfessorView>();
             return app;

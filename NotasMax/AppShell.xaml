@@ -10,7 +10,7 @@
     FlyoutBehavior="Disabled">
 
     <ShellContent Route="Login" 
-                    ContentTemplate="{DataTemplate local:LoginPage}"/>
+                    ContentTemplate="{DataTemplate local:LoginView}"/>
 
     <ShellContent Route="HomeAluno"
                   ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
