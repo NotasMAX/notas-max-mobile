@@ -1,36 +1,55 @@
 
+using NotasMax.Models.Usuarios;
+using NotasMax.Services.Disciplinas;
+using NotasMax.Services.NavigationService;
+using NotasMax.Services.Settings;
+using NotasMax.Services.Turmas;
 using NotasMax.ViewModels;
+using System.Diagnostics;
 
 namespace NotasMax.Views.Professor;
 
 public partial class TurmasView : ContentPage
 {
-	public TurmasView()
-	{
+    private readonly ITurmaService _turmaService;
+    private readonly ISettingsService _settingsService;
+    private readonly INavigationService _navigationService;
+    public TurmasView(ITurmaService turmaService, ISettingsService settingsService, INavigationService navigationService)
+    {
 		InitializeComponent();
-	}
+        _turmaService = turmaService;
+        _settingsService = settingsService;
+        _navigationService = navigationService;
+    }
 
-    protected override void OnAppearing()
+    private async Task<TurmasByAnoAndProfessor?> fetchDadosTurmas()
+    {
+        try
+        {
+            Usuario professor = new();
+            professor.Id = "6a0a2d90a7adea15004c46ba"; // Para facilitar os testes
+            int ano = DateTime.Now.Year;
+            return await _turmaService.GetByAnoAndProfessor(ano, professor);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Erro: {ex.Message}");
+            return null;
+        }
+    }
+
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
 
-        var mediaTurmaAlunos = new ViewModelExemplo().MediaTurmaAlunos;
+        var turmas = await fetchDadosTurmas();
+        if (turmas == null)
+            return;
 
-        BindableLayout.SetItemsSource(layout_turmas, mediaTurmaAlunos);
+        BindableLayout.SetItemsSource(layout_turmas, turmas?.Turmas);
+        label_numero_turmas_ativas.Text = turmas?.TotalTurmas.ToString();
+        label_numero_total_alunos.Text = turmas?.TotalAlunos.ToString();
 
-        CalcularAlunos(mediaTurmaAlunos);
-        CalcularTurmas(mediaTurmaAlunos);
     }
 
-    private void CalcularTurmas(List<MediaTurmaAlunos> mediaTurmaAlunos)
-    {
-        var soma = mediaTurmaAlunos.Count();
-        label_numero_turmas_ativas.Text = soma.ToString();
-    }
-
-    private void CalcularAlunos(List<MediaTurmaAlunos> mediaTurmaAlunos)
-    {
-        var soma = mediaTurmaAlunos.Sum(i => i.QuantidadeAlunos);
-        label_numero_total_alunos.Text = soma.ToString();
-    }
 }

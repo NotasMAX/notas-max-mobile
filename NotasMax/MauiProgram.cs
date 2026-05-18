@@ -9,6 +9,7 @@ using NotasMax.Views;
 using NotasMax.Views.Aluno;
 using NotasMax.Services.Turmas;
 using NotasMax.Services.Disciplinas;
+using NotasMax.Views.Professor;
 
 namespace NotasMax
 {
@@ -57,8 +58,6 @@ namespace NotasMax
             return builder.Build();
         }
 
-
-
         // Registrar os serviços da aplicação
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder app)
         {
@@ -76,6 +75,8 @@ namespace NotasMax
         {
             app.Services.AddSingleton<LoginView>();
             app.Services.AddSingleton<HomeAlunoView>();
+            app.Services.AddSingleton<TurmasView>();
+            app.Services.AddSingleton<DesempenhoTurmaView>();
             return app;
         }
 

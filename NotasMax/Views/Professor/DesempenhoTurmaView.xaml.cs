@@ -12,8 +12,11 @@ using System.Diagnostics;
 
 namespace NotasMax.Views.Professor;
 
+[QueryProperty(nameof(TurmaSelecionada), "Turma")]
 public partial class DesempenhoTurmaView : ContentPage
 {
+    public TurmasByAnoAndProfessor.Turma? TurmaSelecionada { get; set; }
+
     private List<Brush> PaleteBrushes = new();
     private readonly ITurmaService _turmaService;
     private readonly ISettingsService _settingsService;
@@ -90,7 +93,7 @@ public partial class DesempenhoTurmaView : ContentPage
     {
         base.OnAppearing();
 
-        TurmasByAnoAndProfessor? dadosTurmas = await fetchDadosTurmas() ;
+        TurmasByAnoAndProfessor? dadosTurmas = await fetchDadosTurmas();
 
         if (dadosTurmas == null)
             return;
@@ -98,10 +101,16 @@ public partial class DesempenhoTurmaView : ContentPage
         dadosTurmas.Turmas = dadosTurmas.Turmas.OrderBy(t => t.Serie).ToList();
 
         chirp_serie.ItemsSource = dadosTurmas.Turmas;
-        chirp_serie.SelectedItem = dadosTurmas.Turmas.MinBy(t => t.Serie);
+
+        if (TurmaSelecionada != null)
+        {
+            chirp_serie.SelectedItem = dadosTurmas.Turmas.Where(t => t.Id == TurmaSelecionada.Id).FirstOrDefault();
+        }
+        else
+        {
+            chirp_serie.SelectedItem = dadosTurmas.Turmas.MinBy(t => t.Serie);
+        }
     }
-
-
     private void DefinirCoresDistribuicao(List<DesempenhoByDisciplina.DesempenhoDistribuicao> distribuicaoNotas)
     {
         DesempenhoByDisciplina.DesempenhoDistribuicao primeiraFaixa = new();

@@ -9,8 +9,12 @@ namespace NotasMax.ViewModels
     public class TurmasByAnoAndProfessor
     {
 
-            [JsonPropertyName("turmas")]
-            public List<Turma> Turmas { get; set; } = new();
+        [JsonPropertyName("turmas")]
+        public List<Turma> Turmas { get; set; } = new();
+        [JsonPropertyName("total_alunos")]
+        public int TotalAlunos { get; set; }
+        [JsonPropertyName("total_turmas")]
+        public int TotalTurmas { get; set; }
 
         public class Disciplina
         {
@@ -30,6 +34,10 @@ namespace NotasMax.ViewModels
             public int Serie { get; set; }
             [JsonPropertyName("disciplinas")]
             public List<Disciplina> Disciplinas { get; set; } = new();
+            [JsonPropertyName("quantidade_alunos")]
+            public int QuantidadeAlunos { get; set; }
+            [JsonPropertyName("media")]
+            public double Media { get; set; }
 
             [JsonIgnore]
             public string SerieFormatada => $"{Serie}º EM";

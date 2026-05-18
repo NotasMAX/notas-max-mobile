@@ -7,7 +7,6 @@
     Title="NotasMax">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:DesempenhoTurmaView}" 
-        />
+        ContentTemplate="{DataTemplate local:TurmasView}" />
 
 </Shell>
