@@ -10,7 +10,8 @@
             <Grid ColumnDefinitions="Auto,*,Auto,Auto" 
                   ColumnSpacing="12">
                 <HorizontalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Border Padding="10"
+                    <Border x:Name="border_icon" 
+                        Padding="10"
                             BackgroundColor="#e7ecf4"
                             Stroke="Transparent">
                         <Image x:Name="image_icon"
@@ -30,20 +31,22 @@
                            TextColor="{StaticResource SecondaryDarkText}"
                            FontSize="14"/>
                 </VerticalStackLayout>
-                <VerticalStackLayout Grid.Column="2" Spacing="2">
+                <VerticalStackLayout x:Name="container_media" Grid.Column="2" Spacing="2">
                     <Label x:Name="label_valor_media" 
                            Text="0,00"
                            FontFamily="Inter"
                            FontAttributes="Bold"
                            FontSize="18"
                            HorizontalTextAlignment="Center"/>
-                    <Label FontFamily="Inter"
+                    <Label 
+                           FontFamily="Inter"
                            TextColor="{StaticResource SecondaryDarkText}"
                            FontSize="14"
                            HorizontalTextAlignment="Center"
                            Text="média"/>
                 </VerticalStackLayout>
-                <Image Style="{StaticResource ImageIcon}"
+                <Image x:Name="image_arrow"
+                       Style="{StaticResource ImageIcon}"
                        Source="arrow_right.png"
                        Grid.Column="3"/>
             </Grid>

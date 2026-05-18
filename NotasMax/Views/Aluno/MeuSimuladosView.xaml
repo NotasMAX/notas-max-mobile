@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:NotasMax.ContentsViews"
              x:Class="NotasMax.Views.Aluno.MeuSimuladosView">
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
         <VerticalStackLayout Spacing="20" Margin="25,40">
@@ -43,9 +44,14 @@
                 </VerticalStackLayout>
             </Grid>
 
-            
-            
-            
+
+            <VerticalStackLayout x:Name="layout_simulados" Spacing="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <cv:MeuSimuladoItemContentView/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
