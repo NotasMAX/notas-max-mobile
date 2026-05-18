@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
-using Syncfusion.Maui.Toolkit.Hosting;
 using NotasMax.Services.NavigationService;
 using NotasMax.Services.RequestProvider;
 using NotasMax.Services.Settings;
+using NotasMax.Services.Simulados;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
-using NotasMax.Services.Turmas;
-using NotasMax.Services.Disciplinas;
 using NotasMax.Views.Professor;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace NotasMax
 {
@@ -65,8 +64,7 @@ namespace NotasMax
             app.Services.AddSingleton<IUsuarioService, UsuarioService>();
             app.Services.AddSingleton<ISettingsService, SettingsService>();
             app.Services.AddSingleton<INavigationService, NavigationService>();
-            app.Services.AddSingleton<ITurmaService, TurmaService>();
-            app.Services.AddSingleton<IDisciplinaService, DisciplinaService>();
+            app.Services.AddSingleton<ISimuladoService, SimuladoService>();
             return app;
         }
 

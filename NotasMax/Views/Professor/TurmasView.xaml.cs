@@ -1,9 +1,6 @@
-
-using NotasMax.Models.Usuarios;
-using NotasMax.Services.Disciplinas;
 using NotasMax.Services.NavigationService;
 using NotasMax.Services.Settings;
-using NotasMax.Services.Turmas;
+using NotasMax.Services.Simulados;
 using NotasMax.ViewModels;
 using System.Diagnostics;
 
@@ -11,13 +8,13 @@ namespace NotasMax.Views.Professor;
 
 public partial class TurmasView : ContentPage
 {
-    private readonly ITurmaService _turmaService;
+    private readonly ISimuladoService _simuladoService;
     private readonly ISettingsService _settingsService;
     private readonly INavigationService _navigationService;
-    public TurmasView(ITurmaService turmaService, ISettingsService settingsService, INavigationService navigationService)
+    public TurmasView(ISimuladoService simuladoService, ISettingsService settingsService, INavigationService navigationService)
     {
 		InitializeComponent();
-        _turmaService = turmaService;
+        _simuladoService = simuladoService  ;
         _settingsService = settingsService;
         _navigationService = navigationService;
     }
@@ -26,7 +23,7 @@ public partial class TurmasView : ContentPage
     {
         try
         {
-            return await _turmaService.GetByAnoAndProfessor();
+            return await _simuladoService.GetByAnoAndProfessor();
         }
         catch (Exception ex)
         {

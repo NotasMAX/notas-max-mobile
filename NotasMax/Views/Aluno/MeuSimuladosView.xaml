@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.Views.Aluno.MeuSimuladosView">
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+            <VerticalStackLayout Spacing="4" >
+                <Label Style="{StaticResource LabelTitle}"           
+                 Text="Simulados"/>
+                <Label  Style="{StaticResource LabelDetails}"                        
+                      Text="Acompanhe seus simulados realizados e próximos"/>
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <VerticalStackLayout Grid.Column="0">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Label Style="{StaticResource LabelInsightValue}" 
+                                 TextColor="{StaticResource Blue600}"
+                                 FontAttributes="Bold"
+                                 FontSize="24"
+                                 x:Name="label_numero_simulados_realizados"
+                                 Text="0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                 Text="Concluídos"
+                                 FontSize="16"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Border Style="{StaticResource BorderShadow}">
+                        <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            <Label Style="{StaticResource LabelInsightValue}"  
+                                 x:Name="label_numero_simulados_pendentes"
+                                 TextColor="{StaticResource YellowPrimary}"
+                                 FontAttributes="Bold"
+                                 FontSize="24"
+                                 Text="0"/>
+                            <Label Style="{StaticResource LabelInsightText}"
+                                 FontSize="16"
+                                 Text="Pendentes"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+
+            
+            
+            
+            </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,24 +1,21 @@
-using NotasMax.Services.Disciplinas;
+using NotasMax.Services.Simulados;
 using NotasMax.Services.NavigationService;
 using NotasMax.Services.Settings;
-using NotasMax.Services.Turmas;
 using NotasMax.ViewModels;
 using System.Diagnostics;
 namespace NotasMax.Views.Aluno;
 
 public partial class MeuDesempenhoView : ContentPage
 {
-    private readonly ITurmaService _turmaService;
     private readonly ISettingsService _settingsService;
     private readonly INavigationService _navigationService;
-    private readonly IDisciplinaService _disciplinaService;
-    public MeuDesempenhoView(ITurmaService turmaService, ISettingsService settingsService, INavigationService navigationService, IDisciplinaService disciplinaService)
+    private readonly ISimuladoService _simuladoService;
+    public MeuDesempenhoView(ISettingsService settingsService, INavigationService navigationService, ISimuladoService simuladoService)
     {
         InitializeComponent();
-        _turmaService = turmaService;
         _settingsService = settingsService;
         _navigationService = navigationService;
-        _disciplinaService = disciplinaService;
+        _simuladoService = simuladoService;
     }
 
     private void CalcularMedia(List<DesempenhoAluno.Simulado> simulados)
@@ -51,7 +48,7 @@ public partial class MeuDesempenhoView : ContentPage
     {
         try
         {
-            return await _disciplinaService.GetDesempenhoAluno();
+            return await _simuladoService.GetDesempenhoAluno();
         }
         catch (Exception ex)
         {

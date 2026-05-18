@@ -1,11 +1,7 @@
 using NotasMax.Helpers;
-using NotasMax.Models;
-using NotasMax.Models.Usuarios;
-using NotasMax.Services.Disciplinas;
 using NotasMax.Services.NavigationService;
 using NotasMax.Services.Settings;
-using NotasMax.Services.Turmas;
-using NotasMax.Services.Usuarios;
+using NotasMax.Services.Simulados;
 using NotasMax.ViewModels;
 using Syncfusion.Maui.Toolkit.Charts;
 using System.Diagnostics;
@@ -18,18 +14,16 @@ public partial class DesempenhoTurmaView : ContentPage
     public TurmasByAnoAndProfessor.Turma? TurmaSelecionada { get; set; }
 
     private List<Brush> PaleteBrushes = new();
-    private readonly ITurmaService _turmaService;
     private readonly ISettingsService _settingsService;
     private readonly INavigationService _navigationService;
-    private readonly IDisciplinaService _disciplinaService;
+    private readonly ISimuladoService _simuladoService;
 
-    public DesempenhoTurmaView(ITurmaService turmaService, ISettingsService settingsService, INavigationService navigationService, IDisciplinaService disciplinaService )
+    public DesempenhoTurmaView(ISettingsService settingsService, INavigationService navigationService, ISimuladoService simuladoService )
     {
         InitializeComponent();
-        _turmaService = turmaService;
         _settingsService = settingsService;
         _navigationService = navigationService;
-        _disciplinaService = disciplinaService;
+        _simuladoService = simuladoService;
     }
 
     private void CalcularMenorNota(List<DesempenhoByDisciplina.DesempenhoAluno> alunos)
@@ -62,7 +56,7 @@ public partial class DesempenhoTurmaView : ContentPage
     {
         try
         {
-            return await _turmaService.GetByAnoAndProfessor();
+            return await _simuladoService.GetByAnoAndProfessor();
         }
         catch (Exception ex)
         {
@@ -76,7 +70,7 @@ public partial class DesempenhoTurmaView : ContentPage
     {
         try
         {
-            return await _disciplinaService.getDesempenhoByDisciplina(disciplinaId);
+            return await _simuladoService.getDesempenhoByDisciplina(disciplinaId);
         }
         catch (Exception ex)
         {

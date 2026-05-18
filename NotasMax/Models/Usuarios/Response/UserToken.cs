@@ -11,7 +11,7 @@ namespace NotasMax.Models.Usuarios.Response
         [JsonPropertyName("token")]
         public string Token { get; set; }
 
-        [JsonPropertyName("usuario")]
+        [JsonPropertyName("_aluno")]
         public Usuario Usuario { get; set; }
     }
 
