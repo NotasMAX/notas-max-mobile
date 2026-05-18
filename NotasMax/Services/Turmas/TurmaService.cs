@@ -10,7 +10,7 @@ namespace NotasMax.Services.Turmas
 
     public interface ITurmaService
     {
-        Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor(int ano, Usuario professor);
+        Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor();
     }
 
     public class TurmaService : ITurmaService
@@ -22,17 +22,14 @@ namespace NotasMax.Services.Turmas
             _requestProvider = requestProvider;
         }
 
-        public async Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor(int ano = 0, Usuario? professor = null)
+        public async Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor()
         {
-            if (professor == null)
+            var professor = new Usuario
             {
-                throw new ArgumentNullException(nameof(professor));
-            }
-
-            if (ano == 0)
-            {
-                ano = DateTime.Now.Year; 
-            }
+                Id = "6a0a2d90a7adea15004c46ba",
+                Nome = "Professor Exemplo"
+            };
+            string ano = DateTime.UtcNow.Year.ToString();
 
             string endpoint = $"{GlobalSettings.DefaultEndpoint}/Turmas/ano={ano}/professor={professor.Id}";
 

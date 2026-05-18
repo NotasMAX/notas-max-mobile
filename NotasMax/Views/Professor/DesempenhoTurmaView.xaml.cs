@@ -62,10 +62,7 @@ public partial class DesempenhoTurmaView : ContentPage
     {
         try
         {
-            Usuario professor = new();
-            professor.Id = "6a0a2d90a7adea15004c46ba"; // Para facilitar os testes
-            int ano = DateTime.Now.Year;
-            return await _turmaService.GetByAnoAndProfessor(ano, professor);
+            return await _turmaService.GetByAnoAndProfessor();
         }
         catch (Exception ex)
         {
