@@ -4,10 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:NotasMax.Views"
+    xmlns:aluno="clr-namespace:NotasMax.Views.Aluno"
+    xmlns:professor="clr-namespace:NotasMax.Views.Professor"
     Title="NotasMax">
 
+
     <ShellContent
-        ContentTemplate="{DataTemplate local:LoginView}" 
-        Route="MainPage" />
+        Route="login"
+        ContentTemplate="{DataTemplate local:LoginView}" />
+    
+    <!-- lembrando que esse menu que fica em baixo funciona apenas no mobile, !!!ainda nao testado!!! -->
+    <!--menu aluno-->
+    <TabBar Route="aluno">
+        <Tab Title="Início" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
+        </Tab>
+        <Tab Title="Simulados" Icon="simulados.png">
+            <ShellContent ContentTemplate="{DataTemplate aluno:SimuladosView}" />
+        </Tab>
+        <Tab Title="Desempenho" Icon="chart.png">
+            <ShellContent ContentTemplate="{DataTemplate aluno:MeuDesempenhoView}" />
+        </Tab>
+        <Tab Title="Calendário" Icon="calendar.png">
+            <ShellContent ContentTemplate="{DataTemplate aluno:CalendarioView}" />
+        </Tab>
+        <Tab Title="Perfil" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate aluno:PerfilView}" />
+        </Tab>
+    </TabBar>
+
+    <!--menu do professor
+    <TabBar Route="professor">
+        <Tab Title="Início" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate professor:HomeAlunoView}" />
+        </Tab>
+        <Tab Title="Turmas" Icon="turmas.png">
+            <ShellContent ContentTemplate="{DataTemplate professor:TurmasView}" />
+        </Tab>
+        <Tab Title="Notas" Icon="notas.png">
+            <ShellContent ContentTemplate="{DataTemplate professor:NotasView}" />
+        </Tab>
+        <Tab Title="Calendário" Icon="calendar.png">
+            <ShellContent ContentTemplate="{DataTemplate professor:CalendarioView}" />
+        </Tab>
+        <Tab Title="Perfil" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate professor:PerfilView}" />
+        </Tab>
+    </TabBar>
+    -->
 
 </Shell>
