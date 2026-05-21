@@ -78,8 +78,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="ContentsViews\ExibirSimuladoItemContentView.xaml.cs">
+	    <DependentUpon>ExibirSimuladoItemContentView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Styles\CustomStyles.xaml.cs">
 	    <DependentUpon>CustomStyles.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Aluno\ExibirSimuladoView.xaml.cs">
+	    <DependentUpon>ExibirSimuladoView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\EsqueceuSenha\InformarEmailView.xaml.cs">
 	    <DependentUpon>InformarEmailView.xaml</DependentUpon>
@@ -94,6 +100,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="ContentsViews\AlunoItemContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ContentsViews\ExibirSimuladoItemContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ContentsViews\MateriaItemContentView.xaml">
@@ -118,6 +127,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Aluno\ExibirMateriaView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\ExibirSimuladoView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Aluno\MeuDesempenhoView.xaml">

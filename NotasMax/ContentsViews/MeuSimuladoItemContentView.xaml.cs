@@ -7,32 +7,35 @@ public partial class MeuSimuladoItemContentView : ContentView
 {
     bool isRealizado = false;
     public MeuSimuladoItemContentView()
-	{
-		InitializeComponent();
-	}
-
-    private void Button_Tapped(object sender, TappedEventArgs e)
     {
-        if (BindingContext is not SimuladosByAluno.Simulado simulado)
+        InitializeComponent();
+    }
+
+    private async void Button_Tapped(object sender, TappedEventArgs e)
+    {
+        if (BindingContext is not DesempenhoAlunoBySimulados.Simulado simulado)
             return;
 
         if (!isRealizado)
             return;
 
-        //lógica para ir para a view de simulado
+        await Shell.Current.GoToAsync("Simulado", new Dictionary<string, object>
+        {
+            { "Simulado", simulado }
+        });
     }
 
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
-        if (BindingContext is not SimuladosByAluno.Simulado simulado)
+        if (BindingContext is not DesempenhoAlunoBySimulados.Simulado simulado)
             return;
 
         isRealizado = simulado.DataRealizacao <= DateTime.Now;
 
         if (isRealizado)
         {
-            border_icon.BackgroundColor = Color.FromArgb("#eaf8f0"); 
+            border_icon.BackgroundColor = Color.FromArgb("#eaf8f0");
             image_icon.Source = "done.png";
             label_valor_media.TextColor = Helpers.ColorHelper.DefinirCor(simulado.Media);
             label_valor_media.Text = simulado.Media.ToString("N2");

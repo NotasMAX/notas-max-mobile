@@ -1,35 +1,34 @@
 using NotasMax.Helpers;
 using NotasMax.ViewModels;
-using NotasMax.Views.Professor;
 
 namespace NotasMax.ContentsViews;
 
 public partial class TurmaItemContentView : ContentView
 {
-	public TurmaItemContentView()
-	{
-		InitializeComponent();
-	}
+    public TurmaItemContentView()
+    {
+        InitializeComponent();
+    }
 
-	protected override void OnBindingContextChanged()
-	{
-		base.OnBindingContextChanged();
-		if (!(this.BindingContext is TurmasByAnoAndProfessor.Turma turma))
-			return;
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+        if (!(this.BindingContext is TurmasByAnoAndProfessor.Turma turma))
+            return;
 
-		label_valor_media.TextColor = ColorHelper.DefinirCor(turma.Media);
-		label_valor_media.Text = turma.Media.ToString("N2");
-		label_quantidade_alunos.Text = turma.QuantidadeAlunos + " alunos";
-	}
+        label_valor_media.TextColor = ColorHelper.DefinirCor(turma.Media);
+        label_valor_media.Text = turma.Media.ToString("N2");
+        label_quantidade_alunos.Text = turma.QuantidadeAlunos + " alunos";
+    }
 
-	private async void TurmaItem_Tapped(object sender, TappedEventArgs e)
-	{
-		if (this.BindingContext is not TurmasByAnoAndProfessor.Turma turma)
-			return;
+    private async void TurmaItem_Tapped(object sender, TappedEventArgs e)
+    {
+        if (this.BindingContext is not TurmasByAnoAndProfessor.Turma turma)
+            return;
 
-		await Shell.Current.GoToAsync("DesempenhoTurma", new Dictionary<string, object>
-		{
-			{ "Turma", turma }
-		});
-	}
+        await Shell.Current.GoToAsync("DesempenhoTurma", new Dictionary<string, object>
+        {
+            { "Turma", turma }
+        });
+    }
 }

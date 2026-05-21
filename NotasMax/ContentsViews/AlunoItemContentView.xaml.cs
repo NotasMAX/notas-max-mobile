@@ -13,7 +13,7 @@ public partial class AlunoItemContentView : ContentView
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
-        if (!(this.BindingContext is DesempenhoByDisciplina.DesempenhoAluno notaAluno))
+        if (!(this.BindingContext is DesempenhoAlunoByDisciplina.DesempenhoAluno notaAluno))
             return;
 
         label_nota_aluno.TextColor = ColorHelper.DefinirCor(notaAluno.Media);
@@ -24,7 +24,7 @@ public partial class AlunoItemContentView : ContentView
 
     private void TurmaItem_Tapped(object sender, TappedEventArgs e)
     {
-        if (!(this.BindingContext is DesempenhoByDisciplina.DesempenhoAluno aluno))
+        if (!(this.BindingContext is DesempenhoAlunoByDisciplina.DesempenhoAluno aluno))
             return;
 
         var alunoId = aluno.Id;

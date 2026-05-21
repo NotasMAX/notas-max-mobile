@@ -26,7 +26,7 @@ public partial class DesempenhoTurmaView : ContentPage
         _simuladoService = simuladoService;
     }
 
-    private void CalcularMenorNota(List<DesempenhoByDisciplina.DesempenhoAluno> alunos)
+    private void CalcularMenorNota(List<DesempenhoAlunoByDisciplina.DesempenhoAluno> alunos)
     {
         var menorNota = alunos.MinBy(n => n.Media);
         if (menorNota != null)
@@ -36,7 +36,7 @@ public partial class DesempenhoTurmaView : ContentPage
         }
     }
 
-    private void CalcularMaiorNota(List<DesempenhoByDisciplina.DesempenhoAluno> alunos)
+    private void CalcularMaiorNota(List<DesempenhoAlunoByDisciplina.DesempenhoAluno> alunos)
     {
         var maiorNota = alunos.MaxBy(n => n.Media);
         if (maiorNota == null)
@@ -46,7 +46,7 @@ public partial class DesempenhoTurmaView : ContentPage
         label_maior_aluno.Text = TextoHelper.ReduzirNome(maiorNota.Nome);
 
     }
-    private void DefinirDestaqueDistribuicao(List<DesempenhoByDisciplina.DesempenhoDistribuicao> distribuicaoNotas)
+    private void DefinirDestaqueDistribuicao(List<DesempenhoAlunoByDisciplina.DesempenhoDistribuicao> distribuicaoNotas)
     {
         int indexNotasBaixas = distribuicaoNotas.FindIndex(item => item.Faixa == "<5");
         doughnut_chart.ExplodeIndex = indexNotasBaixas;
@@ -66,7 +66,7 @@ public partial class DesempenhoTurmaView : ContentPage
     }
 
 
-    private async Task<DesempenhoByDisciplina?> fetchDadosDisciplinas(string disciplinaId)
+    private async Task<DesempenhoAlunoByDisciplina?> fetchDadosDisciplinas(string disciplinaId)
     {
         try
         {
@@ -102,12 +102,12 @@ public partial class DesempenhoTurmaView : ContentPage
             chirp_serie.SelectedItem = dadosTurmas.Turmas.MinBy(t => t.Serie);
         }
     }
-    private void DefinirCoresDistribuicao(List<DesempenhoByDisciplina.DesempenhoDistribuicao> distribuicaoNotas)
+    private void DefinirCoresDistribuicao(List<DesempenhoAlunoByDisciplina.DesempenhoDistribuicao> distribuicaoNotas)
     {
-        DesempenhoByDisciplina.DesempenhoDistribuicao primeiraFaixa = new();
-        DesempenhoByDisciplina.DesempenhoDistribuicao segundaFaixa = new();
-        DesempenhoByDisciplina.DesempenhoDistribuicao terceiraFaixa = new();
-        List<DesempenhoByDisciplina.DesempenhoDistribuicao> notasDistribuidas = new();
+        DesempenhoAlunoByDisciplina.DesempenhoDistribuicao primeiraFaixa = new();
+        DesempenhoAlunoByDisciplina.DesempenhoDistribuicao segundaFaixa = new();
+        DesempenhoAlunoByDisciplina.DesempenhoDistribuicao terceiraFaixa = new();
+        List<DesempenhoAlunoByDisciplina.DesempenhoDistribuicao> notasDistribuidas = new();
 
         foreach (var item in distribuicaoNotas)
         {

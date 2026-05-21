@@ -21,7 +21,7 @@ public partial class MeuSimuladosView : ContentPage
         _simuladoService = simuladoService;
     }
 
-    private async Task<List<SimuladosByAluno.Simulado>?> FetchSimuladosByAluno()
+    private async Task<List<DesempenhoAlunoBySimulados.Simulado>?> FetchSimuladosByAluno()
     {
         try
         {
@@ -34,7 +34,7 @@ public partial class MeuSimuladosView : ContentPage
         }
     }
 
-    private void CalcularSimuladosRealizados(List<SimuladosByAluno.Simulado> simulados)
+    private void CalcularSimuladosRealizados(List<DesempenhoAlunoBySimulados.Simulado> simulados)
     {
         if (simulados == null)
             return;
@@ -42,7 +42,7 @@ public partial class MeuSimuladosView : ContentPage
         label_numero_simulados_realizados.Text = simulados.Where(s => s.DataRealizacao <= DateTime.Now).Count().ToString();
     }
 
-    private void CalcularSimuladosPendentes(List<SimuladosByAluno.Simulado> simulados)
+    private void CalcularSimuladosPendentes(List<DesempenhoAlunoBySimulados.Simulado> simulados)
     {
         if (simulados == null)
             return;

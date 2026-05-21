@@ -8,10 +8,12 @@ namespace NotasMax.Services.Simulados
 
     public interface ISimuladoService
     {
-        Task<DesempenhoByDisciplina> getDesempenhoByDisciplina(string disciplinaId);
+        Task<DesempenhoAlunoByDisciplina> getDesempenhoByDisciplina(string disciplinaId);
         Task<DesempenhoAluno> GetDesempenhoAluno();
 
-        Task<SimuladosByAluno> GetSimuladosAluno();
+        Task<DesempenhoAlunoBySimulado> GetDesempenhoAlunoBySimulado(string simuladoId);
+
+        Task<DesempenhoAlunoBySimulados> GetSimuladosAluno();
 
         Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor();
 
@@ -27,7 +29,7 @@ namespace NotasMax.Services.Simulados
             _requestProvider = requestProvider;
             _aluno = new Usuario
             {
-                Id = "6a0b76383d9ea915916d1840",
+                Id = "6a0f087451ae4e418dff2576",
                 Nome = "Aluno Exemplo"
             }; //Necessário substituir pelo usuário logado
             _professor = new Usuario
@@ -37,7 +39,7 @@ namespace NotasMax.Services.Simulados
             }; //Necessário substituir pelo usuário logado
         }
 
-        public async Task<DesempenhoByDisciplina> getDesempenhoByDisciplina(string disciplinaId)
+        public async Task<DesempenhoAlunoByDisciplina> getDesempenhoByDisciplina(string disciplinaId)
         {
             if (string.IsNullOrEmpty(disciplinaId))
             {
@@ -46,7 +48,7 @@ namespace NotasMax.Services.Simulados
 
             string endpoint = $"{GlobalSettings.DefaultEndpoint}/Simulado/Disciplina/id={disciplinaId}";
 
-            return await _requestProvider.GetAsync<DesempenhoByDisciplina>(endpoint);
+            return await _requestProvider.GetAsync<DesempenhoAlunoByDisciplina>(endpoint);
         }
 
         public async Task<DesempenhoAluno> GetDesempenhoAluno()
@@ -58,13 +60,20 @@ namespace NotasMax.Services.Simulados
             return await _requestProvider.GetAsync<DesempenhoAluno>(endpoint);
         }
 
-        public async Task<SimuladosByAluno> GetSimuladosAluno()
+        public async Task<DesempenhoAlunoBySimulado> GetDesempenhoAlunoBySimulado(string simuladoId)
+        {
+            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Desempenho/aluno={_aluno}/simulado={simuladoId}";
+
+            return await _requestProvider.GetAsync<DesempenhoAlunoBySimulado>(endpoint);
+        }
+
+        public async Task<DesempenhoAlunoBySimulados> GetSimuladosAluno()
         {
             string ano = DateTime.UtcNow.Year.ToString();
 
             string endpoint = $"{GlobalSettings.DefaultEndpoint}/Simulados/ano={ano}/aluno={_aluno.Id}";
 
-            return await _requestProvider.GetAsync<SimuladosByAluno>(endpoint);
+            return await _requestProvider.GetAsync<DesempenhoAlunoBySimulados>(endpoint);
         }
         public async Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor()
         {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace NotasMax.ViewModels
 {
-    public class SimuladosByAluno
+    public class DesempenhoAlunoBySimulados
     {
         [JsonPropertyName("simulados")]
         public List<Simulado> Simulados { get; set; } = new();

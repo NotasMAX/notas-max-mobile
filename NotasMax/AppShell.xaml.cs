@@ -19,7 +19,7 @@ namespace NotasMax
         {
             base.OnHandlerChanged();
 
-            if(Handler is not null)
+            if (Handler is not null)
             {
                 await _navigationService.Initializeasync();
             }
@@ -34,6 +34,7 @@ namespace NotasMax
             Routing.RegisterRoute("DesempenhoTurma", typeof(DesempenhoTurmaView));
             Routing.RegisterRoute("Turmas", typeof(TurmasView));
             Routing.RegisterRoute("MeuDesempenho", typeof(MeuDesempenhoView));
+            Routing.RegisterRoute("Simulado", typeof(ExibirSimuladoView));
         }
     }
 }
