@@ -29,7 +29,7 @@ namespace NotasMax.Services.Simulados
             _requestProvider = requestProvider;
             _aluno = new Usuario
             {
-                Id = "6a0f087451ae4e418dff2576",
+                Id = "6a0b76383d9ea915916d1833",
                 Nome = "Aluno Exemplo"
             }; //Necessário substituir pelo usuário logado
             _professor = new Usuario
@@ -62,7 +62,7 @@ namespace NotasMax.Services.Simulados
 
         public async Task<DesempenhoAlunoBySimulado> GetDesempenhoAlunoBySimulado(string simuladoId)
         {
-            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Desempenho/aluno={_aluno}/simulado={simuladoId}";
+            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Desempenho/aluno={_aluno.Id}/simulado={simuladoId}";
 
             return await _requestProvider.GetAsync<DesempenhoAlunoBySimulado>(endpoint);
         }

@@ -20,7 +20,6 @@ public partial class ExibirSimuladoView : ContentPage
     {
         try
         {
-            await DisplayAlertAsync("erro", SimuladoSelecionado.Id, "ok");
             if (SimuladoSelecionado == null)
                 return null;
 
@@ -43,7 +42,7 @@ public partial class ExibirSimuladoView : ContentPage
         if (simulado == null)
             return;
 
-        label_simulado.Text = "Simulado" + simulado.Numero;
+        label_simulado.Text = "Simulado " + simulado.Numero;
         string dataFormatada = simulado.DataRealizacao.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("pt-BR"));
         label_data_realizacao.Text = dataFormatada;
         label_valor_media.Text = simulado.Media.ToString("N2");
