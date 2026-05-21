@@ -3,6 +3,7 @@ using Microsoft.Maui.Handlers;
 using NotasMax.Services.NavigationService;
 using NotasMax.Services.RequestProvider;
 using NotasMax.Services.Settings;
+using NotasMax.Services.Simulados;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
@@ -65,6 +66,7 @@ namespace NotasMax
             app.Services.AddSingleton<IUsuarioService, UsuarioService>();
             app.Services.AddSingleton<ISettingsService, SettingsService>();
             app.Services.AddSingleton<INavigationService, NavigationService>();
+            app.Services.AddSingleton<ISimuladoService, SimuladoService>();
             return app;
         }
 
