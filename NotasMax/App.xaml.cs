@@ -1,4 +1,7 @@
 ﻿using NotasMax.Services.NavigationService;
+using Syncfusion.Maui.Toolkit.Localization;
+using System.Globalization;
+using System.Resources;
 
 namespace NotasMax
 {
@@ -10,6 +13,10 @@ namespace NotasMax
         {
             _navigationService = navigationService;
             InitializeComponent();
+
+            CultureInfo culture = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
 
             UserAppTheme = AppTheme.Light;
 

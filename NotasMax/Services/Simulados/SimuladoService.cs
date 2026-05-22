@@ -10,11 +10,9 @@ namespace NotasMax.Services.Simulados
     {
         Task<DesempenhoAlunoByDisciplina> getDesempenhoByDisciplina(string disciplinaId);
         Task<DesempenhoAluno> GetDesempenhoAluno();
-
+        Task<CalendarioByAluno> GetCalendarioByAluno();
         Task<DesempenhoAlunoBySimulado> GetDesempenhoAlunoBySimulado(string simuladoId);
-
         Task<DesempenhoAlunoBySimulados> GetSimuladosAluno();
-
         Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor();
 
     }
@@ -84,6 +82,11 @@ namespace NotasMax.Services.Simulados
             return await _requestProvider.GetAsync<TurmasByAnoAndProfessor>(endpoint);
         }
 
+        public async Task<CalendarioByAluno> GetCalendarioByAluno()
+        {
+            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Calendario/aluno={_aluno.Id}";
+            return await _requestProvider.GetAsync<CalendarioByAluno>(endpoint);
+        }
     }
 
 

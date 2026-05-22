@@ -35,6 +35,7 @@ namespace NotasMax
             Routing.RegisterRoute("Turmas", typeof(TurmasView));
             Routing.RegisterRoute("MeuDesempenho", typeof(MeuDesempenhoView));
             Routing.RegisterRoute("Simulado", typeof(ExibirSimuladoView));
+            Routing.RegisterRoute("CalendarioAluno", typeof(CalendarioAlunoView));
         }
     }
 }

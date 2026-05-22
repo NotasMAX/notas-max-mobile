@@ -7,6 +7,6 @@
     Title="NotasMax">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:MeuSimuladosView}" />
+        ContentTemplate="{DataTemplate local:CalendarioAlunoView}" />
 
 </Shell>

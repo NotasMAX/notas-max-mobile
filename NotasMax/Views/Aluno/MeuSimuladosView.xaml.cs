@@ -21,6 +21,7 @@ public partial class MeuSimuladosView : ContentPage
         _simuladoService = simuladoService;
     }
 
+
     private async Task<List<DesempenhoAlunoBySimulados.Simulado>?> FetchSimuladosByAluno()
     {
         try
@@ -62,5 +63,7 @@ public partial class MeuSimuladosView : ContentPage
         CalcularSimuladosPendentes(simulados);
 
         BindableLayout.SetItemsSource(layout_simulados, simulados);
+
+
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.ContentsViews.CalendarioItemContentView">
+    <Grid>
+        <Border Style="{StaticResource BorderShadow}">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer />
+            </Border.GestureRecognizers>
+            <Grid ColumnDefinitions="Auto,*,Auto" 
+              ColumnSpacing="12">
+                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Border x:Name="border_icon" 
+                    Padding="10"
+                        BackgroundColor="#fef5da"
+                        Stroke="Transparent">
+                        <Image x:Name="image_icon"
+                           Style="{StaticResource ImageIcon}"
+                           Source="calendar.png"/>
+                    </Border>
+                </HorizontalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Spacing="4">
+                    <Label x:Name="label_numero_simulado"
+                       FontFamily="Inter"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       Text="Simulado 1"/>
+                    <Label x:Name="label_data_realizacao"
+                       Text="10 de fevereiro de 2026"
+                       FontFamily="Inter"
+                       TextColor="{StaticResource SecondaryDarkText}"
+                       FontSize="14"/>
+                </VerticalStackLayout>
+                <Grid RowDefinitions="*,Auto,*" x:Name="container_media" Grid.Column="2">
+                    <StackLayout Grid.Row="0"/>
+                    <Border Grid.Row="1"
+                            x:Name="border_tipo" 
+                            BackgroundColor="#fef5da"
+                            Stroke="Transparent"
+                            StrokeShape="20"
+                            Padding="12,8">
+                        <Label x:Name="label_tipo" 
+                               Text="Tipo"
+                               FontFamily="Inter"
+                               FontAttributes="Bold"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                    </Border>
+                    <StackLayout Grid.Row="2"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentView>

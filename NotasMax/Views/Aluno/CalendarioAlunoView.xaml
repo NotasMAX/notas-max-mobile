@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:NotasMax.ContentsViews"
+             xmlns:calendar="clr-namespace:Syncfusion.Maui.Toolkit.Calendar;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:converters="clr-namespace:NotasMax.Converters"
+             x:Class="NotasMax.Views.Aluno.CalendarioAlunoView">
+    <ContentPage.Resources>
+        <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
+    </ContentPage.Resources>
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+            <VerticalStackLayout Spacing="4" >
+                <Label Style="{StaticResource LabelTitle}"           
+                Text="Calendário"/>
+                <Label  Style="{StaticResource LabelDetails}"                        
+                     Text="Programe-se com o calendário de provas"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="16">
+                <Border Style="{StaticResource BorderShadow}">
+                    <calendar:SfCalendar  
+                        ViewChanged="calendar_ViewChanged"
+                        x:Name="calendar" 
+                        BackgroundColor="Transparent"
+                        View="Month">
+                        <calendar:SfCalendar.HeaderView>
+                            <calendar:CalendarHeaderView TextFormat="MMMM yyyy" ShowNavigationArrows="True">
+                                <calendar:CalendarHeaderView.TextStyle>
+                                    <calendar:CalendarTextStyle 
+                                        TextColor="Black" 
+                                        FontFamily="Inter"
+                                        FontSize="18" 
+                                        FontAttributes="Bold"
+                                        />
+                                </calendar:CalendarHeaderView.TextStyle>
+                            </calendar:CalendarHeaderView>
+                        </calendar:SfCalendar.HeaderView>
+                        <calendar:SfCalendar.MonthViewHeaderTemplate>
+                            <DataTemplate>
+                                <Grid Background="Transparent">
+                                    <Label 
+                                        FontFamily="Inter"
+                                        HorizontalOptions="Center" 
+                                        VerticalOptions="Center" 
+                                        Text="{Binding ., Converter={StaticResource UpperCaseConverter}}" 
+                                        TextColor="Gray" 
+                                        FontSize="14"  />
+                                </Grid>
+                            </DataTemplate>
+                        </calendar:SfCalendar.MonthViewHeaderTemplate>
+                    </calendar:SfCalendar>
+                </Border>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="12">
+                <Label Style="{StaticResource LabelSubtitle}" 
+                    FontAttributes="Bold"
+                    Text="Eventos do Mês"/>
+                <VerticalStackLayout x:Name="layout_eventos" Spacing="8">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate >
+                            <cv:CalendarioItemContentView/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
