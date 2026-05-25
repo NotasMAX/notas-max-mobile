@@ -73,6 +73,7 @@ namespace NotasMax
         {
             app.Services.AddSingleton<LoginView>();
             app.Services.AddSingleton<HomeAlunoView>();
+            app.Services.AddSingleton<HomeProfessorView>();
             app.Services.AddSingleton<TurmasView>();
             app.Services.AddSingleton<DesempenhoTurmaView>();
             return app;

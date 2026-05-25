@@ -6,9 +6,17 @@
     xmlns:local="clr-namespace:NotasMax.Views"
     xmlns:aluno="clr-namespace:NotasMax.Views.Aluno"
     xmlns:professor="clr-namespace:NotasMax.Views.Professor"
-    Title="NotasMax">
+    Title="NotasMax"
+    FlyoutBehavior="Disabled">
 
+    <ShellContent Route="Login" 
+                    ContentTemplate="{DataTemplate local:LoginView}"/>
 
+    <ShellContent Route="HomeAluno"
+                  ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
+
+    <ShellContent Route="HomeProfessor"
+                  ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
     <ShellContent
         Route="login"
         ContentTemplate="{DataTemplate local:LoginView}" />

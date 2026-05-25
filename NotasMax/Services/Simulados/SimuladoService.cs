@@ -5,17 +5,6 @@ using NotasMax.ViewModels;
 namespace NotasMax.Services.Simulados
 
 {
-
-    public interface ISimuladoService
-    {
-        Task<DesempenhoAlunoByDisciplina> getDesempenhoByDisciplina(string disciplinaId);
-        Task<DesempenhoAluno> GetDesempenhoAluno();
-        Task<CalendarioByAluno> GetCalendarioByAluno();
-        Task<DesempenhoAlunoBySimulado> GetDesempenhoAlunoBySimulado(string simuladoId);
-        Task<DesempenhoAlunoBySimulados> GetSimuladosAluno();
-        Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor();
-
-    }
     public class SimuladoService : ISimuladoService
     {
         Usuario _aluno;
@@ -37,6 +26,13 @@ namespace NotasMax.Services.Simulados
             }; //Necessário substituir pelo usuário logado
         }
 
+        public async Task<List<Simulado>> GetByAluno(string aluno_id, string token)
+        {
+            var uri = $"{GlobalSettings.Instance.SimuladoEndpoint}/getByAluno/{aluno_id}";
+            var response = await _requestProvider.GetAsync<SimuladoListResponse>(uri, token);
+
+            return response?.Simulados ?? new List<Simulado>();
+        }
         public async Task<DesempenhoAlunoByDisciplina> getDesempenhoByDisciplina(string disciplinaId)
         {
             if (string.IsNullOrEmpty(disciplinaId))

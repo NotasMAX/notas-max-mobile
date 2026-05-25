@@ -7,7 +7,7 @@ namespace NotasMax.Models
         public Guid Id { get; set; }
         public int Serie { get; set; }
         public int Ano { get; set; }
-        public List<Usuario> Alunos { get; set; } = new List<Usuario>();
+        public List<string> Alunos { get; set; } = new List<string>();
 
         public string SerieComposta
         {
