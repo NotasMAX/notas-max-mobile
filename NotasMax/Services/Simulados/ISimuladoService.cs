@@ -12,6 +12,7 @@ namespace NotasMax.Services.Simulados
         Task<DesempenhoAlunoBySimulado> GetDesempenhoAlunoBySimulado(string simuladoId);
         Task<DesempenhoAlunoBySimulados> GetSimuladosAluno();
         Task<TurmasByAnoAndProfessor> GetByAnoAndProfessor();
+        Task<DesempenhoAlunoBySimulados> GetSimuladosByAluno(string alunoId);
 
     }
 }

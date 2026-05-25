@@ -1,5 +1,6 @@
 using NotasMax.Helpers;
 using NotasMax.ViewModels;
+using NotasMax.Views.Professor;
 
 namespace NotasMax.ContentsViews;
 
@@ -22,13 +23,15 @@ public partial class AlunoItemContentView : ContentView
         label_iniciais_aluno.Text = TextoHelper.PegarIniciais(notaAluno.Nome);
     }
 
-    private void TurmaItem_Tapped(object sender, TappedEventArgs e)
+    private async void TurmaItem_Tapped(object sender, TappedEventArgs e)
     {
         if (!(this.BindingContext is DesempenhoAlunoByDisciplina.DesempenhoAluno aluno))
             return;
 
-        var alunoId = aluno.Id;
-
-        //Lógica para navegar para a página de detalhes do aluno usando o id
+        await Shell.Current.GoToAsync("DesempenhoAluno", new Dictionary<string, object>
+        {
+            { "AlunoId", aluno.Id },
+            { "AlunoNome", aluno.Nome }
+        });
     }
 }
