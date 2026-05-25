@@ -14,7 +14,12 @@ namespace NotasMax
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
-        }
+			Window window = new Window(new AppShell());
+
+			window.Height = 600;
+			window.Width = 350;
+
+			return window;
+		}
     }
 }

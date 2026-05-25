@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NotasMax.Views.Professor.GestaoNotasPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:NotasMax.ViewModels"
+    BackgroundColor="#F5F7FA"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <!-- CORES -->
+            <Color x:Key="PrimaryGradientStart">#033363</Color>
+            <Color x:Key="PrimaryGradientEnd">#1685F3</Color>
+
+            <Color x:Key="Surface">#F5F7FA</Color>
+            <Color x:Key="CardBg">#FFFFFF</Color>
+
+            <Color x:Key="TextPrimary">#1A1A2E</Color>
+            <Color x:Key="TextSecondary">#6B7280</Color>
+
+            <Color x:Key="Divider">#E5E7EB</Color>
+
+            <!-- TÍTULO -->
+            <Style x:Key="TituloStyle"
+                   TargetType="Label">
+
+                <Setter Property="FontSize"
+                        Value="22"/>
+
+                <Setter Property="FontAttributes"
+                        Value="Bold"/>
+
+                <Setter Property="TextColor"
+                        Value="{StaticResource TextPrimary}"/>
+
+            </Style>
+
+            <!-- SUBTÍTULO -->
+            <Style x:Key="SubtituloStyle"
+                   TargetType="Label">
+
+                <Setter Property="FontSize"
+                        Value="13"/>
+
+                <Setter Property="TextColor"
+                        Value="{StaticResource TextSecondary}"/>
+
+            </Style>
+
+            <!-- LABEL SEÇÃO -->
+            <Style x:Key="SecaoLabelStyle"
+                   TargetType="Label">
+
+                <Setter Property="FontSize"
+                        Value="12"/>
+
+                <Setter Property="FontAttributes"
+                        Value="Bold"/>
+
+                <Setter Property="TextColor"
+                        Value="{StaticResource TextSecondary}"/>
+
+                <Setter Property="Margin"
+                        Value="0,14,0,6"/>
+
+            </Style>
+
+            <!-- BOTÃO -->
+            <Style x:Key="SalvarBtnStyle"
+                   TargetType="Button">
+
+                <Setter Property="TextColor"
+                        Value="White"/>
+
+                <Setter Property="CornerRadius"
+                        Value="14"/>
+
+                <Setter Property="HeightRequest"
+                        Value="54"/>
+
+                <Setter Property="FontAttributes"
+                        Value="Bold"/>
+
+                <Setter Property="FontSize"
+                        Value="15"/>
+
+            </Style>
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <Grid
+        Padding="20,20,20,20"
+        RowDefinitions="Auto,*,Auto">
+
+        <!-- TOPO -->
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="0">
+
+            <Label
+                Text="Gestão de Notas"
+                Style="{StaticResource TituloStyle}"/>
+
+            <Label
+                Text="Visualize e edite as notas dos alunos"
+                Style="{StaticResource SubtituloStyle}"/>
+
+            <!-- TURMAS -->
+            <Label
+                Text="Turma"
+                Style="{StaticResource SecaoLabelStyle}"/>
+
+            <FlexLayout
+                x:Name="TurmasContainer"
+                Wrap="Wrap"
+                Direction="Row"
+                AlignItems="Start"
+                AlignContent="Start"/>
+
+            <!-- SIMULADOS -->
+            <Label
+                Text="Simulado"
+                Style="{StaticResource SecaoLabelStyle}"/>
+
+            <FlexLayout
+                x:Name="SimuladosContainer"
+                Wrap="Wrap"
+                Direction="Row"
+                AlignItems="Start"
+                AlignContent="Start"/>
+
+        </VerticalStackLayout>
+
+        <!-- LISTA -->
+        <CollectionView
+            x:Name="AlunosCollection"
+            Grid.Row="1"
+            Margin="0,14,0,14"
+            SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate
+                    x:DataType="viewmodels:AlunoNotaItemViewModel">
+
+                    <Border
+                        BackgroundColor="{StaticResource CardBg}"
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 16"
+                        Padding="14,12"
+                        Margin="0,4">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="#000000"
+                                Radius="8"
+                                Offset="0,2"
+                                Opacity="0.06"/>
+                        </Border.Shadow>
+
+                        <Grid
+                            ColumnDefinitions="52,*,90,50"
+                            ColumnSpacing="10">
+
+                            <!-- AVATAR -->
+                            <Border
+                                Grid.Column="0"
+                                WidthRequest="42"
+                                HeightRequest="42"
+                                BackgroundColor="#E5E7EB"
+                                Stroke="Transparent"
+                                StrokeShape="Ellipse"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    Text="{Binding Iniciais}"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"/>
+
+                            </Border>
+
+                            <!-- NOME -->
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding NomeCompleto}"
+                                FontSize="14"
+                                TextColor="{StaticResource TextPrimary}"
+                                VerticalOptions="Center"
+                                LineBreakMode="TailTruncation"/>
+
+                            <!-- ACERTOS -->
+                            <Border
+                                Grid.Column="2"
+                                HeightRequest="42"
+                                BackgroundColor="#F3F4F6"
+                                Stroke="#DADDE3"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12"
+                                VerticalOptions="Center">
+
+                                <Entry
+                                    Text="{Binding Acertos}"
+                                    Keyboard="Numeric"
+                                    MaxLength="2"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    BackgroundColor="Transparent"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    ClearButtonVisibility="Never"
+                                    ReturnType="Done"
+                                    TextChanged="OnAcertosTextChanged"/>
+
+                            </Border>
+
+                            <!-- NOTA -->
+                            <Label
+                                Grid.Column="3"
+                                Text="{Binding Nota, StringFormat='{0:F1}'}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{Binding CorNota}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <!-- BOTÃO -->
+        <Button
+            Grid.Row="2"
+            Text="Salvar Notas"
+            Style="{StaticResource SalvarBtnStyle}"
+            Clicked="OnSalvarClicked">
+
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0,0"
+                                     EndPoint="1,0">
+
+                    <GradientStop
+                        Color="{StaticResource PrimaryGradientStart}"
+                        Offset="0.0"/>
+
+                    <GradientStop
+                        Color="{StaticResource PrimaryGradientEnd}"
+                        Offset="1.0"/>
+
+                </LinearGradientBrush>
+            </Button.Background>
+
+        </Button>
+
+    </Grid>
+
+</ContentPage>
