@@ -17,6 +17,8 @@ public partial class DesempenhoTurmaView : ContentPage
     private readonly ISettingsService _settingsService;
     private readonly INavigationService _navigationService;
     private readonly ISimuladoService _simuladoService;
+    private bool isTurmaLoading = false;
+    private bool isDisciplinaLoading = false;
 
     public DesempenhoTurmaView(ISettingsService settingsService, INavigationService navigationService, ISimuladoService simuladoService )
     {
@@ -88,7 +90,7 @@ public partial class DesempenhoTurmaView : ContentPage
 
         if (dadosTurmas == null)
             return;
-
+                
         dadosTurmas.Turmas = dadosTurmas.Turmas.OrderBy(t => t.Serie).ToList();
 
         chirp_serie.ItemsSource = dadosTurmas.Turmas;
@@ -147,10 +149,7 @@ public partial class DesempenhoTurmaView : ContentPage
         DefinirDestaqueDistribuicao(notasDistribuidas);
     }
 
-    private void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
-    {
-        DisplayAlertAsync("Ops!", "Essa funcionalidade ainda não está disponível.", "OK");
-    }
+
 
     private void ColumnChart_LabelCreated(object sender, ChartAxisLabelEventArgs e)
     {
@@ -164,6 +163,11 @@ public partial class DesempenhoTurmaView : ContentPage
 
     private async void chirp_serie_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
     {
+        
+        if (isTurmaLoading)
+            return;
+
+        isTurmaLoading = true;
 
         if (!(e.AddedItem is TurmasByAnoAndProfessor.Turma turma))
             return;
@@ -178,6 +182,8 @@ public partial class DesempenhoTurmaView : ContentPage
         {
             await CarregarDadosDisciplinaAsync(primeiraDisciplina);
         }
+
+        isTurmaLoading = false;
     }
 
     private async void chirp_disciplinas_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
@@ -189,6 +195,10 @@ public partial class DesempenhoTurmaView : ContentPage
 
     private async Task CarregarDadosDisciplinaAsync(TurmasByAnoAndProfessor.Disciplina disciplina)
     {
+        if (isDisciplinaLoading)
+            return;
+
+        isDisciplinaLoading = true;
 
         Debug.WriteLine($"Disciplina selecionada: {disciplina.MateriaNome} (ID: {disciplina.Id})");
 
@@ -215,5 +225,7 @@ public partial class DesempenhoTurmaView : ContentPage
         label_subtitulo_alunos.Text = $"Alunos ({alunos.Count})";
 
         BindableLayout.SetItemsSource(layout_alunos, alunos);
+
+        isDisciplinaLoading = false;
     }
 }
