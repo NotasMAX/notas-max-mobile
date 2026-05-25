@@ -8,9 +8,10 @@ using System.Diagnostics;
 
 namespace NotasMax.Views.Professor;
 
-[QueryProperty(nameof(TurmaSelecionada), "Turma")]
+[QueryProperty(nameof(TurmaId), "turmaId")]
 public partial class DesempenhoTurmaView : ContentPage
 {
+    public string? TurmaId { get; set; }
     public TurmasByAnoAndProfessor.Turma? TurmaSelecionada { get; set; }
 
     private List<Brush> PaleteBrushes = new();
@@ -90,14 +91,14 @@ public partial class DesempenhoTurmaView : ContentPage
 
         if (dadosTurmas == null)
             return;
-                
+
         dadosTurmas.Turmas = dadosTurmas.Turmas.OrderBy(t => t.Serie).ToList();
 
         chirp_serie.ItemsSource = dadosTurmas.Turmas;
 
-        if (TurmaSelecionada != null)
+        if (!string.IsNullOrEmpty(TurmaId))
         {
-            chirp_serie.SelectedItem = dadosTurmas.Turmas.Where(t => t.Id == TurmaSelecionada.Id).FirstOrDefault();
+            chirp_serie.SelectedItem = dadosTurmas.Turmas.FirstOrDefault(t => t.Id == TurmaId);
         }
         else
         {
