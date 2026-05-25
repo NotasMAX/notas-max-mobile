@@ -23,7 +23,7 @@
     
     <!-- lembrando que esse menu que fica em baixo funciona apenas no mobile, !!!ainda nao testado!!! -->
     <!--menu aluno-->
-    <TabBar Route="aluno">
+    <TabBar x:Name="aluno_tabbar" Route="aluno" IsVisible="False">
         <Tab Title="Início" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
         </Tab>
@@ -41,24 +41,22 @@
         </Tab>
     </TabBar>
 
-    <!--menu do professor
-    <TabBar Route="professor">
+    <TabBar x:Name="professor_tabbar" Route="professor" IsVisible="False">
         <Tab Title="Início" Icon="home.png">
-            <ShellContent ContentTemplate="{DataTemplate professor:HomeAlunoView}" />
+            <ShellContent ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
         </Tab>
         <Tab Title="Turmas" Icon="turmas.png">
             <ShellContent ContentTemplate="{DataTemplate professor:TurmasView}" />
         </Tab>
         <Tab Title="Notas" Icon="notas.png">
-            <ShellContent ContentTemplate="{DataTemplate professor:NotasView}" />
+            <ShellContent ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
         </Tab>
         <Tab Title="Calendário" Icon="calendar.png">
-            <ShellContent ContentTemplate="{DataTemplate professor:CalendarioView}" />
+            <ShellContent ContentTemplate="{DataTemplate professor:DesempenhoTurmaView}" />
         </Tab>
         <Tab Title="Perfil" Icon="profile.png">
-            <ShellContent ContentTemplate="{DataTemplate professor:PerfilView}" />
+            <ShellContent ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
         </Tab>
     </TabBar>
-    -->
 
 </Shell>

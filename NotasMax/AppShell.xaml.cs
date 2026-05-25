@@ -2,6 +2,7 @@ using NotasMax.Services.NavigationService;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
 using NotasMax.Views.Professor;
+using System.Data;
 
 namespace NotasMax
 {
@@ -28,14 +29,14 @@ namespace NotasMax
         // Método para registrar rotas de Navegação.
         public static void InitializeRouting()
         {
-            Routing.RegisterRoute("Login", typeof(LoginView));
-            Routing.RegisterRoute("HomeAluno", typeof(HomeAlunoView));
-            Routing.RegisterRoute("HomeProfessor", typeof(HomeProfessorView));
-            Routing.RegisterRoute("DesempenhoTurma", typeof(DesempenhoTurmaView));
-            Routing.RegisterRoute("Turmas", typeof(TurmasView));
-            Routing.RegisterRoute("MeuDesempenho", typeof(MeuDesempenhoView));
-            Routing.RegisterRoute("Simulado", typeof(ExibirSimuladoView));
-            Routing.RegisterRoute("CalendarioAluno", typeof(CalendarioAlunoView));
+            //Routing.RegisterRoute("Login", typeof(LoginView));
+            //Routing.RegisterRoute("HomeAluno", typeof(HomeAlunoView));
+            //Routing.RegisterRoute("HomeProfessor", typeof(HomeProfessorView));
+            //Routing.RegisterRoute("DesempenhoTurma", typeof(DesempenhoTurmaView));
+            //Routing.RegisterRoute("Turmas", typeof(TurmasView));
+            //Routing.RegisterRoute("MeuDesempenho", typeof(MeuDesempenhoView));
+            //Routing.RegisterRoute("Simulado", typeof(ExibirSimuladoView));
+            //Routing.RegisterRoute("CalendarioAluno", typeof(CalendarioAlunoView));
         }
     }
 }

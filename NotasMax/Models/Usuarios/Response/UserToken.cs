@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using NotasMax.Models.Usuarios;
+using System.Text.Json.Serialization;
 
 namespace NotasMax.Models.Usuarios.Response
 {
@@ -11,7 +12,7 @@ namespace NotasMax.Models.Usuarios.Response
         [JsonPropertyName("token")]
         public string Token { get; set; }
 
-        [JsonPropertyName("_aluno")]
+        [JsonPropertyName("usuario")]
         public Usuario Usuario { get; set; }
     }
 
