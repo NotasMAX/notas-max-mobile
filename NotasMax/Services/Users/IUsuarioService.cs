@@ -8,5 +8,6 @@ namespace NotasMax.Services.Usuarios
         Task<Usuario> Login(Usuario usuario);
 
         Task<UserToken> Authenticate(UsuarioAuth auth);
+        Task<Usuario> GetUsuarioById(string id, string token);
     }
 }

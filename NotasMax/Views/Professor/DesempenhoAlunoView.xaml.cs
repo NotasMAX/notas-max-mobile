@@ -1,4 +1,5 @@
 using NotasMax.ViewModels;
+using NotasMax.Helpers;
 
 namespace NotasMax.Views.Professor;
 
@@ -23,20 +24,11 @@ public partial class DesempenhoAlunoView : ContentPage
 
         string nomeAluno = "Lucas Oliveira";
         label_nome_aluno.Text = nomeAluno;
-        label_iniciais.Text = ObterIniciais(nomeAluno);
+        label_iniciais.Text = TextoHelper.PegarIniciais(nomeAluno);
 
         line_chart.ItemsSource = notaSimulados;
         BindableLayout.SetItemsSource(layout_simulados, notaSimulados);
 
         CalcularMedia(notaSimulados);
-    }
-
-    private static string ObterIniciais(string nome)
-    {
-        if (string.IsNullOrWhiteSpace(nome)) return "??";
-        var partes = nome.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (partes.Length == 1)
-            return partes[0][..Math.Min(2, partes[0].Length)].ToUpper();
-        return $"{partes[0][0]}{partes[^1][0]}".ToUpper();
     }
 }

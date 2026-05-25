@@ -1,12 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
-using Syncfusion.Maui.Toolkit.Hosting;
 using NotasMax.Services.NavigationService;
 using NotasMax.Services.RequestProvider;
 using NotasMax.Services.Settings;
+using NotasMax.Services.Simulados;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
+using NotasMax.Views.Professor;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace NotasMax
 {
@@ -55,8 +57,6 @@ namespace NotasMax
             return builder.Build();
         }
 
-
-
         // Registrar os serviços da aplicação
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder app)
         {
@@ -64,6 +64,7 @@ namespace NotasMax
             app.Services.AddSingleton<IUsuarioService, UsuarioService>();
             app.Services.AddSingleton<ISettingsService, SettingsService>();
             app.Services.AddSingleton<INavigationService, NavigationService>();
+            app.Services.AddSingleton<ISimuladoService, SimuladoService>();
             return app;
         }
 
@@ -72,6 +73,9 @@ namespace NotasMax
         {
             app.Services.AddSingleton<LoginView>();
             app.Services.AddSingleton<HomeAlunoView>();
+            app.Services.AddSingleton<HomeProfessorView>();
+            app.Services.AddSingleton<TurmasView>();
+            app.Services.AddSingleton<DesempenhoTurmaView>();
             return app;
         }
 

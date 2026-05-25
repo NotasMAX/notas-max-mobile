@@ -1,83 +1,113 @@
 using NotasMax.Helpers;
-using NotasMax.Models;
+using NotasMax.Services.NavigationService;
+using NotasMax.Services.Settings;
+using NotasMax.Services.Simulados;
 using NotasMax.ViewModels;
 using Syncfusion.Maui.Toolkit.Charts;
 using System.Diagnostics;
 
 namespace NotasMax.Views.Professor;
 
+[QueryProperty(nameof(TurmaSelecionada), "Turma")]
 public partial class DesempenhoTurmaView : ContentPage
 {
+    public TurmasByAnoAndProfessor.Turma? TurmaSelecionada { get; set; }
+
     private List<Brush> PaleteBrushes = new();
-    public DesempenhoTurmaView()
+    private readonly ISettingsService _settingsService;
+    private readonly INavigationService _navigationService;
+    private readonly ISimuladoService _simuladoService;
+
+    public DesempenhoTurmaView(ISettingsService settingsService, INavigationService navigationService, ISimuladoService simuladoService )
     {
         InitializeComponent();
-
-    }
-    private void CalcularMedia(List<NotaSimulado> notas)
-    {
-        double media = notas.Average(u => u.Nota);
-        label_media.Text = media.ToString("N2");
+        _settingsService = settingsService;
+        _navigationService = navigationService;
+        _simuladoService = simuladoService;
     }
 
-    private void CalcularMenorNota(List<NotaAluno> notas)
+    private void CalcularMenorNota(List<DesempenhoAlunoByDisciplina.DesempenhoAluno> alunos)
     {
-        NotaAluno? menorNota = notas.MinBy(n => n.Nota);
+        var menorNota = alunos.MinBy(n => n.Media);
         if (menorNota != null)
         {
-            label_menor_nota.Text = menorNota.Nota.ToString("N2");
+            label_menor_nota.Text = menorNota.Media.ToString("N2");
             label_menor_aluno.Text = TextoHelper.ReduzirNome(menorNota.Nome);
         }
     }
 
-    private void CalcularMaiorNota(List<NotaAluno> notas)
+    private void CalcularMaiorNota(List<DesempenhoAlunoByDisciplina.DesempenhoAluno> alunos)
     {
-        NotaAluno? maiorNota = notas.MaxBy(n => n.Nota);
+        var maiorNota = alunos.MaxBy(n => n.Media);
         if (maiorNota == null)
             return;
 
-        label_maior_nota.Text = maiorNota.Nota.ToString("N2");
+        label_maior_nota.Text = maiorNota.Media.ToString("N2");
         label_maior_aluno.Text = TextoHelper.ReduzirNome(maiorNota.Nome);
 
     }
-    private void DefinirDestaqueDistribuicao(List<DistribuicaoNotas> distribuicaoNotas)
+    private void DefinirDestaqueDistribuicao(List<DesempenhoAlunoByDisciplina.DesempenhoDistribuicao> distribuicaoNotas)
     {
         int indexNotasBaixas = distribuicaoNotas.FindIndex(item => item.Faixa == "<5");
         doughnut_chart.ExplodeIndex = indexNotasBaixas;
     }
-    protected override void OnAppearing()
+
+    private async Task<TurmasByAnoAndProfessor?> fetchDadosTurmas()
     {
-        base.OnAppearing();
-
-        var viewModel = new ViewModelExemplo();
-        var notasSimulados = viewModel.NotaSimulados.OrderBy(n => n.Numero).ToList();
-        var notasAlunos = viewModel.NotaAlunos.OrderBy(n => n.Nome).ToList();
-        var distribuicaoNotas = viewModel.DistribuicaoNotas;
-        var turmas = viewModel.Turmas.OrderBy(t => t.Serie).ToList();
-
-        DefinirCoresDistribuicao(distribuicaoNotas);
-
-        line_chart.ItemsSource = notasSimulados;
-        column_chart.ItemsSource = notasAlunos;
-        chirp_serie.ItemsSource = turmas;
-        chirp_serie.SelectedItem = turmas.MinBy(t => t.Serie);
-
-        CalcularMedia(notasSimulados);
-        CalcularMenorNota(notasAlunos);
-        CalcularMaiorNota(notasAlunos);
-
-        label_subtitulo_alunos.Text = $"Alunos ({notasAlunos.Count})";
-
-        BindableLayout.SetItemsSource(layout_alunos, notasAlunos);
+        try
+        {
+            return await _simuladoService.GetByAnoAndProfessor();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Erro: {ex.Message}");
+            return null;
+        }
     }
 
 
-    private void DefinirCoresDistribuicao(List<DistribuicaoNotas> distribuicaoNotas)
+    private async Task<DesempenhoAlunoByDisciplina?> fetchDadosDisciplinas(string disciplinaId)
     {
-        DistribuicaoNotas primeiraFaixa = new();
-        DistribuicaoNotas segundaFaixa = new();
-        DistribuicaoNotas terceiraFaixa = new();
-        List<DistribuicaoNotas> notasDistribuidas = new();
+        try
+        {
+            return await _simuladoService.getDesempenhoByDisciplina(disciplinaId);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Erro: {ex.Message}");
+            return null;
+        }
+    }
+
+
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        TurmasByAnoAndProfessor? dadosTurmas = await fetchDadosTurmas();
+
+        if (dadosTurmas == null)
+            return;
+
+        dadosTurmas.Turmas = dadosTurmas.Turmas.OrderBy(t => t.Serie).ToList();
+
+        chirp_serie.ItemsSource = dadosTurmas.Turmas;
+
+        if (TurmaSelecionada != null)
+        {
+            chirp_serie.SelectedItem = dadosTurmas.Turmas.Where(t => t.Id == TurmaSelecionada.Id).FirstOrDefault();
+        }
+        else
+        {
+            chirp_serie.SelectedItem = dadosTurmas.Turmas.MinBy(t => t.Serie);
+        }
+    }
+    private void DefinirCoresDistribuicao(List<DesempenhoAlunoByDisciplina.DesempenhoDistribuicao> distribuicaoNotas)
+    {
+        DesempenhoAlunoByDisciplina.DesempenhoDistribuicao primeiraFaixa = new();
+        DesempenhoAlunoByDisciplina.DesempenhoDistribuicao segundaFaixa = new();
+        DesempenhoAlunoByDisciplina.DesempenhoDistribuicao terceiraFaixa = new();
+        List<DesempenhoAlunoByDisciplina.DesempenhoDistribuicao> notasDistribuidas = new();
 
         foreach (var item in distribuicaoNotas)
         {
@@ -132,11 +162,58 @@ public partial class DesempenhoTurmaView : ContentPage
         e.Label = TextoHelper.ReduzirNome(labelText);
     }
 
-    private void chirp_serie_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
+    private async void chirp_serie_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
     {
 
-        if (!(e.AddedItem is Turma turma))
+        if (!(e.AddedItem is TurmasByAnoAndProfessor.Turma turma))
             return;
 
+        List<TurmasByAnoAndProfessor.Disciplina> disciplinas = turma.Disciplinas.OrderBy(d => d.MateriaNome).ToList();
+
+        chirp_disciplinas.ItemsSource = disciplinas;
+        var primeiraDisciplina = disciplinas.FirstOrDefault();
+        chirp_disciplinas.SelectedItem = primeiraDisciplina;
+
+        if (primeiraDisciplina != null)
+        {
+            await CarregarDadosDisciplinaAsync(primeiraDisciplina);
+        }
+    }
+
+    private async void chirp_disciplinas_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
+    {
+        if (!(e.AddedItem is TurmasByAnoAndProfessor.Disciplina disciplina))
+            return;
+        await CarregarDadosDisciplinaAsync(disciplina);
+    }
+
+    private async Task CarregarDadosDisciplinaAsync(TurmasByAnoAndProfessor.Disciplina disciplina)
+    {
+
+        Debug.WriteLine($"Disciplina selecionada: {disciplina.MateriaNome} (ID: {disciplina.Id})");
+
+        var dadosDisciplinas = await fetchDadosDisciplinas(disciplina.Id);
+
+        if (dadosDisciplinas == null)
+            return;
+
+        var alunos = dadosDisciplinas.Alunos.OrderBy(a => a.Nome).ToList();
+        var simulados = dadosDisciplinas.SimuladosContainer.Simulados.OrderBy(s => s.NumeroSimulado).ToList();
+        var distribuicaoNotas = dadosDisciplinas.Distribuicao;
+        var media = dadosDisciplinas.SimuladosContainer.Media;
+        DefinirCoresDistribuicao(distribuicaoNotas);
+
+        line_chart.ItemsSource = simulados;
+        column_chart.ItemsSource = alunos;
+
+        CalcularMenorNota(alunos);
+        CalcularMaiorNota(alunos);
+
+        label_media.Text = media.ToString("N2");
+
+
+        label_subtitulo_alunos.Text = $"Alunos ({alunos.Count})";
+
+        BindableLayout.SetItemsSource(layout_alunos, alunos);
     }
 }

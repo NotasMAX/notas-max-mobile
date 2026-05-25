@@ -7,6 +7,6 @@ namespace NotasMax.Services.NavigationService
     public interface INavigationService
     {
         Task Initializeasync();
-        Task NavigationAsync(string route);
+        Task NavigationAsync(string route, bool absolute);
     }
 }

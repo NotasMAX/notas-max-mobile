@@ -78,8 +78,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="ContentsViews\ExibirSimuladoItemContentView.xaml.cs">
+	    <DependentUpon>ExibirSimuladoItemContentView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Styles\CustomStyles.xaml.cs">
 	    <DependentUpon>CustomStyles.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Aluno\ExibirSimuladoView.xaml.cs">
+	    <DependentUpon>ExibirSimuladoView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\EsqueceuSenha\InformarEmailView.xaml.cs">
 	    <DependentUpon>InformarEmailView.xaml</DependentUpon>
@@ -96,7 +102,16 @@
 	  <MauiXaml Update="ContentsViews\AlunoItemContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ContentsViews\CalendarioItemContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ContentsViews\ExibirSimuladoItemContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ContentsViews\MateriaItemContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ContentsViews\MeuSimuladoItemContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ContentsViews\SimuladoItemContentView.xaml">
@@ -114,10 +129,25 @@
 	  <MauiXaml Update="Resources\Styles\TextSyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\CalendarioView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\DadosPessoaisView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Aluno\ExibirMateriaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\ExibirSimuladoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Aluno\MeuDesempenhoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\PerfilView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\SimuladosView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\EsqueceuSenha\InformarEmailView.xaml">

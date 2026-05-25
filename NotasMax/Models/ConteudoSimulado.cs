@@ -1,11 +1,31 @@
-﻿namespace NotasMax.Models
+﻿using System.Text.Json.Serialization;
+
+namespace NotasMax.Models
 {
     public class ConteudoSimulado
     {
-        public Guid TurmaDisciplina_Id {  get; set; }
+        [JsonPropertyName("_id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("turma_disciplina_id")]
+        public string TurmaDisciplinaId { get; set; }
+
         public TurmaDisciplina TurmaDisciplina { get; set; } = new TurmaDisciplina();
-        public int QuantidadeQuestoes { get; set; } = 0;
-        public double Peso { get; set; } = 1.0;
-        public List<ResultadoSimulado> Resultados { get; set; } = new List<ResultadoSimulado>();
+
+
+        [JsonPropertyName("quantidade_questoes")]
+        public int QuantidadeQuestoes { get; set; }
+
+        [JsonPropertyName("peso")]
+        public int Peso { get; set; }
+
+        [JsonPropertyName("resultados")]
+        public ResultadoSimulado Resultados { get; set; }
+
+        [JsonPropertyName("createdAt")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonPropertyName("updatedAt")]
+        public DateTime UpdatedAt { get; set; }
     }
 }

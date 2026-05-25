@@ -1,10 +1,8 @@
 ﻿using NotasMax.Services.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NotasMax.Services.NavigationService
 {
+    // Serviço de navegação para gerenciar a navegação entre as páginas do aplicativo
     internal class NavigationService(ISettingsService settingsService) : INavigationService
     {
         private readonly ISettingsService _settingsService = settingsService;
@@ -14,14 +12,21 @@ namespace NotasMax.Services.NavigationService
 
             if (!string.IsNullOrEmpty(_settingsService.AuthAccessToken))
             {
-                route = "HomeAluno";
+                var role = _settingsService.UserRoleKey.Trim().ToLowerInvariant();
+
+                if (role == "aluno")
+                    route = "aluno";
+                else if (role == "professor")
+                    route = "professor";
             }
-            return NavigationAsync(route);
+            return NavigationAsync(route, absolute: true);
         }
 
-        public Task NavigationAsync(string route)
+        public Task NavigationAsync(string route, bool absolute)
         {
-            return Shell.Current.GoToAsync(route);
+            var path = absolute ? $"//{route.TrimStart('/')}" : route;
+
+            return Shell.Current.GoToAsync(path);
         }
     }
 }
