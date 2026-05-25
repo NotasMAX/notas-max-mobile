@@ -1,4 +1,4 @@
-﻿using NotasMax.Services.NavigationService;
+using NotasMax.Services.NavigationService;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
 using NotasMax.Views.Professor;

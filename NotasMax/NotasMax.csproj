@@ -129,7 +129,10 @@
 	  <MauiXaml Update="Resources\Styles\TextSyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Aluno\CalendarioAlunoView.xaml">
+	  <MauiXaml Update="Views\Aluno\CalendarioView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\DadosPessoaisView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Aluno\ExibirMateriaView.xaml">
@@ -141,7 +144,10 @@
 	  <MauiXaml Update="Views\Aluno\MeuDesempenhoView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Aluno\MeuSimuladosView.xaml">
+	  <MauiXaml Update="Views\Aluno\PerfilView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\SimuladosView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\EsqueceuSenha\InformarEmailView.xaml">

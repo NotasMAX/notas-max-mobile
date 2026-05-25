@@ -16,7 +16,7 @@
                         Stroke="Transparent">
                         <Image x:Name="image_icon"
                            Style="{StaticResource ImageIcon}"
-                           Source="calendar.png"/>
+                           Source="calendar_icon.png"/>
                     </Border>
                 </HorizontalStackLayout>
                 <VerticalStackLayout Grid.Column="1" Spacing="4">

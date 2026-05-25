@@ -10,6 +10,7 @@
     <Color x:Key="BluePrimaryDark">#033363</Color>
     <Color x:Key="BluePrimaryLight">#1685F3</Color>
     <Color x:Key="BlueSecondary">#BAD9F7</Color>
+    <Color x:Key="CongressBlue">#02478E</Color>
     
     <Color x:Key="PrimaryDarkText">#132639</Color>
     <Color x:Key="SecondaryDarkText">#6C8093</Color>
