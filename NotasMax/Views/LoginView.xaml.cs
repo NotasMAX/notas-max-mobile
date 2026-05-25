@@ -63,21 +63,38 @@ public partial class LoginView : ContentPage
         {
             var response = await _userService.Authenticate(auth);
 
+            if (response?.Usuario is null)
+            {
+                await DisplayAlertAsync("Erro", "A autenticação retornou sem os dados do usuário.", "Ok");
+                return;
+            }
+
             // Salvar o token e as informações do usuário usando o serviço de configurações
             _settingsService.Set(response);
 
-            if (response.Usuario.TipoUsuario == "aluno")
-            {
-                await _navigationService.NavigationAsync($"HomeAluno", true);
-            }
+            if (Shell.Current is AppShell shell)
+                shell.UpdateBottomMenu();
 
-            if (response.Usuario.TipoUsuario == "professor")
-            {
-                await _navigationService.NavigationAsync($"HomeProfessor", true);
-            }
+            var tipoUsuario = response.Usuario.TipoUsuario?.Trim().ToLowerInvariant();
 
-            if (response.Usuario.TipoUsuario == "administrador")
-                await DisplayAlertAsync("Aviso", "Você esta realizando o login como administrador \nNo momento o aplicativo não conta com tela para administrador", "Ok");
+            switch (tipoUsuario)
+            {
+                case "aluno":
+                    await _navigationService.NavigationAsync("aluno", true);
+                    break;
+
+                case "professor":
+                    await _navigationService.NavigationAsync("professor", true);
+                    break;
+
+                case "administrador":
+                    await DisplayAlertAsync("Aviso", "Você esta realizando o login como administrador \nNo momento o aplicativo não conta com tela para administrador", "Ok");
+                    break;
+
+                default:
+                    await DisplayAlertAsync("Erro", "Perfil do usuário não reconhecido.", "Ok");
+                    break;
+            }
 
         }
         catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)

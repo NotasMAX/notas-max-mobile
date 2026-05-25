@@ -1,7 +1,4 @@
 ﻿using NotasMax.Services.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NotasMax.Services.NavigationService
 {
@@ -15,15 +12,12 @@ namespace NotasMax.Services.NavigationService
 
             if (!string.IsNullOrEmpty(_settingsService.AuthAccessToken))
             {
-                string path = "Login";
+                var role = _settingsService.UserRoleKey.Trim().ToLowerInvariant();
 
-                if (_settingsService.UserRoleKey == "Aluno")
-                    path = "HomeAluno";
-
-                if (_settingsService.UserRoleKey == "Professor")
-                    path = "HomeProfessor";
-
-                route = path;
+                if (role == "aluno")
+                    route = "aluno";
+                else if (role == "professor")
+                    route = "professor";
             }
             return NavigationAsync(route, absolute: true);
         }

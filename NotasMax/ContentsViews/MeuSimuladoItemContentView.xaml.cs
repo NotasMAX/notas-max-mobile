@@ -19,6 +19,9 @@ public partial class MeuSimuladoItemContentView : ContentView
         if (!isRealizado)
             return;
 
+        if (Shell.Current is null)
+            return;
+
         await Shell.Current.GoToAsync("Simulado", new Dictionary<string, object>
         {
             { "Simulado", simulado }

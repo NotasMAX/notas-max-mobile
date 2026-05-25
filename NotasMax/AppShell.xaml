@@ -28,13 +28,13 @@
             <ShellContent ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
         </Tab>
         <Tab Title="Simulados" Icon="simulados.png">
-            <ShellContent ContentTemplate="{DataTemplate aluno:SimuladosView}" />
+            <ShellContent ContentTemplate="{DataTemplate aluno:MeuSimuladosView}" />
         </Tab>
         <Tab Title="Desempenho" Icon="chart.png">
             <ShellContent ContentTemplate="{DataTemplate aluno:MeuDesempenhoView}" />
         </Tab>
         <Tab Title="Calendário" Icon="calendar.png">
-            <ShellContent ContentTemplate="{DataTemplate aluno:CalendarioView}" />
+            <ShellContent ContentTemplate="{DataTemplate aluno:CalendarioAlunoView}" />
         </Tab>
         <Tab Title="Perfil" Icon="profile.png">
             <ShellContent ContentTemplate="{DataTemplate aluno:PerfilView}" />
@@ -48,12 +48,14 @@
         <Tab Title="Turmas" Icon="turmas.png">
             <ShellContent ContentTemplate="{DataTemplate professor:TurmasView}" />
         </Tab>
+        <!-- Necessário editar para a view de editar notas --> 
         <Tab Title="Notas" Icon="notas.png">
             <ShellContent ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
         </Tab>
-        <Tab Title="Calendário" Icon="calendar.png">
+        <Tab Title="Desempenho" Icon="chart.png">
             <ShellContent ContentTemplate="{DataTemplate professor:DesempenhoTurmaView}" />
         </Tab>
+        <!-- Necessário editar para a view de perfil -->
         <Tab Title="Perfil" Icon="profile.png">
             <ShellContent ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
         </Tab>

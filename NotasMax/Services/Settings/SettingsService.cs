@@ -40,10 +40,13 @@ namespace NotasMax.Services.Settings
 
         public void Set(UserToken userToken)
         {
-            AuthAccessToken = userToken.Token;
-            UserIdKey = userToken.Usuario.Id;
-            UserNameKey = userToken.Usuario.Nome;
-            UserRoleKey = userToken.Usuario.TipoUsuario;
+            if (userToken?.Usuario is null)
+                throw new InvalidOperationException("A resposta de autenticação não retornou os dados do usuário.");
+
+            AuthAccessToken = userToken.Token ?? string.Empty;
+            UserIdKey = userToken.Usuario.Id ?? string.Empty;
+            UserNameKey = userToken.Usuario.Nome ?? string.Empty;
+            UserRoleKey = userToken.Usuario.TipoUsuario ?? string.Empty;
         }
     }
 }
