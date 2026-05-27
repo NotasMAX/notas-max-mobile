@@ -73,10 +73,9 @@ public partial class PerfilView : ContentPage
         }
     }
 
-    private void DadosPessoais_Tapped(object sender, TappedEventArgs e)
+    private async void DadosPessoais_Tapped(object sender, TappedEventArgs e)
     {
-        // Tela de Dados Pessoais ainda não implementada
-        DisplayAlertAsync("Em breve", "Essa funcionalidade estará disponível em breve.", "OK");
+        await Shell.Current.GoToAsync("DadosPessoaisAluno");
     }
 
     private async void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
