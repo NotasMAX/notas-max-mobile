@@ -76,6 +76,9 @@ namespace NotasMax
             app.Services.AddSingleton<HomeProfessorView>();
             app.Services.AddSingleton<TurmasView>();
             app.Services.AddSingleton<DesempenhoTurmaView>();
+            app.Services.AddSingleton<PerfilView>();
+            app.Services.AddSingleton<PerfilProfessorView>();
+            app.Services.AddTransient<MinhasMateriasView>();
             app.Services.AddTransient<DesempenhoAlunoView>();
             app.Services.AddTransient<DadosPessoaisAlunoView>();
             return app;

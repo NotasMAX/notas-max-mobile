@@ -56,8 +56,8 @@
             <ShellContent Route="desempenhoturmaview" ContentTemplate="{DataTemplate professor:DesempenhoTurmaView}" />
         </Tab>
         <!-- Necessário editar para a view de perfil -->
-        <Tab Title="Perfil" Icon="profile.png" Route="perfil">
-            <ShellContent Route="perfilview" ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
+        <Tab Title="Perfil" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate professor:PerfilProfessorView}" />
         </Tab>
     </TabBar>
 
