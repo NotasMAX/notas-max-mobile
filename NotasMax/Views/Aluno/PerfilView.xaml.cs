@@ -20,11 +20,12 @@ public partial class PerfilView : ContentPage
         IUsuarioService usuarioService,
         ISimuladoService simuladoService)
     {
-        InitializeComponent();
         _settingsService = settingsService;
         _navigationService = navigationService;
         _usuarioService = usuarioService;
         _simuladoService = simuladoService;
+
+        InitializeComponent(); // labels só existem a partir daqui
     }
 
     protected override async void OnAppearing()
@@ -47,7 +48,6 @@ public partial class PerfilView : ContentPage
 
             if (desempenho != null)
             {
-                // Nota geral = média das médias dos simulados
                 if (desempenho.Simulados?.Count > 0)
                 {
                     double notaGeral = desempenho.Simulados.Average(s => s.Media);
@@ -63,17 +63,9 @@ public partial class PerfilView : ContentPage
                 label_qtd_materias.Text = desempenho.Materias?.Count.ToString() ?? "0";
             }
 
-            // Carregar turma do aluno via detalhes do usuário
-            var usuario = await _usuarioService.GetUsuarioById(
-                _settingsService.UserIdKey,
-                _settingsService.AuthAccessToken);
-
-            // O modelo Usuario não expõe série/turma diretamente,
-            // então exibimos o tipo de usuário como fallback
-            // (quando a API retornar esse dado, basta ajustar aqui)
-            label_turma.Text = usuario?.TipoUsuario is not null
-                ? CapitalizarPrimeira(usuario.TipoUsuario)
-                : "";
+            // label_turma: o modelo Usuario não expõe série/turma ainda,
+            // então fica vazio até a API retornar esse campo
+            label_turma.Text = string.Empty;
         }
         catch (Exception ex)
         {
@@ -81,16 +73,15 @@ public partial class PerfilView : ContentPage
         }
     }
 
-    private static string CapitalizarPrimeira(string texto)
+    private void DadosPessoais_Tapped(object sender, TappedEventArgs e)
     {
-        if (string.IsNullOrEmpty(texto)) return texto;
-        return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
+        // Tela de Dados Pessoais ainda não implementada
+        DisplayAlertAsync("Em breve", "Essa funcionalidade estará disponível em breve.", "OK");
     }
 
-    private void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
+    private async void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
     {
-        // Tela de Minhas Matérias ainda não implementada
-        DisplayAlertAsync("Em breve", "Essa funcionalidade estará disponível em breve.", "OK");
+        await Shell.Current.GoToAsync("MinhasMaterias");
     }
 
     private void Sair_Tapped(object sender, TappedEventArgs e)

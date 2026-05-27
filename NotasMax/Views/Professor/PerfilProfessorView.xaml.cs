@@ -132,6 +132,12 @@ public partial class PerfilProfessorView : ContentPage
         label_toggle_turmas.Text = _turmasExpandidas ? "∨" : "∧";
     }
 
+    private void DadosPessoais_Tapped(object sender, TappedEventArgs e)
+    {
+        // Tela de Dados Pessoais ainda não implementada
+        DisplayAlertAsync("Em breve", "Essa funcionalidade estará disponível em breve.", "OK");
+    }
+
     private void Sair_Tapped(object sender, TappedEventArgs e)
     {
         _navigationService.NavigationAsync("Login?Logout=true", true);
