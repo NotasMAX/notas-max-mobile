@@ -28,5 +28,19 @@ namespace NotasMax.Services.Usuarios
             var uri = $"{GlobalSettings.Instance.UsuarioEndPonint}/Detalhes/{id}";
             return await _requestProvider.GetAsync<Usuario>(uri, token);
         }
+
+        public async Task<Models.Usuarios.Response.ForgotPasswordResponse> ForgotPassword(string email)
+        {
+            var uri = GlobalSettings.Instance.ForgotPasswordEndpoint;
+            var request = new Models.Usuarios.ForgotPasswordRequest { Email = email };
+            return await _requestProvider.PostAsync<Models.Usuarios.Response.ForgotPasswordResponse, Models.Usuarios.ForgotPasswordRequest>(uri, request);
+        }
+
+        public async Task<Models.Usuarios.Response.ResetPasswordResponse> ResetPassword(string token, string novaSenha)
+        {
+            var uri = GlobalSettings.Instance.ResetPasswordEndpoint;
+            var request = new Models.Usuarios.ResetPasswordRequest { Token = token, NovaSenha = novaSenha };
+            return await _requestProvider.PostAsync<Models.Usuarios.Response.ResetPasswordResponse, Models.Usuarios.ResetPasswordRequest>(uri, request);
+        }
     }
 }

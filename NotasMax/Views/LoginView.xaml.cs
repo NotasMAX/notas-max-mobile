@@ -35,7 +35,7 @@ public partial class LoginView : ContentPage
 
     void OnLabelEsqueceuSenhaTapped(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new InformarEmailView());
+        Shell.Current.GoToAsync("///informaremail");
     }
 
     private void ToggleEye_Clicked(object sender, EventArgs e)

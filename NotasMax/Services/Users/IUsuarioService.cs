@@ -9,5 +9,7 @@ namespace NotasMax.Services.Usuarios
 
         Task<UserToken> Authenticate(UsuarioAuth auth);
         Task<Usuario> GetUsuarioById(string id, string token);
+        Task<ForgotPasswordResponse> ForgotPassword(string email);
+        Task<ResetPasswordResponse> ResetPassword(string token, string novaSenha);
     }
 }
