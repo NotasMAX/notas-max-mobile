@@ -55,6 +55,6 @@ public partial class InformarCodigoRecuperacaoView : ContentPage
 
     private async void BackToLogin_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///login");
+        await Shell.Current.GoToAsync("///Login");
     }
 }
