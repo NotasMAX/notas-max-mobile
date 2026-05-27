@@ -7,6 +7,7 @@ using NotasMax.Services.Simulados;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
+using NotasMax.Views.EsqueceuSenha;
 using NotasMax.Views.Professor;
 using Syncfusion.Maui.Toolkit.Hosting;
 
@@ -81,6 +82,9 @@ namespace NotasMax
             app.Services.AddTransient<MinhasMateriasView>();
             app.Services.AddTransient<DesempenhoAlunoView>();
             app.Services.AddTransient<DadosPessoaisAlunoView>();
+            app.Services.AddTransient<InformarEmailView>();
+            app.Services.AddTransient<InformarCodigoRecuperacaoView>();
+            app.Services.AddTransient<NovaSenhaView>();
             return app;
         }
 

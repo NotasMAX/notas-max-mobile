@@ -3,6 +3,7 @@ using NotasMax.Services.Settings;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
 using NotasMax.Views.Professor;
+using NotasMax.Views.EsqueceuSenha;
 
 namespace NotasMax
 {
@@ -53,6 +54,9 @@ namespace NotasMax
             Routing.RegisterRoute("Materia", typeof(ExibirMateriaView));
             Routing.RegisterRoute("MinhasMaterias", typeof(MinhasMateriasView));
             Routing.RegisterRoute("DadosPessoaisAluno", typeof(DadosPessoaisAlunoView));
+            Routing.RegisterRoute("informaremail", typeof(InformarEmailView));
+            Routing.RegisterRoute("informarcodigo", typeof(InformarCodigoRecuperacaoView));
+            Routing.RegisterRoute("novasenha", typeof(NovaSenhaView));
         }
     }
 }

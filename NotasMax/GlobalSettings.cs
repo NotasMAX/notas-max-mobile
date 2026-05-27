@@ -14,6 +14,8 @@
         public string UsuarioEndPonint { get; set; }
         public string MateriaEndpoint { get; set; }
         public string SimuladoEndpoint { get; set; }
+        public string ForgotPasswordEndpoint { get; set; }
+        public string ResetPasswordEndpoint { get; set; }
 
 
         public static GlobalSettings Instance { get; } = new GlobalSettings();
@@ -25,6 +27,8 @@
             UsuarioEndPonint = $"{DefaultEndpoint}/Usuarios";
             MateriaEndpoint = $"{DefaultEndpoint}/Materias";
             SimuladoEndpoint = $"{DefaultEndpoint}/Simulados";
+            ForgotPasswordEndpoint = $"{DefaultEndpoint}/Auth/forgot-mobile";
+            ResetPasswordEndpoint = $"{DefaultEndpoint}/auth/reset";
         }
     }
 }
