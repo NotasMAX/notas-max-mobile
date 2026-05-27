@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.Views.Aluno.DadosPessoaisAlunoView">
+
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Padding="20,30,20,30" Spacing="0">
+
+            <Grid HorizontalOptions="Center" Margin="0,0,0,30">
+                <Ellipse WidthRequest="90" HeightRequest="90">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#2D7DD6" Offset="0"/>
+                            <GradientStop Color="#0D3FA6" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Label x:Name="label_iniciais"
+                       Text="?"
+                       FontSize="36"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+
+            <Label Text="Nome"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   TextColor="#374151"
+                   Margin="0,0,0,6"/>
+            <Border Stroke="Transparent"
+                    BackgroundColor="White"
+                    Margin="0,0,0,18">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#22000000" Offset="0,2" Radius="6" Opacity="0.08"/>
+                </Border.Shadow>
+                <Label x:Name="label_nome"
+                       FontSize="15"
+                       TextColor="#9CA3AF"
+                       Padding="16,14"/>
+            </Border>
+
+            <Label Text="E-mail"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   TextColor="#374151"
+                   Margin="0,0,0,6"/>
+            <Border Stroke="Transparent"
+                    BackgroundColor="White"
+                    Margin="0,0,0,18">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#22000000" Offset="0,2" Radius="6" Opacity="0.08"/>
+                </Border.Shadow>
+                <Label x:Name="label_email"
+                       FontSize="15"
+                       TextColor="#9CA3AF"
+                       Padding="16,14"/>
+            </Border>
+
+            <Label Text="Nome Responsável"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   TextColor="#374151"
+                   Margin="0,0,0,6"/>
+            <Border Stroke="Transparent"
+                    BackgroundColor="White"
+                    Margin="0,0,0,18">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#22000000" Offset="0,2" Radius="6" Opacity="0.08"/>
+                </Border.Shadow>
+                <Label x:Name="label_nome_responsavel"
+                       FontSize="15"
+                       TextColor="#9CA3AF"
+                       Padding="16,14"/>
+            </Border>
+
+            <Label Text="Telefone Responsável"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   TextColor="#374151"
+                   Margin="0,0,0,6"/>
+            <Border Stroke="Transparent"
+                    BackgroundColor="White"
+                    Margin="0,0,0,30">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#22000000" Offset="0,2" Radius="6" Opacity="0.08"/>
+                </Border.Shadow>
+                <Label x:Name="label_telefone_responsavel"
+                       FontSize="15"
+                       TextColor="#9CA3AF"
+                       Padding="16,14"/>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
