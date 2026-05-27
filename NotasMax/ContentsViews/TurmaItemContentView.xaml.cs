@@ -26,9 +26,14 @@ public partial class TurmaItemContentView : ContentView
         if (this.BindingContext is not TurmasByAnoAndProfessor.Turma turma)
             return;
 
-        await Shell.Current.GoToAsync("DesempenhoTurma", new Dictionary<string, object>
+        try
         {
-            { "Turma", turma }
-        });
+            await Shell.Current.GoToAsync($"///professor/desempenho/desempenhoturmaview?turmaId={turma.Id}");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Erro de navegação: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
+        }
     }
 }
