@@ -132,6 +132,9 @@
 	  <MauiXaml Update="Views\Aluno\CalendarioView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Aluno\DadosPessoaisAlunoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Aluno\DadosPessoaisView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
