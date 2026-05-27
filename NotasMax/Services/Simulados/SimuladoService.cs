@@ -82,6 +82,13 @@ namespace NotasMax.Services.Simulados
             string endpoint = $"{GlobalSettings.DefaultEndpoint}/Calendario/aluno={_usuario?.Id}";
             return await _requestProvider.GetAsync<CalendarioByAluno>(endpoint);
         }
+
+        public async Task<DesempenhoAlunoBySimulados> GetSimuladosByAluno(string alunoId)
+        {
+            string ano = DateTime.UtcNow.Year.ToString();
+            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Simulados/ano={ano}/aluno={alunoId}";
+            return await _requestProvider.GetAsync<DesempenhoAlunoBySimulados>(endpoint);
+        }
     }
 
 

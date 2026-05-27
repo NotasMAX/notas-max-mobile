@@ -1,34 +1,62 @@
-using NotasMax.ViewModels;
 using NotasMax.Helpers;
+using NotasMax.Services.Simulados;
+using NotasMax.ViewModels;
+using System.Diagnostics;
 
 namespace NotasMax.Views.Professor;
 
+[QueryProperty(nameof(AlunoId), "AlunoId")]
+[QueryProperty(nameof(AlunoNome), "AlunoNome")]
 public partial class DesempenhoAlunoView : ContentPage
 {
-    public DesempenhoAlunoView()
+    private readonly ISimuladoService _simuladoService;
+
+    public string AlunoId { get; set; }
+    public string AlunoNome { get; set; }
+
+    public DesempenhoAlunoView(ISimuladoService simuladoService)
     {
         InitializeComponent();
+        _simuladoService = simuladoService;
     }
 
-    private void CalcularMedia(List<NotaSimulado> notas)
-    {
-        double media = notas.Average(n => n.Nota);
-        label_valor_media.Text = media.ToString("N2");
-    }
-
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+        await CarregarDados();
+    }
 
-        var notaSimulados = new ViewModelExemplo().NotaSimulados.OrderBy(s => s.Numero).ToList();
+    private async Task CarregarDados()
+    {
+        string nome = AlunoNome ?? "Aluno";
+        label_nome_aluno.Text = nome;
+        label_iniciais.Text = TextoHelper.PegarIniciais(nome);
 
-        string nomeAluno = "Lucas Oliveira";
-        label_nome_aluno.Text = nomeAluno;
-        label_iniciais.Text = TextoHelper.PegarIniciais(nomeAluno);
+        try
+        {
+            var resultado = await _simuladoService.GetSimuladosByAluno(AlunoId);
 
-        line_chart.ItemsSource = notaSimulados;
-        BindableLayout.SetItemsSource(layout_simulados, notaSimulados);
+            if (resultado?.Simulados == null || resultado.Simulados.Count == 0)
+                return;
 
-        CalcularMedia(notaSimulados);
+            var simulados = resultado.Simulados.OrderBy(s => s.Numero).ToList();
+
+            var notasSimulado = simulados.Select(s => new NotaSimulado
+            {
+                Numero = s.Numero.ToString(),
+                Nota = s.Media,
+                Data = s.DataRealizacao
+            }).ToList();
+
+            line_chart.ItemsSource = notasSimulado;
+            BindableLayout.SetItemsSource(layout_simulados, notasSimulado);
+
+            double media = simulados.Average(s => s.Media);
+            label_valor_media.Text = media.ToString("N2");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Erro ao carregar desempenho do aluno: {ex.Message}");
+        }
     }
 }
