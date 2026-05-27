@@ -57,7 +57,7 @@
         </Tab>
         <!-- Necessário editar para a view de perfil -->
         <Tab Title="Perfil" Icon="profile.png">
-            <ShellContent ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
+            <ShellContent ContentTemplate="{DataTemplate professor:PerfilProfessorView}" />
         </Tab>
     </TabBar>
 

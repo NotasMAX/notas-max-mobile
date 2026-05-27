@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.Views.Professor.PerfilProfessorView"
+             Title="">
+
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+
+            <!-- Avatar + Nome + Email -->
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center" Margin="0,8,0,4">
+
+                <Border WidthRequest="80"
+                        HeightRequest="80"
+                        StrokeThickness="0"
+                        Background="{StaticResource GradientBluePrimary}"
+                        HorizontalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="40" />
+                    </Border.StrokeShape>
+                    <Label x:Name="label_iniciais"
+                           Text="?"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <Label x:Name="label_nome"
+                       Text=""
+                       FontFamily="SpaceGrotesk"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{StaticResource PrimaryDarkText}" />
+
+                <Label x:Name="label_email"
+                       Text=""
+                       FontFamily="Inter"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{StaticResource SecondaryDarkText}" />
+
+            </VerticalStackLayout>
+
+            <!-- Cards de insight: Turmas / Matérias / Alunos -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+
+                <Border Grid.Column="0" Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}" Spacing="2">
+                        <Label x:Name="label_qtd_turmas"
+                               Text="--"
+                               FontFamily="SpaceGrotesk"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource Blue600}" />
+                        <Label Text="Turmas"
+                               Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}" Spacing="2">
+                        <Label x:Name="label_qtd_materias"
+                               Text="--"
+                               FontFamily="SpaceGrotesk"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource YellowPrimary}" />
+                        <Label Text="Matérias"
+                               Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}" Spacing="2">
+                        <Label x:Name="label_qtd_alunos"
+                               Text="--"
+                               FontFamily="SpaceGrotesk"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource GreenPrimary}" />
+                        <Label Text="Alunos"
+                               Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <!-- Seção: Matérias sob minha responsabilidade -->
+            <Border Style="{StaticResource BorderShadow}">
+                <VerticalStackLayout Spacing="12">
+
+                    <!-- Cabeçalho colapsável -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ToggleMaterias_Tapped" />
+                        </Grid.GestureRecognizers>
+                        <Label Grid.Column="0"
+                               Text="Matérias sob minha responsabilidade"
+                               FontFamily="Inter"
+                               FontSize="15"
+                               TextColor="{StaticResource SecondaryDarkText}"
+                               VerticalOptions="Center" />
+                        <Label x:Name="label_toggle_materias"
+                               Grid.Column="1"
+                               Text="∨"
+                               FontSize="16"
+                               TextColor="{StaticResource SecondaryDarkText}"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Lista de chips de matérias -->
+                    <FlexLayout x:Name="layout_chips_materias"
+                                Wrap="Wrap"
+                                Direction="Row"
+                                AlignItems="Start"
+                                JustifyContent="Start"
+                                IsVisible="True" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Seção: Turmas vinculadas -->
+            <Border Style="{StaticResource BorderShadow}">
+                <VerticalStackLayout Spacing="12">
+
+                    <!-- Cabeçalho colapsável -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ToggleTurmas_Tapped" />
+                        </Grid.GestureRecognizers>
+                        <Label Grid.Column="0"
+                               Text="Turmas vinculadas"
+                               FontFamily="Inter"
+                               FontSize="15"
+                               TextColor="{StaticResource SecondaryDarkText}"
+                               VerticalOptions="Center" />
+                        <Label x:Name="label_toggle_turmas"
+                               Grid.Column="1"
+                               Text="∨"
+                               FontSize="16"
+                               TextColor="{StaticResource SecondaryDarkText}"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Lista de chips de turmas -->
+                    <FlexLayout x:Name="layout_chips_turmas"
+                                Wrap="Wrap"
+                                Direction="Row"
+                                AlignItems="Start"
+                                JustifyContent="Start"
+                                IsVisible="True" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Botão: Sair -->
+            <Border Style="{StaticResource BorderShadow}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Sair_Tapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                    <Border Grid.Column="0"
+                            WidthRequest="25"
+                            HeightRequest="25"
+                            StrokeThickness="0"
+                            BackgroundColor="Transparent">
+                        <Label Text="→"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource RedPrimary}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+                    <Label Grid.Column="1"
+                           Text="Sair"
+                           FontFamily="Inter"
+                           FontSize="18"
+                           TextColor="{StaticResource RedPrimary}"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
