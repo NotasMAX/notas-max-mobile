@@ -16,4 +16,9 @@ public partial class HomeProfessorView : ContentPage
     {
         _navigationService.NavigationAsync("Login?Logout=true", true);
     }
+
+    private void Avatar_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

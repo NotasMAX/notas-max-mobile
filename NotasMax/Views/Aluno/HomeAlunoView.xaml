@@ -10,8 +10,6 @@
     <ScrollView>
         <VerticalStackLayout Padding="20,40" Spacing="16">
 
-            <Button Text="Deslogar" x:Name="Logout" Clicked="Button_Clicked"/>
-
             <!-- Header -->
             <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,4">
 

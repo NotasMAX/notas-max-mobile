@@ -84,10 +84,9 @@ public partial class HomeAlunoView : ContentPage, IValueConverter
 
 
     // Ver todas as materias
-    private void OnLabelVerTudoMateria(object sender, TappedEventArgs e)
+    private async void OnLabelVerTudoMateria(object sender, TappedEventArgs e)
     {
-        DisplayAlertAsync("CLICOU", "VOCE CLICOU EM VER TODAS AS MATERIAS", "OK");
-
+        await _navigationService.NavigationAsync("MinhasMaterias", false);
     }
 
     // Ir para tela de desempnho de uma materia 
@@ -113,9 +112,9 @@ public partial class HomeAlunoView : ContentPage, IValueConverter
     }
 
     // Botao para ir na tela de perfil
-    private void Avatar_Clicked(object sender, EventArgs e)
+    private async void Avatar_Clicked(object sender, EventArgs e)
     {
-        DisplayAlertAsync("CLICOU", "VOCE CLICOU NO AVARTAR", "OK");
+        await _navigationService.NavigationAsync("DadosPessoaisAluno", false);
     }
 
     // Grafico
