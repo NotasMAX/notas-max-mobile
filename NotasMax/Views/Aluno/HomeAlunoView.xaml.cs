@@ -1,31 +1,34 @@
-using NotasMax.Models;
+using NotasMax.Models.Simulados;
 using NotasMax.Models.Usuarios;
 using NotasMax.Services.NavigationService;
 using NotasMax.Services.Settings;
 using NotasMax.Services.Simulados;
 using NotasMax.Services.Usuarios;
+using System.Globalization;
 
 namespace NotasMax.Views.Aluno;
 
-public partial class HomeAlunoView : ContentPage
+public partial class HomeAlunoView : ContentPage, IValueConverter
 {
     private readonly INavigationService _navigationService;
-    private readonly ISettingsService  _settingsService;
-    private readonly IUsuarioService  _usuarioService;
+    private readonly ISettingsService _settingsService;
+    private readonly IUsuarioService _usuarioService;
     private readonly ISimuladoService _simuladoService;
 
     private Usuario? _usuario;
-    private List<Simulado> _simulados = new();
+    private SimuladoAlunoResponse _simulados = new();
 
     public HomeAlunoView(INavigationService navigationService, ISettingsService settingsService, IUsuarioService usuarioService, ISimuladoService simuladoService)
-	{
+    {
         _navigationService = navigationService;
         _settingsService = settingsService;
         _usuarioService = usuarioService;
         _simuladoService = simuladoService;
 
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
+
+    // Carrega toda vez que entrar nesta tela
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -40,9 +43,23 @@ public partial class HomeAlunoView : ContentPage
             _simulados = await _simuladoService.GetByAluno(
                 _settingsService.UserIdKey,
                 _settingsService.AuthAccessToken
-             );
+            );
 
-            txt_nomeUsuario.Text = _usuario?.Nome ?? "Usuário";
+            txt_notaGeral.Text = _simulados.MediaGeral.ToString("F1");
+
+            string nameUser = _usuario?.Nome ?? "Usuário";
+
+            txt_nomeUsuario.Text = nameUser;
+            txt_inicialUsuario.Text = !string.IsNullOrEmpty(nameUser)
+                ? nameUser[0].ToString()
+                : "?";
+
+            collection_materias.ItemsSource = _simulados.MediaPorMateria;
+            img_seta.Source = _simulados.MediaGeral >= 7.0
+                            ? "seta_subindo_desempenho.png"
+                            : "seta_descendo_desempenho.png";
+
+            CarregarPicker(); // Carregar picker do grafico
         }
         catch (HttpRequestException ex)
         {
@@ -52,19 +69,103 @@ public partial class HomeAlunoView : ContentPage
         {
             await DisplayAlertAsync("Erro", $"Erro inesperado: {ex.Message}", "Ok");
         }
-    }
-    private void OnLabelVerTudoMateria(object sender, TappedEventArgs e)
+    } // Fim OnAppearing
+
+    // Converte valor da media da nota por disciplina para ficar compativel com o ProgressBar - Aceita valor fracionado de 0.0 a 1.0
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-
+        if (value is double nota)
+            return nota * 10.0;
+        return 0;
     }
 
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+
+
+    // Ver todas as materias
+    private async void OnLabelVerTudoMateria(object sender, TappedEventArgs e)
+    {
+        await _navigationService.NavigationAsync("MinhasMaterias", false);
+    }
+
+    // Ir para tela de desempnho de uma materia 
     private void TapGestureRecognizer_VerMateria(object sender, TappedEventArgs e)
     {
+        if (e.Parameter is string materiaId)
+        {
+            var materia = _simulados.MediaPorMateria
+                .FirstOrDefault(m => m.MateriaId == materiaId);
 
+            if (materia != null)
+            {
+                DisplayAlertAsync("Matéria", $"Matéria: {materia.Materia}\nProfessor: {materia.Professor}\nMédia: {materia.Media:F1}", "OK");
+
+            }
+        }
     }
 
+    // Botao de Logout - temporario para desenvolvimento
     private void Button_Clicked(object sender, EventArgs e)
     {
         _navigationService.NavigationAsync("Login?Logout=true", true);
+    }
+
+    // Botao para ir na tela de perfil
+    private async void Avatar_Clicked(object sender, EventArgs e)
+    {
+        await _navigationService.NavigationAsync("DadosPessoaisAluno", false);
+    }
+
+    // Grafico
+    private void CarregarPicker()
+    {
+        // Pega os bimestres únicos e ordena
+        var bimestres = _simulados.Simulados
+            .Select(s => s.Bimestre)
+            .Distinct()
+            .OrderBy(b => b)
+            .ToList();
+
+        picker_bimestre.ItemsSource = bimestres
+            .Select(b => $"{b}º Bimestre")
+            .ToList();
+
+        // Seleciona o primeiro bimestre automaticamente
+        if (bimestres.Count > 0)
+        {
+            picker_bimestre.SelectedIndex = 0;
+            AtualizarGrafico(bimestres[0]);
+        }
+    }
+
+    private void Picker_Bimestre_Changed(object sender, EventArgs e)
+    {
+        if (picker_bimestre.SelectedIndex < 0) return;
+
+        // Extrai o número do bimestre do texto "1º Bimestre" → 1
+        var bimestres = _simulados.Simulados
+            .Select(s => s.Bimestre)
+            .Distinct()
+            .OrderBy(b => b)
+            .ToList();
+
+        var bimestreSelecionado = bimestres[picker_bimestre.SelectedIndex];
+        AtualizarGrafico(bimestreSelecionado);
+    }
+
+    private void AtualizarGrafico(int bimestre)
+    {
+        var dados = _simulados.Simulados
+            .Where(s => s.Bimestre == bimestre)
+            .OrderBy(s => s.Numero)
+            .Select(s => new GraficoSimuladoHomeAlunoData
+            {
+                Label = $"Sim. {s.Numero}",
+                Media = s.MediaSimulado
+            })
+            .ToList();
+
+        serie_evolucao.ItemsSource = dados;
     }
 }

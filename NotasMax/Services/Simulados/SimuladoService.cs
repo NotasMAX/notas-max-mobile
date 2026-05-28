@@ -13,6 +13,7 @@ namespace NotasMax.Services.Simulados
         private readonly IRequestProvider _requestProvider;
         private readonly ISettingsService _settingsService;
         private Usuario? _usuario { get; set; } = null;
+
         public SimuladoService(IRequestProvider requestProvider, ISettingsService settingsService)
         {
             _requestProvider = requestProvider;
@@ -27,12 +28,12 @@ namespace NotasMax.Services.Simulados
             _usuario.TipoUsuario = _settingsService.UserRoleKey;
         }
 
-        public async Task<List<Simulado>> GetByAluno(string aluno_id, string token)
+        public async Task<SimuladoAlunoResponse> GetByAluno(string aluno_id, string token)
         {
             var uri = $"{GlobalSettings.Instance.SimuladoEndpoint}/getByAluno/{aluno_id}";
-            var response = await _requestProvider.GetAsync<SimuladoListResponse>(uri, token);
+            var response = await _requestProvider.GetAsync<SimuladoAlunoResponse>(uri, token);
 
-            return response?.Simulados ?? new List<Simulado>();
+            return response;
         }
 
         public async Task<DesempenhoAlunoByDisciplina> getDesempenhoByDisciplina(string disciplinaId)

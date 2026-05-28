@@ -1,10 +1,344 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NotasMax.Views.Professor.HomeProfessorView"
-             Title="HomeProfessorView">
-    <VerticalStackLayout>
+<ContentPage
+    x:Class="NotasMax.Views.Professor.HomeProfessorView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarIsVisible="False">
 
-        <Button Text="Deslogar" x:Name="Logout" Clicked="Logout_Clicked"/>
-    </VerticalStackLayout>
+    <ScrollView>
+
+        <VerticalStackLayout Padding="16" Spacing="16">
+          
+            <!-- Header -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,4">
+
+                <VerticalStackLayout Grid.Column="0" Spacing="2">
+
+                    <Label Text="Olá,"
+                           Style="{StaticResource LabelDefaultSecudary}"/>
+
+                    <HorizontalStackLayout Spacing="6">
+
+                        <Label x:Name="txt_nomeUsuario"
+                               Style="{StaticResource LabelDefaultTitle}"
+                               FontSize="26"
+                               TextColor="#1A1F36" />
+                        <Label Text="👋"
+                               FontSize="26"
+                               VerticalOptions="Center" />
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+                <!-- Avatar -->
+                <Button Grid.Column="1"
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        Background="{StaticResource GradientBluePrimary}"
+                        VerticalOptions="Center" 
+                        x:Name="txt_inicialUsuario"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="White" 
+                        CornerRadius="50"
+                        Clicked="Avatar_Clicked"/>
+            </Grid>
+
+            <!-- Cards de Insights: Turmas, Simulados, Média Geral -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+
+                <!-- Turmas -->
+                <Border Grid.Column="0" Style="{StaticResource BorderShadow}" Padding="12">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                        <Image Source="icon_turmas.png" Style="{StaticResource ImageIcon}" />
+                        <Label Text="3" Style="{StaticResource LabelInsightValue}" TextColor="{StaticResource BluePrimary}" />
+                        <Label Text="Turmas" Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Simulados -->
+                <Border Grid.Column="1" Style="{StaticResource BorderShadow}" Padding="12">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                        <Image Source="icon_simulados.png" Style="{StaticResource ImageIcon}" />
+                        <Label Text="2" Style="{StaticResource LabelInsightValue}" TextColor="{StaticResource YellowPrimary}" />
+                        <Label Text="Simulados" Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Média Geral -->
+                <Border Grid.Column="2" Style="{StaticResource BorderShadow}" Padding="12">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                        <Image Source="icon_media.png" Style="{StaticResource ImageIcon}" />
+                        <Label Text="7.4" Style="{StaticResource LabelInsightValue}" TextColor="{StaticResource GreenPrimary}" />
+                        <Label Text="Média Geral" Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Card de Média Geral das Turmas (gradiente azul) -->
+            <Border
+                    StrokeShape="RoundRectangle 16"
+                    Stroke="Transparent"
+                    Padding="20,16">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{StaticResource Blue900}" Offset="0.0" />
+                        <GradientStop Color="{StaticResource BluePrimaryLight}" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid ColumnDefinitions="*, Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label
+                                Text="MÉDIA GERAL DAS TURMAS"
+                                TextColor="{StaticResource BlueSecondary}"
+                                FontFamily="Inter"
+                                FontSize="11" />
+                        <Label
+                                Text="7.4"
+                                TextColor="{StaticResource White}"
+                                FontFamily="SpaceGrotesk"
+                                FontSize="42"
+                                FontAttributes="Bold" />
+                        <Label
+                                Text="Último: Simulado 2 - Março"
+                                TextColor="{StaticResource Blue200}"
+                                FontFamily="Inter"
+                                FontSize="13" />
+                    </VerticalStackLayout>
+
+                    <!-- Ícone de tendência -->
+                    <Border
+                            Grid.Column="1"
+                            WidthRequest="52"
+                            HeightRequest="52"
+                            StrokeShape="Ellipse"
+                            BackgroundColor="#33FFFFFF"
+                            Stroke="Transparent"
+                            VerticalOptions="Center">
+                        <Image
+                                Source="icon_trend_up.png"
+                                HeightRequest="24"
+                                WidthRequest="24"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Card: Gráfico Média por Turma -->
+            <Border Style="{StaticResource BorderShadow}">
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                            Text="Média por Turma"
+                            Style="{StaticResource LabelSubtitle}"
+                            FontSize="16" />
+
+                    <!-- Placeholder do gráfico de barras -->
+                    <!-- Substitua pelo componente de gráfico da sua lib (ex: Microcharts, LiveCharts2) -->
+                    <Grid
+                            HeightRequest="160"
+                            ColumnDefinitions="*,*,*"
+                            ColumnSpacing="12"
+                            RowDefinitions="*, Auto"
+                            Padding="8,0">
+
+                        <!-- Barra 9A -->
+                        <Border
+                                Grid.Row="0" Grid.Column="0"
+                                StrokeShape="RoundRectangle 6,6,0,0"
+                                Stroke="Transparent"
+                                BackgroundColor="{StaticResource GreenPrimary}"
+                                HeightRequest="100"
+                                VerticalOptions="End" />
+                        <Label Grid.Row="1" Grid.Column="0"
+                                   Text="9A"
+                                   Style="{StaticResource LabelInsightText}"
+                                   HorizontalOptions="Center" />
+
+                        <!-- Barra 9B -->
+                        <Border
+                                Grid.Row="0" Grid.Column="1"
+                                StrokeShape="RoundRectangle 6,6,0,0"
+                                Stroke="Transparent"
+                                BackgroundColor="{StaticResource YellowPrimary}"
+                                HeightRequest="80"
+                                VerticalOptions="End" />
+                        <Label Grid.Row="1" Grid.Column="1"
+                                   Text="9B"
+                                   Style="{StaticResource LabelInsightText}"
+                                   HorizontalOptions="Center" />
+
+                        <!-- Barra 8A -->
+                        <Border
+                                Grid.Row="0" Grid.Column="2"
+                                StrokeShape="RoundRectangle 6,6,0,0"
+                                Stroke="Transparent"
+                                BackgroundColor="{StaticResource GreenPrimary}"
+                                HeightRequest="105"
+                                VerticalOptions="End" />
+                        <Label Grid.Row="1" Grid.Column="2"
+                                   Text="8A"
+                                   Style="{StaticResource LabelInsightText}"
+                                   HorizontalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Seção: Suas Turmas -->
+            <Grid ColumnDefinitions="*, Auto" Margin="0,4,0,0">
+                <Label
+                        Grid.Column="0"
+                        Text="Suas Turmas"
+                        Style="{StaticResource LabelSubtitle}" />
+                <Label
+                        Grid.Column="1"
+                        Text="Ver todas"
+                        TextColor="{StaticResource PrimaryTextLink}"
+                        FontFamily="Inter"
+                        FontSize="14"
+                        VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VerTodasTurmasCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <!-- Lista de Turmas -->
+            <VerticalStackLayout Spacing="10">
+
+                <!-- Turma: 9º Ano A -->
+                <Border Style="{StaticResource BorderShadow}" Padding="12,14">
+                    <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+                        <Border
+                                Grid.Column="0"
+                                WidthRequest="40" HeightRequest="40"
+                                StrokeShape="RoundRectangle 10"
+                                BackgroundColor="{StaticResource Blue100}"
+                                Stroke="Transparent"
+                                Margin="0,0,12,0">
+                            <Image
+                                    Source="icon_turmas.png"
+                                    HeightRequest="22" WidthRequest="22"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                        </Border>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="9º Ano A" Style="{StaticResource LabelDefaultBold}" FontSize="15" />
+                            <Label Text="32 alunos" Style="{StaticResource LabelDetails}" FontSize="13" />
+                        </VerticalStackLayout>
+
+                        <Label
+                                Grid.Column="2"
+                                Text="7.4"
+                                Style="{StaticResource LabelDefaultBold}"
+                                FontSize="16"
+                                VerticalOptions="Center"
+                                Margin="0,0,8,0" />
+                        <Label
+                                Grid.Column="3"
+                                Text="›"
+                                TextColor="{StaticResource BlueGray400}"
+                                FontSize="20"
+                                VerticalOptions="Center" />
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AbrirTurmaCommand}" CommandParameter="9A" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Turma: 9º Ano B -->
+                <Border Style="{StaticResource BorderShadow}" Padding="12,14">
+                    <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+                        <Border
+                                Grid.Column="0"
+                                WidthRequest="40" HeightRequest="40"
+                                StrokeShape="RoundRectangle 10"
+                                BackgroundColor="{StaticResource Blue100}"
+                                Stroke="Transparent"
+                                Margin="0,0,12,0">
+                            <Image
+                                    Source="icon_turmas.png"
+                                    HeightRequest="22" WidthRequest="22"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                        </Border>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="9º Ano B" Style="{StaticResource LabelDefaultBold}" FontSize="15" />
+                            <Label Text="28 alunos" Style="{StaticResource LabelDetails}" FontSize="13" />
+                        </VerticalStackLayout>
+
+                        <Label
+                                Grid.Column="2"
+                                Text="6.9"
+                                Style="{StaticResource LabelDefaultBold}"
+                                FontSize="16"
+                                VerticalOptions="Center"
+                                Margin="0,0,8,0" />
+                        <Label
+                                Grid.Column="3"
+                                Text="›"
+                                TextColor="{StaticResource BlueGray400}"
+                                FontSize="20"
+                                VerticalOptions="Center" />
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AbrirTurmaCommand}" CommandParameter="9B" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Turma: 8º Ano A -->
+                <Border Style="{StaticResource BorderShadow}" Padding="12,14">
+                    <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+                        <Border
+                                Grid.Column="0"
+                                WidthRequest="40" HeightRequest="40"
+                                StrokeShape="RoundRectangle 10"
+                                BackgroundColor="{StaticResource Blue100}"
+                                Stroke="Transparent"
+                                Margin="0,0,12,0">
+                            <Image
+                                    Source="icon_turmas.png"
+                                    HeightRequest="22" WidthRequest="22"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                        </Border>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="8º Ano A" Style="{StaticResource LabelDefaultBold}" FontSize="15" />
+                            <Label Text="30 alunos" Style="{StaticResource LabelDetails}" FontSize="13" />
+                        </VerticalStackLayout>
+
+                        <Label
+                                Grid.Column="2"
+                                Text="7.8"
+                                Style="{StaticResource LabelDefaultBold}"
+                                FontSize="16"
+                                VerticalOptions="Center"
+                                Margin="0,0,8,0" />
+                        <Label
+                                Grid.Column="3"
+                                Text="›"
+                                TextColor="{StaticResource BlueGray400}"
+                                FontSize="20"
+                                VerticalOptions="Center" />
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AbrirTurmaCommand}" CommandParameter="8A" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Espaço extra para a TabBar não cobrir conteúdo -->
+            <BoxView HeightRequest="16" Color="Transparent" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
 </ContentPage>
