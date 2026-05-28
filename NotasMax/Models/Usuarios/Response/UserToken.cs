@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using NotasMax.Models.Usuarios;
+using System.Text.Json.Serialization;
 
 namespace NotasMax.Models.Usuarios.Response
 {

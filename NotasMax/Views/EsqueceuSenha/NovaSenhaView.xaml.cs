@@ -1,12 +1,25 @@
+using NotasMax.Services.Usuarios;
+
 namespace NotasMax.Views.EsqueceuSenha;
 
+[QueryProperty(nameof(Token), "token")]
 public partial class NovaSenhaView : ContentPage
 {
     private bool isPasswordEyeOpen = false;
     private bool isConfirmPasswordEyeOpen = false;
-    public NovaSenhaView()
+    private readonly IUsuarioService _usuarioService;
+
+    private string _token = string.Empty;
+    public string Token
+    {
+        get => _token;
+        set => _token = Uri.UnescapeDataString(value ?? "");
+    }
+
+    public NovaSenhaView(IUsuarioService usuarioService)
     {
         InitializeComponent();
+        _usuarioService = usuarioService;
     }
 
     private async Task<bool> ValidatePassword()
@@ -37,8 +50,45 @@ public partial class NovaSenhaView : ContentPage
         if (!await ValidatePassword())
             return;
 
-        await Navigation.PopToRootAsync();
+        button_save_password.IsEnabled = false;
+        button_save_password.Text = "Salvando...";
 
+        try
+        {
+            if (_usuarioService == null)
+            {
+                await DisplayAlertAsync("Erro", "Serviço não disponível. Por favor, tente novamente.", "OK");
+                return;
+            }
+
+            string novaSenha = entry_password.Text.Trim();
+            var response = await _usuarioService.ResetPassword(Token, novaSenha);
+
+            if (response != null)
+            {
+                await DisplayAlertAsync("Sucesso", response.Message ?? "Senha alterada com sucesso!", "OK");
+                await Shell.Current.GoToAsync("///Login");
+            }
+            else
+            {
+                await DisplayAlertAsync("Erro", "Não foi possível alterar a senha. Tente novamente.", "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Erro ao alterar senha: {ex.Message}");
+            await DisplayAlertAsync("Erro", $"Ocorreu um erro: {ex.Message}", "OK");
+        }
+        finally
+        {
+            button_save_password.IsEnabled = true;
+            button_save_password.Text = "Salvar Nova Senha";
+        }
+    }
+
+    private async void BackToLogin_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///Login");
     }
     private void ToggleEyePassword_Clicked(object sender, EventArgs e)
     {

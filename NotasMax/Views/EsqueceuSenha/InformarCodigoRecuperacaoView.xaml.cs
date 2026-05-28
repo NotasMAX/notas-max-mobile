@@ -1,18 +1,24 @@
+using NotasMax.Services.Usuarios;
+
 namespace NotasMax.Views.EsqueceuSenha;
 
+[QueryProperty(nameof(Email), "email")]
 public partial class InformarCodigoRecuperacaoView : ContentPage
 {
 	private string _email = "exemplo@email.com"; 
-    public string Email
-    {
-        get => _email;
-        set => _email = value;
-    }
+	public string Email
+	{
+		get => _email;
+		set => _email = Uri.UnescapeDataString(value ?? "");
+	}
 
 	private bool isEyeOpen = false;
-    public InformarCodigoRecuperacaoView()
+	private readonly IUsuarioService _usuarioService;
+
+	public InformarCodigoRecuperacaoView(IUsuarioService usuarioService)
 	{
 		InitializeComponent();
+		_usuarioService = usuarioService;
 	}
 
 	protected override void OnAppearing()
@@ -42,8 +48,13 @@ public partial class InformarCodigoRecuperacaoView : ContentPage
     {
         if (!await ValidateCode())
             return;
-        // Aqui você pode adicionar a lógica para verificar o código inserido pelo usuário
-        // Se o código for válido, navegue para a página de criação de nova senha
-        await Navigation.PushAsync(new NovaSenhaView());
+
+        string token = entry_codigo.Text.Trim();
+        await Shell.Current.GoToAsync($"///novasenha?token={Uri.EscapeDataString(token)}");
+    }
+
+    private async void BackToLogin_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///Login");
     }
 }

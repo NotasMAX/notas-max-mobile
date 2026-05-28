@@ -7,6 +7,7 @@ using NotasMax.Services.Simulados;
 using NotasMax.Services.Usuarios;
 using NotasMax.Views;
 using NotasMax.Views.Aluno;
+using NotasMax.Views.EsqueceuSenha;
 using NotasMax.Views.Professor;
 using Syncfusion.Maui.Toolkit.Hosting;
 
@@ -27,7 +28,7 @@ namespace NotasMax
                     fonts.AddFont("Inter.ttf", "Inter");
                     fonts.AddFont("Roboto.ttf", "Roboto");
                     fonts.AddFont("SpaceGrotesk.ttf", "SpaceGrotesk");
-                    fonts.AddFont("RobotoMono.ttf", "RobotoMono");
+                     fonts.AddFont("RobotoMono.ttf", "RobotoMono");
                 })
                 .RegisterAppServices()
                 .RegisterViews();
@@ -57,8 +58,6 @@ namespace NotasMax
             return builder.Build();
         }
 
-
-
         // Registrar os serviços da aplicação
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder app)
         {
@@ -76,6 +75,16 @@ namespace NotasMax
             app.Services.AddSingleton<LoginView>();
             app.Services.AddSingleton<HomeAlunoView>();
             app.Services.AddSingleton<HomeProfessorView>();
+            app.Services.AddSingleton<TurmasView>();
+            app.Services.AddSingleton<DesempenhoTurmaView>();
+            app.Services.AddSingleton<PerfilView>();
+            app.Services.AddSingleton<PerfilProfessorView>();
+            app.Services.AddTransient<MinhasMateriasView>();
+            app.Services.AddTransient<DesempenhoAlunoView>();
+            app.Services.AddTransient<DadosPessoaisAlunoView>();
+            app.Services.AddTransient<InformarEmailView>();
+            app.Services.AddTransient<InformarCodigoRecuperacaoView>();
+            app.Services.AddTransient<NovaSenhaView>();
             return app;
         }
 

@@ -2,9 +2,11 @@ using NotasMax.ViewModels;
 
 namespace NotasMax.Views.Aluno;
 
+[QueryProperty(nameof(MateriaNome), "nome")]
 public partial class ExibirMateriaView : ContentPage
 {
-	public ExibirMateriaView()
+    public string? MateriaNome { get; set; }
+    public ExibirMateriaView()
 	{
 		InitializeComponent();
 	}

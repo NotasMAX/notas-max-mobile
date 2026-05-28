@@ -1,5 +1,6 @@
 using NotasMax.Helpers;
 using NotasMax.ViewModels;
+using System.Globalization;
 
 namespace NotasMax.ContentsViews;
 
@@ -17,7 +18,8 @@ public partial class SimuladoItemContentView : ContentView
             return;
 
         label_nome_simulado.Text = "Simulado " + nota.Numero;
-        label_data.Text = nota.Data.ToString("dd 'de' MMM", new System.Globalization.CultureInfo("pt-BR"));
+        string dataFormatada = nota.Data.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("pt-BR"));
+        label_data.Text = dataFormatada;
         label_valor_nota.Text = nota.Nota.ToString("N2");
         label_valor_nota.TextColor = ColorHelper.DefinirCor(nota.Nota);
     }

@@ -22,7 +22,7 @@
                     <Label FontFamily="Inter"
                           FontAttributes="Bold"
                           FontSize="20"
-                          Text="{Binding SerieComposta}"/>
+                          Text="{Binding SerieFormatada}"/>
                     <Label
                           x:Name="label_quantidade_alunos"
                           FontFamily="Inter"

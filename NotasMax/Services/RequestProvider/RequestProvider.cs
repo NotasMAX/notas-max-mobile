@@ -22,11 +22,12 @@ namespace NotasMax.Services.RequestProvider
             var httpClient = _httpClient.Value;
             httpClient.DefaultRequestHeaders.Clear(); // Limpa o cabeçalho para evitar acúmulo de tokens
 
-            // Adiciona o token, fazendo uma verificação para garantir que ele não seja nulo ou vazio
-            httpClient.DefaultRequestHeaders.Authorization =
-                !string.IsNullOrEmpty(token) ?
-                new System.Net.Http.Headers.AuthenticationHeaderValue(token) :
-                null;
+            // Adiciona o token apenas se não for nulo ou vazio
+            if (!string.IsNullOrEmpty(token))
+            {
+                httpClient.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
 
             return httpClient;
         }
@@ -45,14 +46,25 @@ namespace NotasMax.Services.RequestProvider
             // Envia a requisição POST para a URI especificada e aguarda a resposta
             var response = await httpClient.PostAsync(uri, body).ConfigureAwait(false);
 
-            // Verifica se a resposta foi bem-sucedida, caso contrario lança uma exceção 
-            if (!response.IsSuccessStatusCode)
-                throw new ApiException(response.StatusCode, "Erro ao realizar a requisição com a API");
+            // Lê o conteúdo da resposta
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            // Lê o conteúdo da resposta e desserializa para o tipo TSend, retornando o resultado
-            var result = await response.Content.ReadFromJsonAsync<TResult>();
-            return result;
-        }    
+            // Tenta desserializar a resposta mesmo se não for sucesso (pode conter mensagem de erro)
+            try
+            {
+                var result = JsonSerializer.Deserialize<TResult>(content);
+                return result;
+            }
+            catch (JsonException)
+            {
+                // Se não conseguir desserializar, verifica se foi sucesso
+                if (!response.IsSuccessStatusCode)
+                    throw new ApiException(response.StatusCode, "Erro ao realizar a requisição com a API");
+
+                // Se foi sucesso mas não conseguiu desserializar, relança o erro de JSON
+                throw;
+            }
+        }
         
         public async Task<TResult> GetAsync<TResult>(string uri, string token = "")
         {

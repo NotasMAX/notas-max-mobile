@@ -144,6 +144,13 @@
 
                     </Button>
 
+                    <Button x:Name="button_back_login"
+                        Text="Voltar para Login"
+                        Clicked="BackToLogin_Clicked"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource Blue600}"
+                        FontAttributes="Bold"/>
+
                 </VerticalStackLayout>
             </Border>
         </Grid>

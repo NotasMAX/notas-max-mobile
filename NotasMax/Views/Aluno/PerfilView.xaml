@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasMax.Views.Aluno.PerfilView"
+             Title="">
+
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+
+            <!-- Avatar + Nome + Série -->
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center" Margin="0,8,0,4">
+
+                <Border WidthRequest="80"
+                        HeightRequest="80"
+                        StrokeThickness="0"
+                        Background="{StaticResource GradientBluePrimary}"
+                        HorizontalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="40" />
+                    </Border.StrokeShape>
+                    <Label x:Name="label_iniciais"
+                           Text="?"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+
+                <Label x:Name="label_nome"
+                       Text=""
+                       FontFamily="SpaceGrotesk"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{StaticResource PrimaryDarkText}" />
+
+                <Label x:Name="label_turma"
+                       Text=""
+                       FontFamily="Inter"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{StaticResource SecondaryDarkText}" />
+
+            </VerticalStackLayout>
+
+            <!-- Cards de insight: Nota Geral / Simulados / Matérias -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+
+                <!-- Nota Geral -->
+                <Border Grid.Column="0" Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}" Spacing="2">
+                        <Label x:Name="label_nota_geral"
+                               Text="--"
+                               FontFamily="SpaceGrotesk"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource Blue600}" />
+                        <Label Text="Nota Geral"
+                               Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Simulados -->
+                <Border Grid.Column="1" Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}" Spacing="2">
+                        <Label x:Name="label_qtd_simulados"
+                               Text="--"
+                               FontFamily="SpaceGrotesk"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource YellowPrimary}" />
+                        <Label Text="Simulados"
+                               Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Matérias -->
+                <Border Grid.Column="2" Style="{StaticResource BorderShadow}">
+                    <VerticalStackLayout Style="{StaticResource VerStackInsight}" Spacing="2">
+                        <Label x:Name="label_qtd_materias"
+                               Text="--"
+                               FontFamily="SpaceGrotesk"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource GreenPrimary}" />
+                        <Label Text="Matérias"
+                               Style="{StaticResource LabelInsightText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <!-- Botão: Dados Pessoais -->
+            <Border Style="{StaticResource BorderShadow}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="DadosPessoais_Tapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Image Grid.Column="0"
+                           Source="profile.png"
+                           Style="{StaticResource ImageIcon}" />
+                    <Label Grid.Column="1"
+                           Text="Dados Pessoais"
+                           Style="{StaticResource LabelButton}"
+                           VerticalOptions="Center" />
+                    <Image Grid.Column="2"
+                           Source="arrow_right.png"
+                           Style="{StaticResource ImageIcon}" />
+                </Grid>
+            </Border>
+
+            <!-- Botão: Minhas Matérias -->
+            <Border Style="{StaticResource BorderShadow}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="MinhasMaterias_Tapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Image Grid.Column="0"
+                           Source="subject.png"
+                           Style="{StaticResource ImageIcon}" />
+                    <Label Grid.Column="1"
+                           Text="Minhas Matérias"
+                           Style="{StaticResource LabelButton}"
+                           VerticalOptions="Center" />
+                    <Image Grid.Column="2"
+                           Source="arrow_right.png"
+                           Style="{StaticResource ImageIcon}" />
+                </Grid>
+            </Border>
+
+            <!-- Botão: Sair -->
+            <Border Style="{StaticResource BorderShadow}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Sair_Tapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                    <!-- Ícone de logout: seta vermelha composta de Label -->
+                    <Border Grid.Column="0"
+                            WidthRequest="25"
+                            HeightRequest="25"
+                            StrokeThickness="0"
+                            BackgroundColor="Transparent">
+                        <Label Text="→"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource RedPrimary}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+                    <Label Grid.Column="1"
+                           Text="Sair"
+                           FontFamily="Inter"
+                           FontSize="18"
+                           TextColor="{StaticResource RedPrimary}"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

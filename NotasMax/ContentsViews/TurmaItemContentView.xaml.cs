@@ -5,29 +5,35 @@ namespace NotasMax.ContentsViews;
 
 public partial class TurmaItemContentView : ContentView
 {
-	public TurmaItemContentView()
-	{
-		InitializeComponent();
-	}
-
-	protected override void OnBindingContextChanged()
-	{
-		base.OnBindingContextChanged();
-		if (!(this.BindingContext is MediaTurmaAlunos mediaTurmaAlunos))
-			return;
-
-        label_valor_media.TextColor = ColorHelper.DefinirCor(mediaTurmaAlunos.Media);
-		label_valor_media.Text = mediaTurmaAlunos.Media.ToString("N2");
-        label_quantidade_alunos.Text = mediaTurmaAlunos.QuantidadeAlunos + " alunos";
+    public TurmaItemContentView()
+    {
+        InitializeComponent();
     }
 
-	private void TurmaItem_Tapped(object sender, TappedEventArgs e)
-	{
-        if (!(this.BindingContext is MediaTurmaAlunos mediaTurmaAlunos))
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+        if (!(this.BindingContext is TurmasByAnoAndProfessor.Turma turma))
             return;
 
-		var turmaId = mediaTurmaAlunos.TurmaId;
+        label_valor_media.TextColor = ColorHelper.DefinirCor(turma.Media);
+        label_valor_media.Text = turma.Media.ToString("N2");
+        label_quantidade_alunos.Text = turma.QuantidadeAlunos + " alunos";
+    }
 
-        //LÃ³gica para navegar para a pÃ¡gina de detalhes da turma usando o id
+    private async void TurmaItem_Tapped(object sender, TappedEventArgs e)
+    {
+        if (this.BindingContext is not TurmasByAnoAndProfessor.Turma turma)
+            return;
+
+        try
+        {
+            await Shell.Current.GoToAsync($"///professor/desempenho/desempenhoturmaview?turmaId={turma.Id}");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Erro de navegação: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
+        }
     }
 }
