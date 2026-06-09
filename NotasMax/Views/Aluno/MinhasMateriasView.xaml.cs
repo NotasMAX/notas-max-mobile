@@ -1,4 +1,6 @@
+using NotasMax.Models.Simulados;
 using NotasMax.Services.Simulados;
+using NotasMax.Services.Settings;
 using System.Diagnostics;
 
 namespace NotasMax.Views.Aluno;
@@ -6,10 +8,12 @@ namespace NotasMax.Views.Aluno;
 public partial class MinhasMateriasView : ContentPage
 {
     private readonly ISimuladoService _simuladoService;
+    private readonly ISettingsService _settingsService;
 
-    public MinhasMateriasView(ISimuladoService simuladoService)
+    public MinhasMateriasView(ISimuladoService simuladoService, ISettingsService settingsService)
     {
         _simuladoService = simuladoService;
+        _settingsService = settingsService;
         InitializeComponent();
     }
 
@@ -23,16 +27,19 @@ public partial class MinhasMateriasView : ContentPage
     {
         try
         {
-            var desempenho = await _simuladoService.GetDesempenhoAluno();
-            if (desempenho?.Materias == null || desempenho.Materias.Count == 0)
+            var alunoId = _settingsService.UserIdKey;
+            var token = _settingsService.AuthAccessToken;
+
+            var response = await _simuladoService.GetByAluno(alunoId, token);
+
+            if (response?.MediaPorMateria == null || response.MediaPorMateria.Count == 0)
                 return;
 
             grid_materias.RowDefinitions.Clear();
             grid_materias.Children.Clear();
 
-            var materias = desempenho.Materias;
+            var materias = response.MediaPorMateria;
 
-            // Calcula quantas linhas o grid precisará
             int totalLinhas = (int)Math.Ceiling(materias.Count / 2.0);
             for (int i = 0; i < totalLinhas; i++)
                 grid_materias.RowDefinitions.Add(new RowDefinition { Height = 100 });
@@ -43,7 +50,7 @@ public partial class MinhasMateriasView : ContentPage
                 int linha = i / 2;
                 int coluna = i % 2;
 
-                var card = CriarCardMateria(materia.Nome);
+                var card = CriarCardMateria(materia.MateriaId.ToString(), materia.Materia);
                 Grid.SetRow(card, linha);
                 Grid.SetColumn(card, coluna);
                 grid_materias.Children.Add(card);
@@ -55,20 +62,18 @@ public partial class MinhasMateriasView : ContentPage
         }
     }
 
-    private Border CriarCardMateria(string nomeMateria)
+    private Border CriarCardMateria(string materiaId, string nomeMateria)
     {
-        // Paleta de cores fixa para os cards, ciclando entre elas
         var cores = new[]
         {
-            Color.FromArgb("#2EB867"), // verde
-            Color.FromArgb("#FFBB0F"), // amarelo
-            Color.FromArgb("#EF4343"), // vermelho
-            Color.FromArgb("#6C63FF"), // roxo
-            Color.FromArgb("#1685F3"), // azul
-            Color.FromArgb("#FF7043"), // laranja
+            Color.FromArgb("#2EB867"),
+            Color.FromArgb("#FFBB0F"),
+            Color.FromArgb("#EF4343"),
+            Color.FromArgb("#6C63FF"),
+            Color.FromArgb("#1685F3"),
+            Color.FromArgb("#FF7043"),
         };
 
-        // Usa o hash do nome para sempre associar a mesma cor à mesma matéria
         var cor = cores[Math.Abs(nomeMateria.GetHashCode()) % cores.Length];
 
         var card = new Border
@@ -91,15 +96,15 @@ public partial class MinhasMateriasView : ContentPage
         };
 
         var tap = new TapGestureRecognizer();
-        tap.Tapped += (s, e) => Navegar_Materia(nomeMateria);
+        tap.Tapped += (s, e) => Navegar_Materia(materiaId, nomeMateria);
         card.GestureRecognizers.Add(tap);
 
         return card;
     }
 
-    private async void Navegar_Materia(string nomeMateria)
+    private async void Navegar_Materia(string materiaId, string nomeMateria)
     {
-        // Navega para ExibirMateriaView passando o nome da matéria como query parameter.
-        await Shell.Current.GoToAsync($"Materia?nome={Uri.EscapeDataString(nomeMateria)}");
+        await Shell.Current.GoToAsync(
+            $"Materia?materiaId={Uri.EscapeDataString(materiaId)}&nome={Uri.EscapeDataString(nomeMateria)}");
     }
 }
