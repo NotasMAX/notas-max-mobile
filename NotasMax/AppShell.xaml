@@ -11,7 +11,7 @@
     FlyoutBehavior="Disabled">
 
     <ShellContent Route="Login"
-        ContentTemplate="{DataTemplate local:LoginView}" />
+                  ContentTemplate="{DataTemplate local:LoginView}" />
 
     <ShellContent Route="HomeAluno"
                   ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
@@ -43,8 +43,8 @@
         <Tab Title="Calendário" Icon="calendar.png">
             <ShellContent ContentTemplate="{DataTemplate aluno:CalendarioAlunoView}" />
         </Tab>
-        <Tab Title="Perfil" Icon="profile.png">
-            <ShellContent ContentTemplate="{DataTemplate aluno:PerfilView}" />
+        <Tab Title="Perfil" Icon="profile.png" Route="perfil">
+            <ShellContent Route="perfilaluno" ContentTemplate="{DataTemplate aluno:PerfilView}" />
         </Tab>
     </TabBar>
 
@@ -63,8 +63,8 @@
             <ShellContent Route="desempenhoturmaview" ContentTemplate="{DataTemplate professor:DesempenhoTurmaView}" />
         </Tab>
         <!-- Necessário editar para a view de perfil -->
-        <Tab Title="Perfil" Icon="profile.png">
-            <ShellContent ContentTemplate="{DataTemplate professor:PerfilProfessorView}" />
+        <Tab Title="Perfil" Icon="profile.png" Route="perfil">
+            <ShellContent Route="perfilprofessor" ContentTemplate="{DataTemplate professor:PerfilProfessorView}" />
         </Tab>
     </TabBar>
 

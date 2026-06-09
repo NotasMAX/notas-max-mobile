@@ -8,6 +8,7 @@
              x:Name="thisPage">
     
     <ScrollView>
+        
         <VerticalStackLayout Padding="20,40" Spacing="16">
 
             <!-- Header -->
@@ -58,6 +59,7 @@
                         <Label Text="MÉDIA GERAL"
                                Style="{StaticResource LabelDefault}" 
                                TextColor="{StaticResource Blue200}"/>
+                        
                         <Label x:Name="txt_notaGeral" 
                                Style="{StaticResource LabelDefaultTitle}"
                                FontSize="48"
@@ -69,12 +71,10 @@
                     <Border Grid.Column="1"
                             WidthRequest="52"
                             HeightRequest="52"
-                            StrokeThickness="1"
-                            BackgroundColor="Transparent"
+                            StrokeShape="Ellipse"
+                            BackgroundColor="#33FFFFFF"
+                            Stroke="Transparent"
                             VerticalOptions="Center">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="26" />
-                        </Border.StrokeShape>
 
                         <Image x:Name="img_seta"
                                Source="seta_subindo_desempenho.png" 
@@ -283,11 +283,8 @@
             <!-- Card: Lista de Matérias -->
             <Border StrokeThickness="0"
                     BackgroundColor="White"
-                    Padding="4,8">
-                
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="16" />
-                </Border.StrokeShape>
+                    Padding="4,8"
+                    StrokeShape="RoundRectangle 20">
 
                 <CollectionView x:Name="collection_materias">
 
@@ -355,15 +352,16 @@
                                         <Image Source="arrow_right.png"
                                                Aspect="Center"
                                                VerticalOptions="Center">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_VerMateria"
-                                                                      CommandParameter="{Binding MateriaId}" />
-                                            </Image.GestureRecognizers>
                                         </Image>
 
                                     </Border>
 
                                 </Grid>
+
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_VerMateria"
+                                                          CommandParameter="{Binding MateriaId}" />
+                                </Border.GestureRecognizers>
 
                             </Border>
 

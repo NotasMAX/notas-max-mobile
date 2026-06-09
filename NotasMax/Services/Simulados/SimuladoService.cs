@@ -36,6 +36,14 @@ namespace NotasMax.Services.Simulados
             return response;
         }
 
+        public async Task<SimuladoProfessorResponse> GetByProfessor(string professor_id, string token)
+        {
+            var uri = $"{GlobalSettings.DefaultEndpoint}/Simulados/getByProfessor/{professor_id}";
+            var response = await _requestProvider.GetAsync<SimuladoProfessorResponse>(uri, token);
+
+            return response;
+        }
+
         public async Task<DesempenhoAlunoByDisciplina> getDesempenhoByDisciplina(string disciplinaId)
         {
             string endpoint = $"{GlobalSettings.DefaultEndpoint}/Simulado/Disciplina/id={disciplinaId}";
