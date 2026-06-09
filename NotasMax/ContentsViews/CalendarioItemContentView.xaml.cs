@@ -5,10 +5,10 @@ namespace NotasMax.ContentsViews;
 
 public partial class CalendarioItemContentView : ContentView
 {
-	public CalendarioItemContentView()
-	{
-		InitializeComponent();
-	}
+    public CalendarioItemContentView()
+    {
+        InitializeComponent();
+    }
 
     protected override void OnBindingContextChanged()
     {
@@ -16,7 +16,8 @@ public partial class CalendarioItemContentView : ContentView
         if (!(this.BindingContext is CalendarioByAluno.CalendarioSimulado simulado))
             return;
 
-        string dataFormatada = simulado.DataRealizacao.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("pt-BR"));
+        string dataFormatada = simulado.DataRealizacao.ToString("dd 'de' MMMM", new CultureInfo("pt-BR"));
+        label_data_realizacao.Text = dataFormatada;
         label_numero_simulado.Text = "Simulado " + simulado.Numero;
 
         var tipo = simulado.Tipo;
@@ -25,7 +26,7 @@ public partial class CalendarioItemContentView : ContentView
             border_tipo.BackgroundColor = Color.FromArgb("#e7ecf4");
             border_icon.BackgroundColor = Color.FromArgb("#e7ecf4");
         }
-        else 
+        else
         {
             border_tipo.BackgroundColor = Color.FromArgb("#fef5da");
             border_icon.BackgroundColor = Color.FromArgb("#fef5da");

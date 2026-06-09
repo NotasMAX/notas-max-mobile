@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:chart="http://schemas.syncfusion.com/maui/toolkit"
+             xmlns:ChipControl="clr-namespace:Syncfusion.Maui.Toolkit.Chips;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:cv="clr-namespace:NotasMax.ContentsViews"
+             x:Class="NotasMax.Views.Professor.GestaoNotasView">
+
+    <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        <VerticalStackLayout Spacing="20" Margin="25,40">
+            <VerticalStackLayout Spacing="4" >
+                <Label Style="{StaticResource LabelTitle}"           
+                   Text="Gestão de Notas"/>
+                <Label  Style="{StaticResource LabelDetails}"                        
+                        Text="Visualize e edite as notas dos alunos"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="8">
+                <Label  Style="{StaticResource LabelDetails}"                        
+                        Text="Série"/>
+                <ChipControl:SfChipGroup 
+                    x:Name="chirp_serie"                        
+                    DisplayMemberPath="SerieFormatada"                          
+                    ChipType="Choice"
+                    ChipPadding="0,0,8,0"                    
+                    ChoiceMode="Single"
+                    ChipStroke="Transparent"
+                    ChipFontFamily="Inter"
+                    SelectionChanged="chirp_serie_SelectionChanged"
+                    SelectedChipTextColor="White"
+                    SelectedChipBackground="{StaticResource Blue600}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ChipTextColor" Value="Black" />
+                                    <Setter Property="ChipBackground" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ChipControl:SfChipGroup>
+                <Label  Style="{StaticResource LabelDetails}"                        
+               Text="Disciplinas"/>
+                <ChipControl:SfChipGroup 
+                    x:Name="chirp_disciplinas"                        
+                    DisplayMemberPath="MateriaNome"                          
+                    ChipType="Choice"
+                    ChipPadding="0,0,8,0"                    
+                    ChoiceMode="Single"
+                    ChipStroke="Transparent"
+                    ChipFontFamily="Inter"
+                    SelectionChanged="chirp_disciplinas_SelectionChanged"
+                    SelectedChipTextColor="White"
+                    SelectedChipBackground="{StaticResource Blue600}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ChipTextColor" Value="Black" />
+                                    <Setter Property="ChipBackground" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ChipControl:SfChipGroup>
+                <Label  Style="{StaticResource LabelDetails}"                        
+               Text="Simulados"/>
+                <ChipControl:SfChipGroup 
+                         x:Name="chirp_simulados"                        
+                         DisplayMemberPath="NumeroFormatado"                          
+                         ChipType="Choice"
+                         ChipPadding="0,0,8,0"                    
+                         ChoiceMode="Single"
+                         ChipStroke="Transparent"
+                         ChipFontFamily="Inter"
+                         SelectionChanged="chirp_simulados_SelectionChanged"
+                         SelectedChipTextColor="White"
+                         SelectedChipBackground="{StaticResource Blue600}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ChipTextColor" Value="Black" />
+                                    <Setter Property="ChipBackground" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ChipControl:SfChipGroup>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout x:Name="layout_alunos" Spacing="8">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate >
+                            <cv:AlunoNotaItemContentView/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            <Button x:Name="button_salvar"
+                        Text="Salvar"
+                        FontSize="18"
+                        FontFamily="Inter"
+                    FontAttributes="Bold"
+                    FontAutoScalingEnabled="True"
+                        Clicked="button_salvar_Clicked">
+
+                <Button.Background>
+
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="{StaticResource Blue900}"
+                                            Offset="0.1" />
+                        <GradientStop Color="{StaticResource Blue600}"
+                                            Offset="1.0" />
+                    </LinearGradientBrush>
+
+                </Button.Background>
+
+            </Button>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

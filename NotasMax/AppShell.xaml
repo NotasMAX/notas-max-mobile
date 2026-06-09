@@ -31,17 +31,17 @@
     <!-- lembrando que esse menu que fica em baixo funciona apenas no mobile, !!!ainda nao testado!!! -->
     <!--menu aluno-->
     <TabBar x:Name="aluno_tabbar" Route="aluno" IsVisible="False">
-        <Tab Title="Início" Icon="home.png">
-            <ShellContent ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
+        <Tab Title="Início" Icon="home.png" Route="inicio">
+            <ShellContent Route="homealunoview" ContentTemplate="{DataTemplate aluno:HomeAlunoView}" />
         </Tab>
-        <Tab Title="Simulados" Icon="simulados.png">
-            <ShellContent ContentTemplate="{DataTemplate aluno:MeuSimuladosView}" />
+        <Tab Title="Simulados" Icon="simulados.png" Route="simulados">
+            <ShellContent Route="meusimuladosview" ContentTemplate="{DataTemplate aluno:MeuSimuladosView}" />
         </Tab>
-        <Tab Title="Desempenho" Icon="chart.png">
-            <ShellContent ContentTemplate="{DataTemplate aluno:MeuDesempenhoView}" />
+        <Tab Title="Desempenho" Icon="chart.png" Route="desempenho">
+            <ShellContent Route="meudesempenhoview" ContentTemplate="{DataTemplate aluno:MeuDesempenhoView}" />
         </Tab>
-        <Tab Title="Calendário" Icon="calendar.png">
-            <ShellContent ContentTemplate="{DataTemplate aluno:CalendarioAlunoView}" />
+        <Tab Title="Calendário" Icon="calendar.png" Route="calendario">
+            <ShellContent Route="calendarioalunoview" ContentTemplate="{DataTemplate aluno:CalendarioAlunoView}" />
         </Tab>
         <Tab Title="Perfil" Icon="profile.png" Route="perfil">
             <ShellContent Route="perfilaluno" ContentTemplate="{DataTemplate aluno:PerfilView}" />
@@ -55,14 +55,12 @@
         <Tab Title="Turmas" Icon="turmas.png" Route="turmas">
             <ShellContent Route="turmasview" ContentTemplate="{DataTemplate professor:TurmasView}" />
         </Tab>
-        <!-- Necessário editar para a view de editar notas --> 
         <Tab Title="Notas" Icon="notas.png" Route="notas">
-            <ShellContent Route="notasview" ContentTemplate="{DataTemplate professor:HomeProfessorView}" />
+            <ShellContent Route="notasview" ContentTemplate="{DataTemplate professor:GestaoNotasView}" />
         </Tab>
         <Tab Title="Desempenho" Icon="chart.png" Route="desempenho">
             <ShellContent Route="desempenhoturmaview" ContentTemplate="{DataTemplate professor:DesempenhoTurmaView}" />
         </Tab>
-        <!-- Necessário editar para a view de perfil -->
         <Tab Title="Perfil" Icon="profile.png" Route="perfil">
             <ShellContent Route="perfilprofessor" ContentTemplate="{DataTemplate professor:PerfilProfessorView}" />
         </Tab>

@@ -1,4 +1,4 @@
-﻿using NotasMax.Services.Settings;
+using NotasMax.Services.Settings;
 
 namespace NotasMax.Services.NavigationService
 {
@@ -15,9 +15,9 @@ namespace NotasMax.Services.NavigationService
                 var role = _settingsService.UserRoleKey.Trim().ToLowerInvariant();
 
                 if (role == "aluno")
-                    route = "aluno";
+                    route = "aluno/inicio/homealunoview";
                 else if (role == "professor")
-                    route = "professor";
+                    route = "professor/inicio/homeprofessor";
             }
             return NavigationAsync(route, absolute: true);
         }

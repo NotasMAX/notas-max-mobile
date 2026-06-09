@@ -80,11 +80,11 @@ public partial class LoginView : ContentPage
             switch (tipoUsuario)
             {
                 case "aluno":
-                    await _navigationService.NavigationAsync("aluno", true);
+                    await _navigationService.NavigationAsync("aluno/inicio/homealunoview", true);
                     break;
 
                 case "professor":
-                    await _navigationService.NavigationAsync("professor", true);
+                    await _navigationService.NavigationAsync("professor/inicio/homeprofessor", true);
                     break;
 
                 case "administrador":

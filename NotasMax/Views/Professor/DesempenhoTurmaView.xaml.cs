@@ -229,4 +229,9 @@ public partial class DesempenhoTurmaView : ContentPage
 
         isDisciplinaLoading = false;
     }
+
+    private void chirp_simulados_SelectionChanged(object sender, Syncfusion.Maui.Toolkit.Chips.SelectionChangedEventArgs e)
+    {
+
+    }
 }

@@ -58,5 +58,38 @@ namespace NotasMax
             Routing.RegisterRoute("informarcodigo", typeof(InformarCodigoRecuperacaoView));
             Routing.RegisterRoute("novasenha", typeof(NovaSenhaView));
         }
+
+        protected override void OnNavigating(ShellNavigatingEventArgs args)
+        {
+            base.OnNavigating(args);
+
+            if (args.Source == ShellNavigationSource.ShellSectionChanged || args.Source == ShellNavigationSource.ShellItemChanged)
+            {
+                var navigation = Shell.Current?.Navigation;
+                if (navigation != null)
+                {
+                    var stack = navigation.NavigationStack?.ToArray();
+                    if (stack != null && stack.Length > 1)
+                    {
+                        var pagesToRemove = stack.Skip(1).ToList();
+
+                        Dispatcher.Dispatch(() =>
+                        {
+                            foreach (var page in pagesToRemove)
+                            {
+                                try
+                                {
+                                    navigation.RemovePage(page);
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Erro ao limpar pilha de navegação: {ex.Message}");
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        }
     }
 }
