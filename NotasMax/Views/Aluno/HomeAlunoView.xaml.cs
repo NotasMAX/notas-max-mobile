@@ -90,31 +90,20 @@ public partial class HomeAlunoView : ContentPage, IValueConverter
     }
 
     // Ir para tela de desempnho de uma materia 
-    private void TapGestureRecognizer_VerMateria(object sender, TappedEventArgs e)
+    private async void TapGestureRecognizer_VerMateria(object sender, TappedEventArgs e)
     {
         if (e.Parameter is string materiaId)
         {
-            var materia = _simulados.MediaPorMateria
-                .FirstOrDefault(m => m.MateriaId == materiaId);
-
-            if (materia != null)
-            {
-                DisplayAlertAsync("Matéria", $"Matéria: {materia.Materia}\nProfessor: {materia.Professor}\nMédia: {materia.Media:F1}", "OK");
-
-            }
+            // Necessario fazer rota para ir na tela "ExibirMateriaView", 
+            //await Shell.Current.GoToAsync("//aluno/perfil/perfilaluno");
+            await DisplayAlertAsync("OPS", "Falta completar", "ok");
         }
-    }
-
-    // Botao de Logout - temporario para desenvolvimento
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        _navigationService.NavigationAsync("Login?Logout=true", true);
     }
 
     // Botao para ir na tela de perfil
     private async void Avatar_Clicked(object sender, EventArgs e)
     {
-        await _navigationService.NavigationAsync("DadosPessoaisAluno", false);
+        await Shell.Current.GoToAsync("//aluno/perfil/perfilaluno");
     }
 
     // Grafico

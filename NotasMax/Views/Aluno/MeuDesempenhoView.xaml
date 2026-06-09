@@ -5,16 +5,22 @@
              x:Class="NotasMax.Views.Aluno.MeuDesempenhoView">
 
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
+        
         <VerticalStackLayout Spacing="20" Margin="25,40">
+            
             <VerticalStackLayout Spacing="4" >
                 <Label Style="{StaticResource LabelTitle}"                          
                        Text="Meu Desempenho"/>
                 <Label Style="{StaticResource LabelDetails}"
                        Text="Análise detalhada das suas notas"/>
             </VerticalStackLayout>
+            
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                
                 <VerticalStackLayout Grid.Column="0">
+                    
                     <Border Style="{StaticResource BorderShadow}">
+                        
                         <VerticalStackLayout Style="{StaticResource VerStackInsight}">
                             <Image Style="{StaticResource ImageIcon}"
                                    Source="grade_avg.png"/>
@@ -24,11 +30,17 @@
                             <Label Style="{StaticResource LabelInsightText}"
                            Text="Média"/>
                         </VerticalStackLayout>
+                        
                     </Border>
+                    
                 </VerticalStackLayout>
+                
                 <VerticalStackLayout Grid.Column="1">
+                    
                     <Border Style="{StaticResource BorderShadow}">
+                        
                         <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            
                             <Image Style="{StaticResource ImageIcon}"
                                    Source="grade_up.png"/>
                             <Label Style="{StaticResource LabelInsightValue}"  
@@ -37,12 +49,19 @@
                             <Label Style="{StaticResource LabelInsightText}"
                                    x:Name="label_maior_materia" 
                                    Text="Matéria"/>
+                            
                         </VerticalStackLayout>
+                        
                     </Border>
+                    
                 </VerticalStackLayout>
+                
                 <VerticalStackLayout Grid.Column="2">
+                    
                     <Border Style="{StaticResource BorderShadow}">
+                        
                         <VerticalStackLayout Style="{StaticResource VerStackInsight}">
+                            
                             <Image Style="{StaticResource ImageIcon}"
                                    Source="grade_down.png"/>
                             <Label Style="{StaticResource LabelInsightValue}" 
@@ -51,15 +70,24 @@
                             <Label Style="{StaticResource LabelInsightText}"
                                    x:Name="label_menor_materia"
                                    Text="Matéria"/>
+                            
                         </VerticalStackLayout>
+                        
                     </Border>
+                    
                 </VerticalStackLayout>
+                
             </Grid>
+            
             <VerticalStackLayout Spacing="16">
+                
                 <Border Style="{StaticResource BorderShadow}">
+                    
                     <VerticalStackLayout Spacing="12">
+                        
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Evolução das Médias"/>
+                        
                         <chart:SfCartesianChart HeightRequest="160">
                             <chart:SfCartesianChart.XAxes>
                                 <chart:CategoryAxis/>
@@ -83,9 +111,11 @@
             </VerticalStackLayout>
             <Grid>
                 <Border Style="{StaticResource BorderShadow}">
+                    
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="MinhasMaterias_Tapped" />
                     </Border.GestureRecognizers>
+                    
                     <Grid ColumnDefinitions="25,*,25"
                           Padding="4"
                           ColumnSpacing="12">
@@ -99,11 +129,16 @@
                                Source="arrow_right.png"
                                Grid.Column="2"/>
                     </Grid>
+                    
                 </Border>
+                
             </Grid>
             <VerticalStackLayout Spacing="16">
+                
                 <Border Style="{StaticResource BorderShadow}">
+                    
                     <VerticalStackLayout Spacing="12">
+                        
                         <Label Style="{StaticResource LabelSubtitle}"
                                Text="Comparativo por Matérias"/>
                         <chart:SfPolarChart StartAngle="Rotate0" 
