@@ -1,9 +1,11 @@
-﻿using NotasMax.Models;
+using NotasMax.Models;
 using NotasMax.Models.Simulados;
 using NotasMax.Models.Usuarios;
 using NotasMax.Services.RequestProvider;
 using NotasMax.Services.Settings;
 using NotasMax.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NotasMax.Services.Simulados
 
@@ -52,6 +54,13 @@ namespace NotasMax.Services.Simulados
             return await _requestProvider.GetAsync<DesempenhoAluno>(endpoint);
         }
 
+        public async Task<GestaoNotasViewModel> GetGestaoNotas()
+        {
+            getUsuario();
+            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Professor/{_usuario?.Id}/data/anoAtual";
+            return await _requestProvider.GetAsync<GestaoNotasViewModel>(endpoint);
+        }
+
         public async Task<DesempenhoAlunoBySimulado> GetDesempenhoAlunoBySimulado(string simuladoId)
         {
             getUsuario();
@@ -90,6 +99,20 @@ namespace NotasMax.Services.Simulados
             string endpoint = $"{GlobalSettings.DefaultEndpoint}/Simulados/ano={ano}/aluno={alunoId}";
             return await _requestProvider.GetAsync<DesempenhoAlunoBySimulados>(endpoint);
         }
+
+        public async Task SaveGestaoNotas(string simuladoId, string disciplinaId, List<GestaoNotasSimuladoViewModel.Aluno> alunos)
+        {
+            getUsuario();
+            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Simulado/{simuladoId}/Disciplina/{disciplinaId}/SalvarNotas";
+            await _requestProvider.PostAsync<object, List<GestaoNotasSimuladoViewModel.Aluno>>(endpoint, alunos);
+        }
+        public async Task<GestaoNotasSimuladoViewModel> GetGestaoNotasSimulado(string simuladoId, string disciplinaId)
+        {
+            getUsuario();
+            string endpoint = $"{GlobalSettings.DefaultEndpoint}/Simulado/{simuladoId}/Disciplina/{disciplinaId}";
+            return await _requestProvider.GetAsync<GestaoNotasSimuladoViewModel>(endpoint);
+        }
+
     }
 
 
