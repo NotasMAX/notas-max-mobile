@@ -77,8 +77,8 @@ public partial class MeuDesempenhoView : ContentPage
         CalcularMaiorNota(materias);
     }
 
-    private void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
+    private async void MinhasMaterias_Tapped(object sender, TappedEventArgs e)
     {
-        DisplayAlertAsync("Ops!", "Essa funcionalidade ainda não está disponível.", "OK");
+        await Shell.Current.GoToAsync("MinhasMaterias");
     }
 }

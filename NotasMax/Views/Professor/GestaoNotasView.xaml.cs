@@ -158,12 +158,12 @@ public partial class GestaoNotasView : ContentPage
         {
             await _simuladoService.SaveGestaoNotas(_gestaoNotasSimulado.SimuladoId, _gestaoNotasSimulado.DisciplinaId, _gestaoNotasSimulado.Alunos);
             Debug.WriteLine("Notas salvas com sucesso.");
-            await DisplayAlert("Sucesso", "Notas salvas com sucesso!", "OK");
+            await DisplayAlertAsync("Sucesso", "Notas salvas com sucesso!", "OK");
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"Erro ao salvar notas: {ex.Message}");
-            await DisplayAlert("Erro", $"Não foi possível salvar as notas: {ex.Message}", "OK");
+            await DisplayAlertAsync("Erro", $"Não foi possível salvar as notas: {ex.Message}", "OK");
         }
     }
 }
