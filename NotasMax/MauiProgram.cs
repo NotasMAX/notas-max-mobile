@@ -85,6 +85,7 @@ namespace NotasMax
             app.Services.AddTransient<InformarEmailView>();
             app.Services.AddTransient<InformarCodigoRecuperacaoView>();
             app.Services.AddTransient<NovaSenhaView>();
+            app.Services.AddTransient<ExibirMateriaView>();
             return app;
         }
 

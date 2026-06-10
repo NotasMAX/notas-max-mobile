@@ -7,8 +7,9 @@
     <ScrollView BackgroundColor="{StaticResource BackgroundColor}">
         <VerticalStackLayout Spacing="20" Margin="25,40">
             <VerticalStackLayout Spacing="4" >
-                <Label Style="{StaticResource LabelTitle}"           
-                   Text="Matéria"/>
+                <Label Style="{StaticResource LabelTitle}"
+                       x:Name="label_titulo_materia"
+                       Text="Matéria"/>
                 <Label  Style="{StaticResource LabelDetails}"                        
                         Text="Detalhes de desempenho"/>
             </VerticalStackLayout>
